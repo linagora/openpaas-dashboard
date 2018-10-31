@@ -7,7 +7,10 @@ The seed has been developed using Node 10, please use at least the same.
 
 ## Project configuration
 
-You can update the `.env` file to define the OpenPaaS instance to reach, or override it in a new `.env.development.local` file.
+You can update the `.env` file to define the OpenPaaS instance to reach, or override it in a new `.env.development.local` file. Current environment variables are:
+
+- `VUE_APP_OPENPAAS_URL`: route to your OpenPaaS instance. Needs to be `http://localhost:8080` in development mode.
+
 
 ## Project setup
 ```
