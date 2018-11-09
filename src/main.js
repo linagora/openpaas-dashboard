@@ -9,6 +9,9 @@ import Vuetify from "vuetify";
 import theme from "./theme";
 import "./main.styl";
 
+import OpenPaaS from "vue-openpaas-components";
+Vue.use(OpenPaaS);
+
 Vue.use(VueAxios, axios);
 axios.defaults.baseURL = store.state.baseUrl;
 Vue.router = router;

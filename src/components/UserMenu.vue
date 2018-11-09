@@ -1,9 +1,6 @@
 <template>
   <v-menu bottom left offset-y>
-    <v-avatar size="32px" slot="activator">
-      <img v-if="getAvatarUrl" :src="getAvatarUrl">
-      <v-icon v-else>account_circle</v-icon>
-    </v-avatar>
+    <op-avatar slot="activator"/>
     <v-list>
       <v-list-tile>
         <v-list-tile-content>
