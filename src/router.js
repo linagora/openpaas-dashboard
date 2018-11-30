@@ -6,6 +6,8 @@ import Login from "@/views/Login.vue";
 Vue.use(Router);
 
 export default new Router({
+  base: process.env.BASE_URL, // Needed for dev/build and HTML history
+  mode: "history",
   routes: [
     {
       path: "/",
