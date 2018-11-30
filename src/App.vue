@@ -34,14 +34,14 @@ import Snackbar from "@/components/Snackbar.vue";
 
 export default {
   components: {
-    'op-user-menu': UserMenu,
-    'op-snackbar': Snackbar
+    "op-user-menu": UserMenu,
+    "op-snackbar": Snackbar
   },
-  created () {
+  created() {
     this.$auth.ready(() => {
-      this.$store.dispatch('user/fetchUser');
+      this.$store.dispatch("user/fetchUser");
     });
-  },
+  }
 };
 </script>
 

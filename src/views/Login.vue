@@ -9,8 +9,22 @@
             </v-toolbar>
             <v-card-text>
               <v-form>
-                <v-text-field prepend-icon="person" name="login" :label="$t('Login')" type="text" v-model="email"></v-text-field>
-                <v-text-field prepend-icon="lock" name="password" :label="$t('Password')" id="password" type="password" v-model="password" required></v-text-field>
+                <v-text-field
+                    prepend-icon="person"
+                    name="login"
+                    label="$t('Login')"
+                    type="text"
+                    v-model="email"
+                ></v-text-field>
+                <v-text-field
+                    prepend-icon="lock"
+                    name="password"
+                    label="$t('Password')"
+                    id="password"
+                    type="password"
+                    v-model="password"
+                    required
+                ></v-text-field>
               </v-form>
             </v-card-text>
             <v-card-actions>
@@ -28,40 +42,39 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
   data() {
     return {
       logMeIn: false,
       email: null,
-      password: null,
+      password: null
     };
   },
   methods: {
     login() {
       this.logMeIn = true;
-      this.$auth.login({
-        url: 'api/jwt/generate',
-        auth: {
-          username: this.email,
-          password: this.password
-        },
-        rememberMe: false,
-        redirect: { name: 'home' }
-      })
-      .then(response => {
-        this.$store.dispatch('session/setJWTToken', response.data);
-        this.$store.dispatch('user/fetchUser');
+      this.$auth
+        .login({
+          url: "api/jwt/generate",
+          auth: {
+            username: this.email,
+            password: this.password
+          },
+          rememberMe: false,
+          redirect: { name: "home" }
+        })
+        .then(response => {
+          this.$store.dispatch("session/setJWTToken", response.data);
+          this.$store.dispatch("user/fetchUser");
 
-        return response.data;
-      })
-      .catch(err => {
-        this.$store.dispatch('ui/displaySnackbar', { message: 'Login error, please retry' });
-      })
-      .finally(() => {
-        setTimeout(() => (this.logMeIn = false), 300);
-      });
+          return response.data;
+        })
+        .catch(() => {
+          this.$store.dispatch("ui/displaySnackbar", { message: "Login error, please retry" });
+        })
+        .finally(() => {
+          setTimeout(() => (this.logMeIn = false), 300);
+        });
     }
   }
 };
