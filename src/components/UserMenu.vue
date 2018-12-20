@@ -26,6 +26,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { OPAvatar } from "vue-openpaas-components";
+import { routeNames } from "@/router";
 
 export default {
   name: "op-user-menu",
@@ -33,7 +34,7 @@ export default {
   methods: {
     logout() {
       return this.$store.dispatch("session/logout").then(() => {
-        this.$router.push({ name: "login" });
+        this.$router.push({ name: routeNames.LOGIN });
       });
     },
 

@@ -5,13 +5,20 @@ import Login from "@/views/Login.vue";
 
 Vue.use(Router);
 
+// Set your routes here
+export const routeNames = Object.freeze({
+  HOME: "Home",
+  LOGIN: "Login",
+  ABOUT: "About"
+});
+
 export default new Router({
   base: process.env.BASE_URL, // Needed for dev/build and HTML history
   mode: "history",
   routes: [
     {
       path: "/",
-      name: "home",
+      name: routeNames.HOME,
       component: Home,
       meta: {
         auth: true
@@ -19,7 +26,7 @@ export default new Router({
     },
     {
       path: "/login",
-      name: "login",
+      name: routeNames.LOGIN,
       component: Login,
       meta: {
         auth: false
@@ -27,7 +34,7 @@ export default new Router({
     },
     {
       path: "/about",
-      name: "about",
+      name: routeNames.ABOUT,
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
