@@ -5,6 +5,7 @@ import getters from "./getters";
 import mutations from "./mutations";
 import state from "./state";
 import plugins from "./plugins";
+import applicationConfiguration from "./modules/application-configuration";
 import session from "./modules/session";
 import ui from "./modules/ui";
 import user from "./modules/user";
@@ -12,6 +13,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
+    applicationConfiguration,
     session,
     ui,
     user
@@ -20,6 +22,6 @@ export default new Vuex.Store({
   getters,
   mutations,
   plugins,
-  state: state(),
+  state,
   strict: process.env.NODE_ENV !== "production"
 });
