@@ -1,5 +1,7 @@
+import ApplicationSettings from "@/services/application-settings";
+
 const state = {
-  baseUrl: process.env.VUE_APP_OPENPAAS_URL || "http://localhost:8080"
+  baseUrl: ApplicationSettings.VUE_APP_OPENPAAS_URL
 };
 
 export default { namespaced: true, state };

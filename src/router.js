@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
+import ApplicationSettings from "@/services/application-settings";
 
 Vue.use(Router);
 
@@ -13,7 +14,7 @@ export const routeNames = Object.freeze({
 });
 
 export default new Router({
-  base: process.env.BASE_URL, // Needed for dev/build and HTML history
+  base: ApplicationSettings.BASE_URL, // Needed for dev/build and HTML history
   mode: "history",
   routes: [
     {

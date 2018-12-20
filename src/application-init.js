@@ -6,6 +6,7 @@ import colors from "vuetify/es5/util/colors";
 import App from "@/App";
 import router from "@/router";
 import { api, auth as servicesAuth } from "@/services";
+import ApplicationSettings from "@/services/application-settings";
 import store from "@/store";
 import i18n from "@/i18n";
 
@@ -32,12 +33,16 @@ function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth
 }
 
 function getApplication(VueInstance) {
-  return new VueInstance({
+  const Application = new VueInstance({
     router,
     store,
     i18n: i18n(VueInstance),
     render: h => h(App)
   }).$mount("#app");
+
+  Application.ApplicationSettings = ApplicationSettings;
+
+  return Application;
 }
 
-export { applicationInit, getApplication, defaultTheme };
+export { ApplicationSettings, applicationInit, defaultTheme, getApplication };
