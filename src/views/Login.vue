@@ -12,14 +12,14 @@
                 <v-text-field
                     prepend-icon="person"
                     name="login"
-                    label="$t('Login')"
+                    :label="$t('Login')"
                     type="text"
                     v-model="email"
                 ></v-text-field>
                 <v-text-field
                     prepend-icon="lock"
                     name="password"
-                    label="$t('Password')"
+                    :label="$t('Password')"
                     id="password"
                     type="password"
                     v-model="password"
