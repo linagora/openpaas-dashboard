@@ -1,6 +1,6 @@
 <template>
   <v-menu bottom left offset-y>
-    <op-avatar slot="activator"/>
+    <op-avatar slot="activator"></op-avatar>
     <v-list>
       <v-list-tile>
         <v-list-tile-content>
@@ -25,13 +25,16 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { OPAvatar } from "vue-openpaas-components";
+import { routeNames } from "@/router";
 
 export default {
   name: "op-user-menu",
+  components: { "op-avatar": OPAvatar },
   methods: {
     logout() {
-      this.$store.dispatch("session/logout").then(() => {
-        this.$router.push({ name: "login" });
+      return this.$store.dispatch("session/logout").then(() => {
+        this.$router.push({ name: routeNames.LOGIN });
       });
     },
 

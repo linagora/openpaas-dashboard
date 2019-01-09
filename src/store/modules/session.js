@@ -1,5 +1,3 @@
-import Vue from "vue";
-
 const state = {
   jwtToken: localStorage.getItem("default_auth_token")
 };
@@ -14,16 +12,13 @@ const actions = {
   },
 
   logout({ dispatch }) {
-    return new Promise(resolve => {
-      Vue.auth.logout();
-      dispatch("resetSession");
-      resolve();
-    });
+    require("vue").default.auth.logout();
+    return dispatch("resetSession");
   },
 
-  resetSession({ dispatch }) {
-    dispatch("user/resetUser", null, { root: true });
-    dispatch("setJWTToken", "");
+  async resetSession({ dispatch }) {
+    await dispatch("user/resetUser", null, { root: true });
+    return dispatch("setJWTToken", "");
   }
 };
 
