@@ -1,16 +1,11 @@
 <template>
   <div class="home">
-    <HelloWorld :msg="$t('Welcome to Your OpenPaaS Vue.js App')"/>
+    <email-list/>
   </div>
 </template>
 
 <script>
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
-  name: "home",
-  components: {
-    HelloWorld
-  }
+  name: "home"
 };
 </script>
