@@ -9,10 +9,16 @@ const types = {
 };
 
 const actions = {
-  fetchUser({ commit }) {
-    Vue.axios.get("api/user").then(response => {
-      commit(types.SET_USER, response.data);
-    });
+  fetchUser({ commit, dispatch }) {
+    Vue.axios
+      .get("api/user")
+      .then(response => {
+        commit(types.SET_USER, response.data);
+        dispatch("session/setResolved", null, { root: true });
+      })
+      .catch(error => {
+        dispatch("session/setRejected", error, { root: true });
+      });
   },
 
   resetUser({ commit }) {
