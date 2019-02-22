@@ -1,7 +1,7 @@
 <template>
   <v-app id="openpaas">
     <div v-if="$auth.ready()">
-      <v-navigation-drawer v-if="$auth.check()" clipped fixed app>
+      <v-navigation-drawer v-if="$auth.check() && false" clipped fixed app>
         <!--<op-sidebar/>-->
       </v-navigation-drawer>
       <v-toolbar clipped-left app fixed color="primary" v-if="$auth.check()">
