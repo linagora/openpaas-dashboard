@@ -1,26 +1,19 @@
 <template>
  <v-container fill-height fluid grid-list-xl>
     <v-layout wrap>
-      <v-flex sm6 md6 lg4>
-        <widget title="Todo" icon="list">
-        </widget>
-      </v-flex>
-      <v-flex sm6 md6 lg4>
-        <widget title="My Files" icon="folder">
-        </widget>
-      </v-flex>
-      <v-flex sm6 md6 lg4>
-        <widget title="My contacts" icon="contacts">
-        </widget>
-      </v-flex>
-      <v-flex sm12 md8 lg8>
+      <v-flex sm12 md7 lg7>
         <widget title="Last Emails" icon="email">
           <email-list slot="body"/>
         </widget>
       </v-flex>
-      <v-flex sm6 md4 lg4>
+      <v-flex sm12 md3 lg3>
         <widget title="Calendar" icon="event">
           <calendar slot="body"/>
+        </widget>
+      </v-flex>
+      <v-flex sm12 md2 lg2>
+        <widget color="purple">
+          <weather slot="body"/>
         </widget>
       </v-flex>
     </v-layout>
