@@ -1,8 +1,7 @@
 import Axios from "axios";
 import store from "@/store";
 
-// Import your API functions here
-//import functions from "./whatever-api";
+import PeopleAPI from "./people";
 
 const defaults = {
   baseURL: store.state.applicationConfiguration.baseUrl
@@ -10,8 +9,8 @@ const defaults = {
 
 function Api(config) {
   const instance = Axios.create(Object.assign({}, defaults, config));
-  // Assign them to your Axios instance here
-  //Object.assign(instance, functions);
+  Object.assign(instance, PeopleAPI);
+
   return instance;
 }
 

@@ -5,9 +5,7 @@
         <template v-for="(email, index) in emails">
           <v-list-tile avatar :key="email.id" class="email">
             <v-list-tile-avatar>
-              <v-avatar class="red" :size="40">
-                <span class="white--text headline">{{email.from.email[0].toUpperCase()}}</span>
-              </v-avatar>
+              <people-avatar :email="email.from.email" :size="40"/>
             </v-list-tile-avatar>
             <v-list-tile-content>
               <v-list-tile-title v-bind:class="{ unread: email.isUnread }" v-html="email.subject"></v-list-tile-title>
@@ -23,6 +21,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import PeopleAvatar from "@/components/PeopleAvatar";
 
 export default {
   name: "EmailList",
@@ -30,21 +29,23 @@ export default {
     emails() {
       return this.$store.state.email.emails.list.slice().reverse();
     },
-    ...mapGetters("session", { sessionReady: "ready" }),
+    ...mapGetters("session", { sessionReady: "ready" })
   },
   async mounted() {
     await this.sessionReady;
-    this.$store.dispatch('fetchLastEmails');
+    this.$store.dispatch("fetchLastEmails");
+  },
+  components: {
+    PeopleAvatar
   }
 };
 </script>
 <style scoped>
-  .email {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .unread {
-    font-weight: 800;
-  }
+.email {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.unread {
+  font-weight: 800;
+}
 </style>
-
