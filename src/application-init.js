@@ -1,6 +1,7 @@
 import VueAxios from "vue-axios";
 import OpenPaaS from "vue-openpaas-components";
 import Vuetify from "vuetify";
+import VueMoment from "vue-moment";
 import colors from "vuetify/es5/util/colors";
 
 import App from "@/App";
@@ -26,6 +27,8 @@ function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth
   VueInstance.use(require("@websanova/vue-auth"), auth);
 
   VueInstance.use(Vuetify, { theme });
+
+  VueInstance.use(VueMoment);
 
   VueInstance.config.productionTip = false;
 
