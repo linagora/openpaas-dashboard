@@ -2,7 +2,7 @@
  <v-container fill-height fluid grid-list-xl>
     <v-layout wrap>
       <v-flex sm12 md7 lg7>
-        <widget title="Last Emails" icon="email">
+        <widget title="Inbox" icon="email">
           <email-list slot="body"/>
         </widget>
       </v-flex>
