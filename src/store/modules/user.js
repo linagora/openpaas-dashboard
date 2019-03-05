@@ -42,7 +42,9 @@ const getters = {
   },
 
   getDisplayName(state) {
-    return state.user && `${state.user.firstname} ${state.user.lastname}`;
+    return (
+      state.user && (`${state.user.firstname || ""} ${state.user.lastname || ""}`.trim() || state.user.preferredEmail)
+    );
   },
 
   getEmail(state) {

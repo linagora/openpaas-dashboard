@@ -1,6 +1,8 @@
 <template>
   <v-menu bottom left offset-y>
-    <op-avatar slot="activator"></op-avatar>
+    <v-avatar slot="activator" size="36">
+      <img :src="getAvatarUrl"/>
+    </v-avatar>
     <v-list>
       <v-list-tile>
         <v-list-tile-content>
@@ -9,13 +11,6 @@
         </v-list-tile-content>
       </v-list-tile>
       <v-divider/>
-      <v-list-tile @click.prevent="profile">
-        <v-list-tile-title>{{$t('Profile')}}</v-list-tile-title>
-      </v-list-tile>
-      <v-divider/>
-      <v-list-tile @click.prevent="settings">
-        <v-list-tile-title>{{$t('Settings')}}</v-list-tile-title>
-      </v-list-tile>
       <v-list-tile @click.prevent="logout">
         <v-list-tile-title>{{$t('Logout')}}</v-list-tile-title>
       </v-list-tile>
@@ -28,17 +23,13 @@ import { mapGetters } from "vuex";
 import { routeNames } from "@/router";
 
 export default {
-  name: "op-user-menu",
+  name: "user-menu",
   methods: {
     logout() {
       return this.$store.dispatch("session/logout").then(() => {
         this.$router.push({ name: routeNames.LOGIN });
       });
     },
-
-    profile() {},
-
-    settings() {}
   },
   computed: {
     ...mapGetters({
@@ -49,6 +40,3 @@ export default {
   }
 };
 </script>
-
-<style lang="stylus" scoped>
-</style>
