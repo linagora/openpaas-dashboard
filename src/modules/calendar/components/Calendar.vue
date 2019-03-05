@@ -1,14 +1,34 @@
 <template>
-  <v-layout>
+  <v-layout column>
+    <v-flex xs-12>
+      <v-layout align-end justify-end>
+        <v-tooltip top>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" fab depressed small v-on:click="$refs.calendar.prev()">
+              <v-icon>arrow_left</v-icon>
+            </v-btn>
+          </template>
+          <span>Previous</span>
+        </v-tooltip>
+        <v-tooltip top>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" fab depressed small v-on:click="today()">
+              <v-icon>today</v-icon>
+            </v-btn>
+          </template>
+          <span>Today</span>
+        </v-tooltip>
+        <v-tooltip top>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" fab depressed small @click="$refs.calendar.next()">
+              <v-icon>arrow_right</v-icon>
+            </v-btn>
+          </template>
+          <span>Next</span>
+        </v-tooltip>
+      </v-layout>
+    </v-flex>
     <v-flex>
-      <div>
-        <v-btn outline fab small v-on:click="$refs.calendar.prev()">
-          <v-icon>arrow_left</v-icon>
-        </v-btn>
-        <v-btn outline fab small @click="$refs.calendar.next()">
-          <v-icon>arrow_right</v-icon>
-        </v-btn>
-      </div>
       <v-sheet height="600">
         <v-calendar
           ref="calendar"
@@ -127,6 +147,9 @@ export default {
     },
     fetchEvents({ start, end }) {
       this.$store.dispatch("fetchEvents", { start: `${start.format("YYYYMMDD")}T000000`, end: `${end.format("YYYYMMDD")}T000000` });
+    },
+    today() {
+      this.start = moment().format("YYYY-MM-DD");
     }
   }
 };
