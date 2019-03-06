@@ -16,6 +16,11 @@
           <weather slot="body"/>
         </widget>
       </v-flex>
+      <v-flex sm12 md12 lg12>
+        <widget title="Contact" icon="contacts">
+          <contact slot="body"/>
+        </widget>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
