@@ -20,12 +20,15 @@
       :description="weather.description"
       :icon="weather.icon"
     ></weather-info>
+
+    <weather-forecast class="pa-4" :forecast="forecast"/>
   </main>
 </template>
 
 <script>
 import WeatherIcon from "./WeatherIcon";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 import Temperature from "./Temperature";
 import Measurements from "./Measurements";
 
@@ -37,16 +40,21 @@ export default {
   computed: {
     weather() {
       return this.$store.state.weather.current;
+    },
+    forecast() {
+      return this.$store.state.weather.forecast;
     }
   },
   methods: {
     fetchWeather() {
       this.$store.dispatch("fetchWeather")
+      this.$store.dispatch("fetchForecast")
     }
   },
   components: {
     WeatherIcon,
     WeatherInfo,
+    WeatherForecast,
     Temperature,
     Measurements
   }

@@ -11,11 +11,13 @@ const state = {
     location: " ",
     icon: "01d",
     description: ""
-  }
+  },
+  forecast: []
 };
 
 const types = {
-  SET_WEATHER: "SET_WEATHER"
+  SET_WEATHER: "SET_WEATHER",
+  SET_FORECAST: "SET_FORECAST"
 };
 
 const actions = {
@@ -23,12 +25,22 @@ const actions = {
     const client = new WeatherClient();
 
     client.getWeather(location).then(weather => commit(types.SET_WEATHER, weather));
+  },
+
+  fetchForecast: ({ commit }) => {
+    const client = new WeatherClient();
+
+    client.getForecast(location).then(forecast => commit(types.SET_FORECAST, forecast));
   }
 };
 
 const mutations = {
   [types.SET_WEATHER](state, weather) {
     state.current = weather;
+  },
+
+  [types.SET_FORECAST](state, forecast) {
+    state.forecast = forecast;
   }
 };
 

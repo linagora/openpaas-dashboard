@@ -18,7 +18,7 @@ class OpenWeatherMapClient {
 
     try {
       const position = await this.getCurrentLocation();
-      data = await this.getForecast(position.coords);
+      data = await this.callAPI("weather", position.coords);
     } catch (err) {
       data = this.getErrorData();
     }
@@ -26,8 +26,21 @@ class OpenWeatherMapClient {
     return this.denormalize(data);
   }
 
-  async getForecast(coordinates) {
-    const endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${this.appId}&units=metric`;
+  async getForecast() {
+    let data;
+
+    try {
+      const position = await this.getCurrentLocation();
+      data = await this.callAPI("forecast", position.coords);
+    } catch (err) {
+      data = this.getErrorData();
+    }
+
+    return this.denormalizeForecast(data);
+  }
+
+  async callAPI(type, coordinates) {
+    const endpoint = `https://api.openweathermap.org/data/2.5/${type}?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${this.appId}&units=metric`;
     const response = await fetch(endpoint);
 
     return await response.json();
@@ -55,6 +68,18 @@ class OpenWeatherMapClient {
         country: null
       }
     };
+  }
+
+  denormalizeForecast(data) {
+    const forecast = data.list
+      .filter(item => {
+        const date = new Date(item.dt_txt);
+
+        return date.getDate() !== new Date().getDate() && date.getHours() === 12;
+      })
+      .map(item => ({ ...this.denormalize(item), dt_txt: item.dt_txt }));
+    console.log(forecast);
+    return forecast;
   }
 
   denormalize(data) {
