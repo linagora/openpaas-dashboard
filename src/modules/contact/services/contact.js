@@ -11,7 +11,15 @@ export default class Contact {
     this.org = vcard.getFirstPropertyValue("org");
     this.orgName = this.org ? this.org[0] : "";
     this.orgRole = vcard.getFirstPropertyValue("role");
-    this.avatarUrl = vcard.getFirstPropertyValue("photo");
+
+    let photo = vcard.getFirstPropertyValue("photo");
+
+    if (photo) {
+      if (photo.indexOf("http") !== 0) {
+        photo = `data:image/png;base64,${photo}`;
+      }
+      this.avatarUrl = photo;
+    }
 
     this.emails = getMultiValue(vcard, "email", ["Work", "Home", "Other"]).map(mail => {
       mail.value = mail.value.replace(/^mailto:/i, "");

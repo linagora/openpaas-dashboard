@@ -12,7 +12,7 @@ import store from "@/store";
 import i18n from "@/i18n";
 
 const defaultTheme = {
-  primary: colors.blue
+  primary: colors.orange
 };
 
 // This prevents polluting the global Axios and Vue instances

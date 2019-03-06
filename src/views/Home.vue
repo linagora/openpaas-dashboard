@@ -1,21 +1,24 @@
 <template>
  <v-container fill-height fluid grid-list-xl>
     <v-layout wrap>
-      <v-flex sm12 md6 lg6>
-        <widget title="Inbox" icon="email">
-          <email-list slot="body"/>
-        </widget>
-      </v-flex>
       <v-flex sm12 md4 lg4>
         <widget title="Calendar" icon="event">
           <calendar slot="body"/>
         </widget>
       </v-flex>
+
+      <v-flex sm12 md6 lg6>
+        <widget title="Inbox" icon="email" height="500">
+          <email-list slot="body"/>
+        </widget>
+      </v-flex>
+
       <v-flex sm12 md2 lg2>
-        <widget color="purple">
+        <widget color="primary" height="568">
           <weather slot="body"/>
         </widget>
       </v-flex>
+
       <v-flex sm12 md12 lg12>
         <widget title="Contact" icon="contacts">
           <contact slot="body"/>
