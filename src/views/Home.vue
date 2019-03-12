@@ -1,7 +1,7 @@
 <template>
   <v-container id="home" fluid>
     <div id="card-container" ref="container">
-      <card v-resize v-for="card in cards" :card="card" :id="card.id" :key="card.id"/>
+      <card v-resize v-for="card in cards" :ref="card.name" :card="card.component" :id="card.name" :key="card.name" @deleted="removeCard(card.name)"/>
     </div>
   </v-container>
 </template>
@@ -43,7 +43,10 @@ export default {
       // TODO: Be able to distinct settings from main component
       return cards
         .map(card => Modules.get(card)).filter(Boolean)
-        .map(module => module.components[0]);
+        .map(module => ({
+          component: module.components[0],
+          name: module.name
+        }));
     }
   },
   data: () => ({
@@ -84,6 +87,19 @@ export default {
       const cards = this.grid.getItems()
         .filter(f => f.isActive())
         .map(f => f.getElement().id);
+    },
+    removeCard(name) {
+      const element = this.$refs[name];
+
+      if (!element || !element.length) {
+        return;
+      }
+
+      this.grid.hide(element[0].$el, {
+        onFinish: () => {
+          this.$store.dispatch('removeCard', name);
+        }
+      });
     }
   }
 };
@@ -93,6 +109,7 @@ export default {
 #home {
   position: relative;
   flex: 1;
+  padding: 0;
 
   #card-container {
     position: relative;
@@ -120,7 +137,6 @@ export default {
   }
 
   // While waiting for a muuri update this is the easiest way to center the cards.
-  // 1 column
   @media (max-width: 859px) {
     #card-container {
       width: 430px;
@@ -129,7 +145,6 @@ export default {
       }
     }
   }
-  // 2 columns
   @media (min-width: 860px) and (max-width: 1289px) {
     #card-container {
       width: 860px;
@@ -138,7 +153,6 @@ export default {
       }
     }
   }
-  // 3 columns
   @media (min-width: 1290px) and (max-width: 1719px) {
     #card-container {
       width: 1290px;
@@ -147,7 +161,6 @@ export default {
       }
     }
   }
-  // 4 columns
   @media (min-width: 1720px) and (max-width: 2149px) {
     #card-container {
       width: 1720px;
@@ -156,7 +169,6 @@ export default {
       }
     }
   }
-  // 5 columns
   @media (min-width: 2150px) {
     #card-container {
       width: 2150px;

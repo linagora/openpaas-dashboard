@@ -4,6 +4,17 @@
       <v-card-title class="head-drag">
         <v-icon v-if="card.icon" large left>{{card.icon}}</v-icon>
         <span v-if="card.title" class="title font-weight-light ml-2">{{card.title}}</span>
+        <v-spacer/>
+        <v-menu lazy bottom offset-y>
+          <v-btn slot="activator" flat icon>
+            <v-icon>more_vert</v-icon>
+          </v-btn>
+          <v-list>
+            <v-list-tile @click="remove()">
+              <v-list-tile-title>Remove</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
       </v-card-title>
       <v-card-text :style="{ height: `${height}px` }">
         <component :is="card.component"/>
@@ -24,6 +35,11 @@ export default {
     width: {
       type: String,
       default: "400px"
+    }
+  },
+  methods: {
+    remove() {
+      this.$emit("deleted");
     }
   }
 };
