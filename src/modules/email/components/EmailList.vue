@@ -1,5 +1,5 @@
 <template>
- <v-layout row>
+ <v-layout row wrap id="email">
     <v-flex shrink>
       <v-list three-line>
         <template v-for="(email, index) in emails">
@@ -47,6 +47,12 @@ export default {
 };
 </script>
 <style scoped>
+
+#email {
+  max-height: 500px;
+  overflow: auto;
+}
+
 .unread {
   font-weight: 800;
 }

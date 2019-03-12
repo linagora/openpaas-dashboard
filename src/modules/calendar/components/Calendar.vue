@@ -1,5 +1,5 @@
 <template>
-  <v-layout column>
+  <v-layout column id="calendar">
     <v-flex xs-12>
       <v-layout align-end justify-end>
         <v-tooltip top>

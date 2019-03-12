@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <v-layout row wrap justify-space-around align-center id="weather">
     <measurements
       :cloudiness="weather.cloudiness"
       :windSpeed="weather.windSpeed"
@@ -22,7 +22,7 @@
     ></weather-info>
 
     <weather-forecast class="pa-4" :forecast="forecast"/>
-  </main>
+  </v-layout>
 </template>
 
 <script>
@@ -62,13 +62,6 @@ export default {
 </script>
 
 <style scoped>
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .middle {
   display: flex;
   flex-wrap: wrap;

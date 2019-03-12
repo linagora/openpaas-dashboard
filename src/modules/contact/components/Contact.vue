@@ -1,5 +1,5 @@
 <template>
-<v-card-text>
+<div id="contact">
   <v-autocomplete
     v-model="model"
     :items="items"
@@ -35,7 +35,7 @@
       <contact-display :model="model"/>
     </span>
   </v-expand-transition>
-</v-card-text>
+</div>
 </template>
 
 <script>
@@ -66,5 +66,5 @@ export default {
   components: {
     ContactDisplay
   }
-}
+};
 </script>

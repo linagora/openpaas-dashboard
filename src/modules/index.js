@@ -4,29 +4,29 @@ import WeatherModule from "./weather/index";
 import ContactModule from "./contact/index";
 import store from "@/store";
 
+const modules = {};
+
 export default {
-  load
+  load,
+  register,
+  get
 };
 
-function load(VueInstance) {
-  store.registerModule("email", EmailModule.store);
-  store.registerModule("calendar", CalendarModule.store);
-  store.registerModule("weather", WeatherModule.store);
-  store.registerModule("contact", ContactModule.store);
+function get(name) {
+  return modules[name];
+}
 
-  EmailModule.components.forEach(component => {
-    VueInstance.component(component.name, component.component);
-  });
+function register(module) {
+  if (module.store) {
+    store.registerModule(module.name, module.store);
+  }
 
-  CalendarModule.components.forEach(component => {
-    VueInstance.component(component.name, component.component);
-  });
+  modules[module.name] = module;
+}
 
-  WeatherModule.components.forEach(component => {
-    VueInstance.component(component.name, component.component);
-  });
-
-  ContactModule.components.forEach(component => {
-    VueInstance.component(component.name, component.component);
-  });
+function load() {
+  register(EmailModule);
+  register(CalendarModule);
+  register(WeatherModule);
+  register(ContactModule);
 }
