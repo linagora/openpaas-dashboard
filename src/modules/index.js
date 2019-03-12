@@ -2,6 +2,7 @@ import EmailModule from "./email/index";
 import CalendarModule from "./calendar/index";
 import WeatherModule from "./weather/index";
 import ContactModule from "./contact/index";
+import MemberModule from "./member/index";
 import store from "@/store";
 
 const modules = {};
@@ -29,4 +30,5 @@ function load() {
   register(CalendarModule);
   register(WeatherModule);
   register(ContactModule);
+  register(MemberModule);
 }

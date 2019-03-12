@@ -1,7 +1,7 @@
 // TODO: Save the state in localstorage
 
 const state = {
-  cards: ["email", "weather", "contact", "calendar"]
+  cards: ["weather", "email", "calendar", "contact", "member"]
 };
 
 const types = {
