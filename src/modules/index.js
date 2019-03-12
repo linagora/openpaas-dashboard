@@ -3,6 +3,7 @@ import CalendarModule from "./calendar/index";
 import WeatherModule from "./weather/index";
 import ContactModule from "./contact/index";
 import MemberModule from "./member/index";
+import ClockModule from "./clock/index";
 import store from "@/store";
 
 const modules = {};
@@ -31,4 +32,5 @@ function load() {
   register(WeatherModule);
   register(ContactModule);
   register(MemberModule);
+  register(ClockModule);
 }
