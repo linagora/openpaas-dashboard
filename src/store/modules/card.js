@@ -1,8 +1,7 @@
-// TODO: Save the state in localstorage
-import { pull } from "lodash";
+const LOCALSTORAGE_CARDS_KEY = "op.dashboard.cards";
 
 const state = {
-  cards: ["weather", "clock", "email", "calendar", "contact", "member"]
+  cards: JSON.parse(localStorage.getItem(LOCALSTORAGE_CARDS_KEY) || "[]")
 };
 
 const types = {
@@ -23,10 +22,18 @@ const actions = {
 const mutations = {
   [types.ADD_CARD](state, card) {
     state.cards.push(card);
+
+    localStorage.setItem(LOCALSTORAGE_CARDS_KEY, JSON.stringify(state.cards));
   },
 
   [types.REMOVE_CARD](state, card) {
-    pull(state.cards, card);
+    const index = state.cards.findIndex(c => c === card);
+
+    if (index > -1) {
+      state.cards.splice(index, 1);
+    }
+
+    localStorage.setItem(LOCALSTORAGE_CARDS_KEY, JSON.stringify(state.cards));
   }
 };
 

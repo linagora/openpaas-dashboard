@@ -5,6 +5,8 @@ const components = [{ component: Member, title: "Members" }];
 
 export default {
   name: "member",
+  title: "Members",
+  description: "Search for platform members",
   store,
   components
 };

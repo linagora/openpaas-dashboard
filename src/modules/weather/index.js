@@ -5,6 +5,8 @@ const components = [{ component: Weather, color: "primary" }];
 
 export default {
   name: "weather",
+  title: "Weather",
+  description: "Local weather forecast",
   components,
   store
 };

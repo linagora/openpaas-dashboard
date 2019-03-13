@@ -3,19 +3,22 @@
     <div id="card-container" ref="container">
       <card v-resize v-for="card in cards" :ref="card.name" :card="card.component" :id="card.name" :key="card.name" @deleted="removeCard(card.name)"/>
     </div>
+    <widget-store @add="addCard"/>
   </v-container>
 </template>
 
 <script>
 import ResizeObserver from "resize-observer-polyfill";
 import Muuri from "muuri";
+import WidgetStore from "@/views/WidgetStore.vue";
 import Card from "@/components/Card.vue";
 import Modules from "@/modules";
 
 export default {
   name: "home",
   components: {
-    Card
+    Card,
+    WidgetStore
   },
   created() {
     this.ro = new ResizeObserver(this.onResize);
@@ -31,8 +34,8 @@ export default {
       inserted(el, binding, { context }) {
         context.ro.observe(el);
       },
-      unbind(el) {
-        this.ro.unobserve(el);
+      unbind(el, binding, { context }) {
+        context.ro.unobserve(el);
       },
     },
   },
@@ -99,6 +102,18 @@ export default {
         onFinish: () => {
           this.$store.dispatch('removeCard', name);
         }
+      });
+    },
+    addCard(name) {
+      this.$store.dispatch("addCard", name);
+      this.$nextTick(() => {
+        const element = this.$refs[name];
+
+        if (!element || !element.length) {
+          return;
+        }
+
+        this.grid.add(element[0].$el);
       });
     }
   }

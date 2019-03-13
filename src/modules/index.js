@@ -11,11 +11,20 @@ const modules = {};
 export default {
   load,
   register,
-  get
+  get,
+  getAllDescription
 };
 
 function get(name) {
   return modules[name];
+}
+
+function getAllDescription() {
+  return Object.entries(modules).map(entry => ({
+    name: entry[1].name,
+    title: entry[1].title,
+    description: entry[1].description
+  }));
 }
 
 function register(module) {
