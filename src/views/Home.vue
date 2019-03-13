@@ -3,6 +3,12 @@
     <div id="card-container" ref="container">
       <card v-resize v-for="card in cards" :ref="card.name" :card="card.component" :id="card.name" :key="card.name" @deleted="removeCard(card.name)"/>
     </div>
+    <transition name="fade">
+      <div v-if="!cards || !cards.length" id="no-cards">
+        <v-icon color="primary" size="80px" dark>widgets</v-icon>
+        <span class="pt-2 text-xs-center grey--text">There are no cards, please add some by clicking the button below</span>
+      </div>
+    </transition>
     <widget-store @add="addCard"/>
   </v-container>
 </template>
@@ -126,23 +132,19 @@ export default {
   flex: 1;
   padding: 0;
 
+  #no-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    justify-content: center;
+  }
+
   #card-container {
     position: relative;
     margin: 0 auto;
     &.has-toolbar {
       margin: 20px auto;
-    }
-    &.placeholder {
-      padding: 15px 0;
-      column-gap: 15px;
-    }
-    .placeholder-item {
-      width: 400px;
-      margin-bottom: 30px;
-      page-break-inside: avoid;
-      will-change: transform;
-      break-inside: avoid;
-      background-color: rgba(164, 163, 164, .35);
     }
     >>> .muuri-item-placeholder {
       background-color: rgba(0,0,0,0.23);
@@ -191,6 +193,14 @@ export default {
         column-count: 5;
       }
     }
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 }
 </style>
