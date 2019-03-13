@@ -2,9 +2,8 @@ import VueAxios from "vue-axios";
 import Vuetify from "vuetify";
 import VueMoment from "vue-moment";
 import colors from "vuetify/es5/util/colors";
-
-import VueMuuri from "vue-muuri";
-import "vue-muuri/dist/vue-muuri.css";
+import "material-design-icons/iconfont/material-icons.css";
+import "typeface-roboto/index.css";
 
 import App from "@/App";
 import router from "@/router";
@@ -26,8 +25,6 @@ function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth
   VueInstance.router = router;
 
   VueInstance.use(require("@websanova/vue-auth"), auth);
-
-  VueInstance.use(VueMuuri);
 
   VueInstance.use(Vuetify, { theme });
 
