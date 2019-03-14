@@ -5,7 +5,7 @@
         <v-tooltip top>
           <template v-slot:activator="{ on }">
             <v-btn v-on="on" fab depressed small v-on:click="$refs.calendar.prev()">
-              <v-icon>arrow_left</v-icon>
+              <v-icon>arrow_back</v-icon>
             </v-btn>
           </template>
           <span>Previous</span>
@@ -21,7 +21,7 @@
         <v-tooltip top>
           <template v-slot:activator="{ on }">
             <v-btn v-on="on" fab depressed small @click="$refs.calendar.next()">
-              <v-icon>arrow_right</v-icon>
+              <v-icon>arrow_forward</v-icon>
             </v-btn>
           </template>
           <span>Next</span>
