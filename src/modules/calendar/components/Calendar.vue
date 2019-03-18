@@ -146,7 +146,8 @@ export default {
       this.fetchEvents({ start, end })
     },
     fetchEvents({ start, end }) {
-      this.$store.dispatch("fetchEvents", { start: `${start.format("YYYYMMDD")}T000000`, end: `${end.format("YYYYMMDD")}T000000` });
+      this.$emit("loading", true);
+      this.$store.dispatch("fetchEvents", { start: `${start.format("YYYYMMDD")}T000000`, end: `${end.format("YYYYMMDD")}T000000` }).finally(() => this.$emit("loading", false));
     },
     today() {
       this.start = moment().format("YYYY-MM-DD");

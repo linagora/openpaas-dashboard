@@ -19,7 +19,7 @@ const actions = {
       rootState.user.user._id
     );
 
-    client.getEvents(rootState.user.user._id, start, end).then(events => commit(types.SET_EVENTS, events));
+    return client.getEvents(rootState.user.user._id, start, end).then(events => commit(types.SET_EVENTS, events));
   }
 };
 
