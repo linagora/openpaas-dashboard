@@ -5,6 +5,7 @@
         <v-icon v-if="card.icon" large left>{{card.icon}}</v-icon>
         <span v-if="card.title" class="title font-weight-light ml-2">{{card.title}}</span>
         <v-spacer/>
+        <v-progress-circular v-if="loading" indeterminate :size="20" :width="3" color="primary"></v-progress-circular>
         <v-menu lazy bottom offset-y>
           <v-btn slot="activator" flat icon>
             <v-icon>more_vert</v-icon>
@@ -17,7 +18,7 @@
         </v-menu>
       </v-card-title>
       <v-card-text :style="{ height: `${height}px` }">
-        <component :is="card.component"/>
+        <component :is="card.component" @loading="onLoading"/>
       </v-card-text>
     </v-card>
   </div>
@@ -37,7 +38,13 @@ export default {
       default: "400px"
     }
   },
+  data: () => ({
+    loading: false
+  }),
   methods: {
+    onLoading(value) {
+      this.loading = value;
+    },
     remove() {
       this.$emit("deleted");
     }
