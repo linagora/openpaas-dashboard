@@ -13,10 +13,10 @@ const types = {
 };
 
 const actions = {
-  fetchLastEmails: ({ commit, state, getters, rootState }) => {
+  fetchLastEmails: ({ commit, getters, rootState }) => {
     const client = new EmailClient({ token: rootState.session.jwtToken, url: getters.getEmailBaseUrl });
 
-    client.getEmails().then(emails => commit(types.FETCH_LAST_EMAILS, emails));
+    return client.getEmails().then(emails => commit(types.FETCH_LAST_EMAILS, emails));
   }
 };
 
