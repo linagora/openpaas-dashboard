@@ -1,16 +1,13 @@
 <template>
-  <v-content>
+  <v-content id="login">
     <v-container fluid fill-height>
       <v-layout align-center justify-center>
-        <v-flex xs12 sm8 md4>
-          <v-card class="elevation-12">
-            <v-toolbar color="primary">
-              <v-toolbar-title class="white--text">{{$t('OpenPaaS Login')}}</v-toolbar-title>
-            </v-toolbar>
+        <v-flex xs12 sm6 md6>
+          <v-card class="pa-3" flat>
             <v-card-text>
-              <v-form>
+              <form>
                 <v-text-field
-                    prepend-icon="person"
+                    prepend-icon="account_circle"
                     name="login"
                     :label="$t('Login')"
                     type="text"
@@ -25,11 +22,12 @@
                     v-model="password"
                     required
                 ></v-text-field>
-              </v-form>
+              </form>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
+                flat
                 :disabled="logMeIn"
                 :loading="logMeIn"
                 @click="login">{{$t('Login')}}</v-btn>
@@ -81,3 +79,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#login {
+  height: 80vh;
+}
+</style>
+
