@@ -37,6 +37,9 @@ export default {
   mounted() {
     this.fetchWeather();
   },
+  data: () => ({
+    delay: 60 * 60 * 1000
+  }),
   computed: {
     weather() {
       return this.$store.state.weather.current;
@@ -47,8 +50,14 @@ export default {
   },
   methods: {
     fetchWeather() {
-      this.$store.dispatch("fetchWeather")
-      this.$store.dispatch("fetchForecast")
+      this.$emit("loading", true);
+
+      Promise.all([
+        this.$store.dispatch("fetchWeather"),
+        this.$store.dispatch("fetchForecast")
+      ]).finally(() => this.$emit("loading", false));
+
+      setTimeout(this.fetchWeather, this.delay);
     }
   },
   components: {

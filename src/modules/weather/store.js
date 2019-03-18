@@ -24,13 +24,13 @@ const actions = {
   fetchWeather: ({ commit }) => {
     const client = new WeatherClient();
 
-    client.getWeather(location).then(weather => commit(types.SET_WEATHER, weather));
+    return client.getWeather(location).then(weather => commit(types.SET_WEATHER, weather));
   },
 
   fetchForecast: ({ commit }) => {
     const client = new WeatherClient();
 
-    client.getForecast(location).then(forecast => commit(types.SET_FORECAST, forecast));
+    return client.getForecast(location).then(forecast => commit(types.SET_FORECAST, forecast));
   }
 };
 
