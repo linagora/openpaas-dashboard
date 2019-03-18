@@ -6,7 +6,8 @@ const state = {
 
 const types = {
   ADD_CARD: "ADD_CARD",
-  REMOVE_CARD: "REMOVE_CARD"
+  REMOVE_CARD: "REMOVE_CARD",
+  SET_CARDS: "SET_CARDS"
 };
 
 const actions = {
@@ -16,6 +17,10 @@ const actions = {
 
   removeCard({ commit }, card) {
     commit(types.REMOVE_CARD, card);
+  },
+
+  setCards({ commit }, cards) {
+    commit(types.SET_CARDS, cards);
   }
 };
 
@@ -33,6 +38,13 @@ const mutations = {
       state.cards.splice(index, 1);
     }
 
+    localStorage.setItem(LOCALSTORAGE_CARDS_KEY, JSON.stringify(state.cards));
+  },
+
+  [types.SET_CARDS](state, cards) {
+    state.cards.length = 0;
+
+    state.cards = cards;
     localStorage.setItem(LOCALSTORAGE_CARDS_KEY, JSON.stringify(state.cards));
   }
 };

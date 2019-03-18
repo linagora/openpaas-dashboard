@@ -73,9 +73,7 @@ export default {
         dragSortInterval: 0,
         layoutOnInit: false,
         sortData: {
-          index: (item, el) => {
-            this.cards.indexOf(el.id)
-          },
+          index: (item, el) => this.cards.findIndex(element => element.name === el.id)
         },
       });
       if (this.cards.length) {
@@ -96,6 +94,8 @@ export default {
       const cards = this.grid.getItems()
         .filter(f => f.isActive())
         .map(f => f.getElement().id);
+
+      this.$store.dispatch('setCards', cards);
     },
     removeCard(name) {
       const element = this.$refs[name];

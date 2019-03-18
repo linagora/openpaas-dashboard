@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ width: `${width}` }" class="card">
+  <div :style="{ width: `${width}` }" class="card" :id="id">
     <v-card :color="card.color" :width="width" hover raised>
       <v-card-title class="head-drag">
         <v-icon v-if="card.icon" large left>{{card.icon}}</v-icon>
