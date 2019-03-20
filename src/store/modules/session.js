@@ -23,6 +23,7 @@ const actions = {
 
   logout({ dispatch }) {
     require("vue").default.auth.logout();
+    // TODO: dispatch to reset all the modules
     return dispatch("resetSession");
   },
 

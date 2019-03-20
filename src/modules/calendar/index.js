@@ -1,7 +1,9 @@
 import store from "./store";
 import Calendar from "./components/Calendar";
 
-const components = [{ id: "calendar", component: Calendar, title: "Calendar" }];
+const components = {
+  main: { component: Calendar, title: "Calendar" }
+};
 
 export default {
   name: "calendar",
