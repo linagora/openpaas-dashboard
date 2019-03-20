@@ -36,7 +36,7 @@ import PeopleAvatar from "@/components/PeopleAvatar";
 export default {
   name: "EmailList",
   data: () => ({
-    timer: null,
+    timeout: null,
     delay: 30000
   }),
   computed: {
@@ -50,12 +50,15 @@ export default {
       this.$emit("loading", true);
       this.$store.dispatch("fetchLastEmails").finally(() => this.$emit("loading", false));
 
-      setTimeout(this.fetchLastEmails, this.delay);
+      this.timeout = setTimeout(this.fetchLastEmails, this.delay);
     }
   },
   async mounted() {
     await this.sessionReady;
     this.fetchLastEmails();
+  },
+  destroyed() {
+    this.timeout && clearTimeout(this.timeout);
   },
   components: {
     PeopleAvatar

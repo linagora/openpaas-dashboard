@@ -38,7 +38,8 @@ export default {
     this.fetchWeather();
   },
   data: () => ({
-    delay: 60 * 60 * 1000
+    delay: 60 * 60 * 1000,
+    timeout: null
   }),
   computed: {
     weather() {
@@ -57,8 +58,11 @@ export default {
         this.$store.dispatch("fetchForecast")
       ]).finally(() => this.$emit("loading", false));
 
-      setTimeout(this.fetchWeather, this.delay);
+      this.timeout = setTimeout(this.fetchWeather, this.delay);
     }
+  },
+  destroyed() {
+    this.timeout && clearTimeout(this.timeout);
   },
   components: {
     WeatherIcon,
