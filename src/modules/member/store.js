@@ -1,13 +1,14 @@
 import MemberClient from "./services/client";
 
-const state = {
+const initialState = () => ({
   members: {
     list: []
   }
-};
+});
 
 const types = {
-  SET_MEMBERS: "SET_MEMBERS"
+  SET_MEMBERS: "SET_MEMBERS",
+  RESET_MEMBERS: "RESET_MEMBERS"
 };
 
 const actions = {
@@ -27,12 +28,22 @@ const actions = {
         })
         .catch(reject);
     });
+  },
+
+  resetMemberState: ({ commit }) => {
+    commit(types.RESET_MEMBERS);
   }
 };
 
 const mutations = {
   [types.SET_MEMBERS](state, members) {
     state.members.list = members;
+  },
+
+  [types.RESET_MEMBERS](state) {
+    const s = initialState();
+
+    Object.keys(s).forEach(key => (state[key] = s[key]));
   }
 };
 
@@ -40,7 +51,7 @@ const getters = {};
 
 export default {
   namespaced: false,
-  state,
+  state: initialState(),
   getters,
   actions,
   mutations

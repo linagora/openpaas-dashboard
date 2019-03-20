@@ -8,5 +8,10 @@ export default {
   title: "Members",
   description: "Search for platform members",
   store,
-  components
+  components,
+  hooks: {
+    onRemove: store => {
+      store.dispatch("resetMemberState");
+    }
+  }
 };

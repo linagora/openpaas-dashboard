@@ -8,5 +8,10 @@ export default {
   title: "Calendar",
   description: "Quick view of your events",
   store,
-  components
+  components,
+  hooks: {
+    onRemove: store => {
+      store.dispatch("resetCalendarState");
+    }
+  }
 };

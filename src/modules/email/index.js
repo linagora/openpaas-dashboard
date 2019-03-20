@@ -8,5 +8,10 @@ export default {
   title: "Email",
   description: "Check your last emails",
   store,
-  components
+  components,
+  hooks: {
+    onRemove: store => {
+      store.dispatch("resetEmailState");
+    }
+  }
 };

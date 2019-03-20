@@ -8,5 +8,10 @@ export default {
   title: "Contact",
   description: "Search contacts",
   store,
-  components
+  components,
+  hooks: {
+    onRemove: store => {
+      store.dispatch("resetContactState");
+    }
+  }
 };

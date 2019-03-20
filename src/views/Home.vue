@@ -106,6 +106,11 @@ export default {
 
       this.grid.hide(element[0].$el, {
         onFinish: () => {
+          const module = Modules.get(name);
+
+          if (module && module.hooks && module.hooks.onRemove) {
+            module.hooks.onRemove(this.$store);
+          }
           this.$store.dispatch('removeCard', name);
         }
       });

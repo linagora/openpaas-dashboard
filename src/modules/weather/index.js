@@ -8,5 +8,10 @@ export default {
   title: "Weather",
   description: "Local weather forecast",
   components,
-  store
+  store,
+  hooks: {
+    onRemove: store => {
+      store.dispatch("resetWeatherState");
+    }
+  }
 };

@@ -1,6 +1,6 @@
 import WeatherClient from "./services/openweathermap";
 
-const state = {
+const initialState = () => ({
   current: {
     cloudiness: 0,
     windSpeed: 0,
@@ -13,11 +13,12 @@ const state = {
     description: ""
   },
   forecast: []
-};
+});
 
 const types = {
   SET_WEATHER: "SET_WEATHER",
-  SET_FORECAST: "SET_FORECAST"
+  SET_FORECAST: "SET_FORECAST",
+  RESET_WEATHER: "RESET_WEATHER"
 };
 
 const actions = {
@@ -31,6 +32,10 @@ const actions = {
     const client = new WeatherClient();
 
     return client.getForecast(location).then(forecast => commit(types.SET_FORECAST, forecast));
+  },
+
+  resetWeatherState: ({ commit }) => {
+    commit(types.RESET_WEATHER);
   }
 };
 
@@ -41,12 +46,18 @@ const mutations = {
 
   [types.SET_FORECAST](state, forecast) {
     state.forecast = forecast;
+  },
+
+  [types.RESET_WEATHER](state) {
+    const s = initialState();
+
+    Object.keys(s).forEach(key => (state[key] = s[key]));
   }
 };
 
 export default {
   namespaced: false,
-  state,
+  state: initialState(),
   actions,
   mutations
 };

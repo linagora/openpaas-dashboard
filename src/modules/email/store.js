@@ -1,15 +1,16 @@
 import _ from "lodash";
 import EmailClient from "./services/client";
 
-const state = {
+const initialState = () => ({
   emails: {
     list: [],
     jmapClient: null
   }
-};
+});
 
 const types = {
-  FETCH_LAST_EMAILS: "FETCH_LAST_EMAILS"
+  FETCH_LAST_EMAILS: "FETCH_LAST_EMAILS",
+  RESET_EMAILS: "RESET_EMAILS"
 };
 
 const actions = {
@@ -17,12 +18,22 @@ const actions = {
     const client = new EmailClient({ token: rootState.session.jwtToken, url: getters.getEmailBaseUrl });
 
     return client.getEmails().then(emails => commit(types.FETCH_LAST_EMAILS, emails));
+  },
+
+  resetEmailState: ({ commit }) => {
+    commit(types.RESET_EMAILS);
   }
 };
 
 const mutations = {
   [types.FETCH_LAST_EMAILS](state, emails) {
     state.emails.list = emails;
+  },
+
+  [types.RESET_EMAILS](state) {
+    const s = initialState();
+
+    Object.keys(s).forEach(key => (state[key] = s[key]));
   }
 };
 
@@ -44,7 +55,7 @@ const getters = {
 
 export default {
   namespaced: false,
-  state,
+  state: initialState(),
   getters,
   actions,
   mutations

@@ -1,14 +1,14 @@
-import _ from "lodash";
 import CalendarClient from "./services/client";
 
-const state = {
+const initialState = () => ({
   events: {
     list: []
   }
-};
+});
 
 const types = {
-  SET_EVENTS: "SET_EVENTS"
+  SET_EVENTS: "SET_EVENTS",
+  RESET_EVENTS: "RESET_EVENTS"
 };
 
 const actions = {
@@ -20,12 +20,22 @@ const actions = {
     );
 
     return client.getEvents(rootState.user.user._id, start, end).then(events => commit(types.SET_EVENTS, events));
+  },
+
+  resetCalendarState: ({ commit }) => {
+    commit(types.RESET_EVENTS);
   }
 };
 
 const mutations = {
   [types.SET_EVENTS](state, events) {
     state.events.list = events;
+  },
+
+  [types.RESET_EVENTS](state) {
+    const s = initialState();
+
+    Object.keys(s).forEach(key => (state[key] = s[key]));
   }
 };
 
@@ -39,7 +49,7 @@ const getters = {
 
 export default {
   namespaced: false,
-  state,
+  state: initialState(),
   getters,
   actions,
   mutations
