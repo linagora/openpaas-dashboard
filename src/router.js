@@ -6,11 +6,9 @@ import ApplicationSettings from "@/services/application-settings";
 
 Vue.use(Router);
 
-// Set your routes here
 export const routeNames = Object.freeze({
   HOME: "Home",
-  LOGIN: "Login",
-  ABOUT: "About"
+  LOGIN: "Login"
 });
 
 export default new Router({
@@ -32,14 +30,6 @@ export default new Router({
       meta: {
         auth: false
       }
-    },
-    {
-      path: "/about",
-      name: routeNames.ABOUT,
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ "./views/About.vue")
     }
   ]
 });
