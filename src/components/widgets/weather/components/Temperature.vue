@@ -56,9 +56,7 @@ export default {
       return Math.floor(value * 1.8 + 32);
     },
     toggleTemperature() {
-      this.scale === "Celcius"
-        ? (this.scale = "Fahrenheit")
-        : (this.scale = "Celcius");
+      this.scale === "Celcius" ? (this.scale = "Fahrenheit") : (this.scale = "Celcius");
     }
   }
 };

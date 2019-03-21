@@ -28,7 +28,7 @@ export default {
   components: {
     WeatherIcon
   }
-}
+};
 </script>
 
 <style scoped lang="stylus">
@@ -38,4 +38,3 @@ $font-color = white;
   color: $font-color;
 }
 </style>
-

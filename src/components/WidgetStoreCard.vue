@@ -26,6 +26,5 @@ export default {
       this.$emit("add");
     }
   }
-}
+};
 </script>
-

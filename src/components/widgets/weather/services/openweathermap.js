@@ -40,7 +40,9 @@ class OpenWeatherMapClient {
   }
 
   async callAPI(type, coordinates) {
-    const endpoint = `https://api.openweathermap.org/data/2.5/${type}?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${this.appId}&units=metric`;
+    const endpoint = `https://api.openweathermap.org/data/2.5/${type}?lat=${coordinates.latitude}&lon=${
+      coordinates.longitude
+    }&appid=${this.appId}&units=metric`;
     const response = await fetch(endpoint);
 
     return await response.json();

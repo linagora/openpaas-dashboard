@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       types: ["user"]
-    }
+    };
   },
   props: {
     model: {
@@ -42,5 +42,5 @@ export default {
   components: {
     PeopleAvatar
   }
-}
+};
 </script>

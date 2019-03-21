@@ -1,5 +1,5 @@
-import { Transport } from 'jmap-client';
-import * as axios from 'axios';
+import { Transport } from "jmap-client";
+import * as axios from "axios";
 
 export default class AxiosTransport extends Transport {
   /**
@@ -23,7 +23,7 @@ export default class AxiosTransport extends Transport {
       axios({
         url,
         headers,
-        method: 'post',
+        method: "post",
         data,
         json: !raw
       })

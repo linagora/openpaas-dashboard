@@ -29,7 +29,7 @@ export default {
       return this.$store.dispatch("session/logout").then(() => {
         this.$router.push({ name: routeNames.LOGIN });
       });
-    },
+    }
   },
   computed: {
     ...mapGetters({

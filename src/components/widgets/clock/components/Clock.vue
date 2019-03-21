@@ -13,7 +13,7 @@ export default {
       date: null,
       time: null,
       timer: null
-    }
+    };
   },
   mounted() {
     this.timer = setInterval(this.updateTime, 1000);
@@ -29,7 +29,7 @@ export default {
   destroyed() {
     clearTimeout(this.timer);
   }
-}
+};
 </script>
 <style scoped lang="stylus">
 $clock_color = white;

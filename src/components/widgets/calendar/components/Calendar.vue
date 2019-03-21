@@ -140,14 +140,19 @@ export default {
   methods: {
     updateEvents(event) {
       // FIXME: Start and end are wrong...
-      const start = moment({year: event.year, month: event.month - 1, day: event.day}).subtract(1, "minutes");
-      const end = moment({year: event.year, month: event.month - 1, day: event.day}).add(1, "d");
+      const start = moment({ year: event.year, month: event.month - 1, day: event.day }).subtract(1, "minutes");
+      const end = moment({ year: event.year, month: event.month - 1, day: event.day }).add(1, "d");
 
-      this.fetchEvents({ start, end })
+      this.fetchEvents({ start, end });
     },
     fetchEvents({ start, end }) {
       this.$emit("loading", true);
-      this.$store.dispatch("fetchEvents", { start: `${start.format("YYYYMMDD")}T000000`, end: `${end.format("YYYYMMDD")}T000000` }).finally(() => this.$emit("loading", false));
+      this.$store
+        .dispatch("fetchEvents", {
+          start: `${start.format("YYYYMMDD")}T000000`,
+          end: `${end.format("YYYYMMDD")}T000000`
+        })
+        .finally(() => this.$emit("loading", false));
     },
     today() {
       this.start = moment().format("YYYY-MM-DD");

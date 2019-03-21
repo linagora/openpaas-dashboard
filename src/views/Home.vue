@@ -4,7 +4,7 @@
       <card v-resize v-for="card in cards" :ref="card.name" :card="card.main" :id="card.name" :key="card.name" @deleted="removeCard(card.name)"/>
     </div>
     <transition name="fade">
-      <div v-if="!cards || !cards.length" id="no-cards">
+      <div v-if="!cards || !cards.length" id="no-cards">
         <v-icon color="primary" size="80px" dark>widgets</v-icon>
         <span class="pt-2 text-xs-center grey--text">There are no cards, please add some by clicking the button below</span>
       </div>
@@ -42,8 +42,8 @@ export default {
       },
       unbind(el, binding, { context }) {
         context.ro.unobserve(el);
-      },
-    },
+      }
+    }
   },
   computed: {
     cards() {
@@ -51,7 +51,8 @@ export default {
 
       // TODO: Be able to distinct settings from main component
       return cards
-        .map(card => Widgets.get(card)).filter(Boolean)
+        .map(card => Widgets.get(card))
+        .filter(Boolean)
         .map(widget => ({
           main: widget.components.main,
           name: widget.name
@@ -60,26 +61,26 @@ export default {
   },
   data: () => ({
     ro: undefined,
-    grid: undefined,
+    grid: undefined
   }),
   methods: {
     initGrid() {
       this.grid = new Muuri(this.$refs.container, {
-        items: '.card',
+        items: ".card",
         dragEnabled: true,
         dragPlaceholder: true,
         layout: { fillGaps: true },
-        dragStartPredicate: { handle: '.head-drag' },
+        dragStartPredicate: { handle: ".head-drag" },
         dragSortInterval: 0,
         layoutOnInit: false,
         sortData: {
           index: (item, el) => this.cards.findIndex(element => element.name === el.id)
-        },
+        }
       });
       if (this.cards.length) {
-        this.grid.sort('index', { layout: 'instant' });
+        this.grid.sort("index", { layout: "instant" });
       }
-      this.grid.on('dragEnd', this.onDrag);
+      this.grid.on("dragEnd", this.onDrag);
     },
     onResize(entries) {
       if (!this.grid) return;
@@ -91,16 +92,17 @@ export default {
       this.grid.layout(true);
     },
     onDrag() {
-      const cards = this.grid.getItems()
+      const cards = this.grid
+        .getItems()
         .filter(f => f.isActive())
         .map(f => f.getElement().id);
 
-      this.$store.dispatch('setCards', cards);
+      this.$store.dispatch("setCards", cards);
     },
     removeCard(name) {
       const element = this.$refs[name];
 
-      if (!element || !element.length) {
+      if (!element || !element.length) {
         return;
       }
 
@@ -111,7 +113,7 @@ export default {
           if (widget && widget.hooks && widget.hooks.onRemove) {
             widget.hooks.onRemove(this.$store);
           }
-          this.$store.dispatch('removeCard', name);
+          this.$store.dispatch("removeCard", name);
         }
       });
     },
@@ -120,7 +122,7 @@ export default {
       this.$nextTick(() => {
         const element = this.$refs[name];
 
-        if (!element || !element.length) {
+        if (!element || !element.length) {
           return;
         }
 

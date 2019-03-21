@@ -32,7 +32,7 @@ export default {
       required: true
     }
   }
-}
+};
 </script>
 
 <style scoped lang="stylus">

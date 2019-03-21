@@ -56,11 +56,14 @@ export default {
       }
       this.isLoading = true;
 
-      this.$store.dispatch("searchContacts", val).then(contacts => {
-        this.items = contacts || [];
-      }).finally(() => {
-        this.isLoading = false;
-      });
+      this.$store
+        .dispatch("searchContacts", val)
+        .then(contacts => {
+          this.items = contacts || [];
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
     }
   },
   components: {

@@ -56,11 +56,14 @@ export default {
       }
       this.isLoading = true;
 
-      this.$store.dispatch("searchMembers", val).then(members => {
-        this.items = members || [];
-      }).finally(() => {
-        this.isLoading = false;
-      });
+      this.$store
+        .dispatch("searchMembers", val)
+        .then(members => {
+          this.items = members || [];
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
     }
   },
   components: {

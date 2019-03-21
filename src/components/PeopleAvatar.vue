@@ -28,7 +28,8 @@ export default {
     url: undefined
   }),
   mounted() {
-    this.$http.searchPeople({ q: this.email, objectTypes: this.types, limit: 1 })
+    this.$http
+      .searchPeople({ q: this.email, objectTypes: this.types, limit: 1 })
       .then(({ data }) => {
         if (data && data.length) {
           this.url = `${data[0].photos[0].url}&size=45`;
