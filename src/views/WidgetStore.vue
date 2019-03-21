@@ -28,19 +28,19 @@
 
 <script>
 import WidgetStoreCard from "@/components/WidgetStoreCard.vue";
-import Modules from "@/modules";
+import Widgets from "@/widgets";
 
 export default {
   name: "WidgetStore",
   data: () => ({
-    dialog: false,
+    dialog: false
   }),
   computed: {
     cards() {
-      return Modules.getAllDescription().map(module => {
-        module.available = !this.$store.state.card.cards.includes(module.name);
+      return Widgets.getAllDescription().map(widget => {
+        widget.available = !this.$store.state.card.cards.includes(widget.name);
 
-        return module;
+        return widget;
       });
     }
   },
@@ -52,5 +52,5 @@ export default {
   components: {
     WidgetStoreCard
   }
-}
+};
 </script>

@@ -1,15 +1,15 @@
 <template>
   <section>
     <div class="cloudiness">
-      <img src="@/modules/weather/assets/icons/cloud.svg" alt="cloudiness">
+      <img src="@/components/widgets/weather/assets/icons/cloud.svg" alt="cloudiness">
       <span class="cloudiness__value">{{ cloudiness }} &percnt;</span>
     </div>
     <div class="wind-speed">
-      <img src="@/modules/weather/assets/icons/wind.svg" alt="wind speed">
+      <img src="@/components/widgets/weather/assets/icons/wind.svg" alt="wind speed">
       <span class="wind__value">{{ windSpeed }} m/s</span>
     </div>
     <div class="humidity">
-      <img src="@/modules/weather/assets/icons/humidity.svg" alt="humidity">
+      <img src="@/components/widgets/weather/assets/icons/humidity.svg" alt="humidity">
       <span class="humidity__value">{{ humidity }}&percnt;</span>
     </div>
   </section>

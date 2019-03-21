@@ -6,11 +6,11 @@
         <a href="#" @click.prevent="toggleTemperature">&deg;{{ scaleSymbol }}</a>
       </div>
       <div class="temperature__high">
-        <img src="@/modules/weather/assets/icons/high.svg" alt="high temperature">
+        <img src="@/components/widgets/weather/assets/icons/high.svg" alt="high temperature">
         <span>{{ (scaleSymbol === 'C')? high : fHigh }}</span>&deg;
       </div>
       <div class="temperature__low">
-        <img src="@/modules/weather/assets/icons/low.svg" alt="low temperature">
+        <img src="@/components/widgets/weather/assets/icons/low.svg" alt="low temperature">
         <span>{{ (scaleSymbol === 'C')? low : fLow }}</span>&deg;
       </div>
     </div>

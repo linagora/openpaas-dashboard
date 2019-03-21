@@ -18,7 +18,7 @@ import ResizeObserver from "resize-observer-polyfill";
 import Muuri from "muuri";
 import WidgetStore from "@/views/WidgetStore.vue";
 import Card from "@/components/Card.vue";
-import Modules from "@/modules";
+import Widgets from "@/widgets";
 
 export default {
   name: "home",
@@ -51,10 +51,10 @@ export default {
 
       // TODO: Be able to distinct settings from main component
       return cards
-        .map(card => Modules.get(card)).filter(Boolean)
-        .map(module => ({
-          main: module.components.main,
-          name: module.name
+        .map(card => Widgets.get(card)).filter(Boolean)
+        .map(widget => ({
+          main: widget.components.main,
+          name: widget.name
         }));
     }
   },
@@ -106,10 +106,10 @@ export default {
 
       this.grid.hide(element[0].$el, {
         onFinish: () => {
-          const module = Modules.get(name);
+          const widget = Widgets.get(name);
 
-          if (module && module.hooks && module.hooks.onRemove) {
-            module.hooks.onRemove(this.$store);
+          if (widget && widget.hooks && widget.hooks.onRemove) {
+            widget.hooks.onRemove(this.$store);
           }
           this.$store.dispatch('removeCard', name);
         }

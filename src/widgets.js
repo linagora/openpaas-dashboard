@@ -1,12 +1,4 @@
-import EmailModule from "./email/index";
-import CalendarModule from "./calendar/index";
-import WeatherModule from "./weather/index";
-import ContactModule from "./contact/index";
-import MemberModule from "./member/index";
-import ClockModule from "./clock/index";
 import store from "@/store";
-
-const modules = {};
 
 export default {
   load,
@@ -14,6 +6,8 @@ export default {
   get,
   getAllDescription
 };
+
+const modules = {};
 
 function get(name) {
   return modules[name];
@@ -36,10 +30,7 @@ function register(module) {
 }
 
 function load() {
-  register(EmailModule);
-  register(CalendarModule);
-  register(WeatherModule);
-  register(ContactModule);
-  register(MemberModule);
-  register(ClockModule);
+  const requireComponent = require.context("./components/widgets", true, /index.js$/);
+
+  requireComponent.keys().forEach(fileName => register(requireComponent(fileName).default));
 }
