@@ -8,6 +8,7 @@ const components = {
 export default {
   name: "weather",
   title: "Weather",
+  icon: "cloud_queue",
   description: "Local weather forecast",
   components,
   store,

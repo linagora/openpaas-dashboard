@@ -8,6 +8,7 @@ const components = {
 export default {
   name: "contact",
   title: "Contact",
+  icon: "account_circle",
   description: "Search contacts",
   store,
   components,

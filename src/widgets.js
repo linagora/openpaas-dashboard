@@ -17,6 +17,7 @@ function getAllDescription() {
   return Object.entries(modules).map(entry => ({
     name: entry[1].name,
     title: entry[1].title,
+    icon: entry[1].icon,
     description: entry[1].description
   }));
 }

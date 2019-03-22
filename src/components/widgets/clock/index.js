@@ -7,6 +7,7 @@ const components = {
 export default {
   name: "clock",
   title: "Clock",
+  icon: "access_time",
   description: "Display local time and date",
   components
 };
