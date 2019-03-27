@@ -1,8 +1,8 @@
 import store from "./store";
-import EmailList from "./components/EmailList";
+import Email from "./components/Email";
 
 const components = {
-  main: { component: EmailList, title: "Inbox" }
+  main: { component: Email, title: "Inbox" }
 };
 
 export default {
