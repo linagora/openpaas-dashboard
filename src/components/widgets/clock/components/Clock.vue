@@ -1,17 +1,19 @@
 <template>
   <div id="clock" class="pb-3">
-    <div class="date">{{date}}</div>
-    <div class="time">{{time}}</div>
+    <div class="date">{{dateString}}</div>
+    <analog-clock v-if="date" :date="date"/>
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import AnalogClock from "./AnalogClock.vue";
+
 export default {
   data() {
     return {
       date: null,
-      time: null,
+      dateString: null,
       timer: null
     };
   },
@@ -20,14 +22,15 @@ export default {
   },
   methods: {
     updateTime() {
-      const now = moment();
-
-      this.date = now.format("LL");
-      this.time = now.format("LTS");
+      this.date = new Date();
+      this.dateString = moment(this.date).format("LL");
     }
   },
   destroyed() {
     clearTimeout(this.timer);
+  },
+  components: {
+    AnalogClock
   }
 };
 </script>
@@ -43,10 +46,6 @@ $clock_color = white;
 
   .date {
     font-size: 2em;
-  }
-
-  .time {
-    font-size: 3em;
   }
 }
 </style>
