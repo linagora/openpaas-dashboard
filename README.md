@@ -26,8 +26,10 @@ VUE_APP_OPENPAAS_URL=http://localhost:8080 npm run serve
 ### Compiles and minifies for production
 
 ```
-npm run build
+BASE_URL=/dashboard/ npm run build
 ```
+
+Where `BASE_URL` is the base URL where you deploy the app to. This is optional and will default to `/`.
 
 ### Lints and fixes files
 
