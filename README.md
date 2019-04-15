@@ -1,10 +1,5 @@
 # openpaas-dashboard
 
-This project is a 'seed' to be used to create other OpenPaaS web application using Vue.
-It provides the layout and some basic components to start coding within minutes. Documentation is available on [http://docs.open-paas.org/frontend/vue/](http://docs.open-paas.org/frontend/vue/)
-
-The seed has been developed using Node 10, please use at least the same.
-
 ## Project configuration
 
 You can update the `.env` file to define the OpenPaaS instance to reach, or override it in a new `.env.development.local` file. Current environment variables are:
@@ -13,6 +8,7 @@ You can update the `.env` file to define the OpenPaaS instance to reach, or over
 
 
 ## Project setup
+
 ```
 npm install
 ```
@@ -48,3 +44,118 @@ npm run test:unit
 ```
 npm run test:e2e
 ```
+
+## API
+
+### Widgets
+
+Some definitions first:
+
+- A `widget` is the UI component displayed in a `card`.
+- A `grid` or `card grid` is the component displaying multiple `cards`. In the current case, cards can be moved in a grid.
+
+Widgets components are available in `src/components/widgets`. They are automatically loaded and available to use thanks to the widgets service in `src/widgets.js`.
+
+Widgets are following the `widget component API`:
+
+``` js
+{
+  name,
+  title,
+  icon,
+  description,
+  store,
+  components,
+  hooks
+}
+```
+
+Where:
+
+- **name**: The widget name as `String`. This is a unique identifier.
+- **title**: The widget title as `String`. Used as display name in the widget store.
+- **icon**: The widget icon as `String`. Possible values are icon names from material icon module. Used in the widget store.
+- **description**: The widget description as `String`. Used to display a short description of the widget in the widget store.
+- **store**: A vuex store module which is defined to be used by the widget only (https://vuex.vuejs.org/guide/modules.html)
+- **components**: Hash of components used to build the UI.
+  - `main` component is the one displayed in the card by default.
+    ```js
+    {
+      main: {
+        component: VueComponent,    // the Vue component
+        title: "Display Title",     // the title of the component
+        color: "blue"               // the widget background color
+      }
+    }
+    ```
+- **hooks**: Hash of functions used on cards change.
+  - `onRemove` is called when the card containing the widget is removed from the grid.
+  ``` js
+  onRemove: store => {
+    // do something
+  }
+  ```
+
+Thus, creating a new widget is as simple as following the API and file structure. Let's say we want to create a simple hello world component:
+
+1. Create a new folder `helloworld` under `src/components/widgets`
+2. Create your hello world widget as a Vue component in `src/components/widgets/helloworld/`. Let's name it `HelloWorld.vue`
+
+    ```html
+    <template>
+      <div id="hello">
+        <span>Hello {{ name }}</span>
+      </div>
+    </template>
+
+    <script>
+    export default {
+      data() {
+        return {
+          name: "OpenPaaS",
+        };
+      }
+    };
+    </script>
+    ```
+
+3. Add an `index.js` file in `src/components/widgets/helloworld` which exposes your widget like
+
+    ```js
+    import HelloWorld from "./HelloWorld.vue";
+
+    const components = {
+      main: { component: HelloWorld, color: "purple" }
+    };
+
+    export default {
+      name: "openpaas.dashboard.helloword",
+      title: "My HelloWorld Component",
+      icon: "access_time",
+      description: "This is my most famous component",
+      components
+    };
+    ```
+
+4. If you need a vuex store for your widget, simply create it in the widget folder, import it in `index.js` then add it in the component definition as `store`.
+5. If you need to add hooks, just add the `hooks` property and put your hooks in it like
+
+    ```js
+    hooks: {
+      onRemove: store => {
+        console.log('OMG, I have been removed');
+        store.dispatch("doSomething");
+      }
+    }
+    ```
+
+Once done, the widget will be availble in the widget store 🐼
+
+#### Good practices
+
+- If your widget needs to be decomposed into several Vue components, just do it as is you are creating any other components. Just put them into a `components` folder.
+- Keep things related to the widget in the widget folder.
+
+## TODO
+
+- Be able to define in which grid cards can be added. This will need some refactoring on the way events are dispatched in the vue store and in the EventBus
