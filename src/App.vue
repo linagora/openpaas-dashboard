@@ -25,8 +25,8 @@
 
 <script>
 import { mapGetters, mapState } from "vuex";
-import UserMenu from "@/components/UserMenu.vue";
-import Snackbar from "@/components/Snackbar.vue";
+import UserMenu from "@/components/ui/UserMenu.vue";
+import Snackbar from "@/components/ui/Snackbar.vue";
 import colors from "vuetify/es5/util/colors";
 
 export default {
