@@ -1,5 +1,5 @@
 <template>
-  <v-avatar :size="size">
+  <v-avatar :size="size" color="primary">
     <img v-if="url" :src="url"/>
     <span v-else class="white--text headline">{{email[0].toUpperCase()}}</span>
   </v-avatar>
