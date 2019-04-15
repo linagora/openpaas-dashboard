@@ -1,4 +1,4 @@
-# octopus-dashboard
+# openpaas-dashboard
 
 This project is a 'seed' to be used to create other OpenPaaS web application using Vue.
 It provides the layout and some basic components to start coding within minutes. Documentation is available on [http://docs.open-paas.org/frontend/vue/](http://docs.open-paas.org/frontend/vue/)
