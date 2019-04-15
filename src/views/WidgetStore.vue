@@ -29,6 +29,7 @@
 <script>
 import WidgetStoreCard from "@/components/WidgetStoreCard.vue";
 import Widgets from "@/widgets";
+import { EventBus } from "@/event-bus";
 
 export default {
   name: "WidgetStore",
@@ -46,7 +47,8 @@ export default {
   },
   methods: {
     useCard(card) {
-      this.$emit("add", card.name);
+      this.$store.dispatch("addCard", card.name);
+      EventBus.$emit("add-card", { card });
     }
   },
   components: {
