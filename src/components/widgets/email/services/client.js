@@ -13,6 +13,8 @@ const JMAP_GET_MESSAGES_LIST = [
   "bcc",
   "replyTo",
   "preview",
+  "textBody",
+  "htmlBody",
   "date",
   "isUnread",
   "isFlagged",
