@@ -1,5 +1,4 @@
 import axios from "axios";
-import ICAL from "ical.js";
 
 export default class MemberClient {
   constructor(baseUrl, jwtToken, userId) {

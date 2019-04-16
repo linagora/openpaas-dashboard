@@ -5,7 +5,9 @@
         <people-avatar :email="email.from.email" :size="40"/>
       </v-list-tile-avatar>
       <v-list-tile-content>
-        <v-list-tile-title v-bind:class="{ unread: email.isUnread }">{{ email.subject || "No subject" }}</v-list-tile-title>
+        <v-list-tile-title v-bind:class="{ unread: email.isUnread }">
+          {{ email.subject || "No subject" }}
+        </v-list-tile-title>
         <v-list-tile-sub-title>
           <span class='text--primary'>{{ email.from.email }}</span>&mdash;{{ email.preview }}
         </v-list-tile-sub-title>

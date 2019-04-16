@@ -1,12 +1,22 @@
 <template>
   <v-container id="card-grid" fluid>
     <div id="card-container" ref="container">
-      <card v-resize v-for="card in cards" :ref="card.name" :card="card.main" :id="card.name" :key="card.name" @deleted="removeCard(card.name)"/>
+      <card
+        v-resize
+        v-for="card in cards"
+        :ref="card.name"
+        :card="card.main"
+        :id="card.name"
+        :key="card.name"
+        @deleted="removeCard(card.name)"
+      />
     </div>
     <transition name="fade">
       <div v-if="!cards || !cards.length" id="no-cards">
         <v-icon color="primary" size="80px" dark>widgets</v-icon>
-        <span class="pt-2 text-xs-center grey--text">There are no cards, please add some by clicking the button below</span>
+        <span class="pt-2 text-xs-center grey--text">
+          There are no cards, please add some by clicking the button below
+        </span>
       </div>
     </transition>
   </v-container>

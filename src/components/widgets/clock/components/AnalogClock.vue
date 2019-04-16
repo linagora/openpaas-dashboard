@@ -40,13 +40,13 @@ export default {
       };
     },
     secondsDegrees() {
-      return ((this.date.getSeconds() / 60) * 360) + 90;
+      return (this.date.getSeconds() / 60) * 360 + 90;
     },
     minutesDegrees() {
-      return ((this.date.getMinutes() / 60) * 360) + ((this.date.getSeconds() / 60) * 6) + 90;
+      return (this.date.getMinutes() / 60) * 360 + (this.date.getSeconds() / 60) * 6 + 90;
     },
     hoursDegrees() {
-      return ((this.date.getHours() / 12) * 360) + ((this.date.getMinutes() / 60) * 30) + 90;
+      return (this.date.getHours() / 12) * 360 + (this.date.getMinutes() / 60) * 30 + 90;
     }
   }
 };
