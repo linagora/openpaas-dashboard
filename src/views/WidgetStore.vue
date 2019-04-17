@@ -28,7 +28,6 @@
 
 <script>
 import WidgetStoreCard from "@/components/WidgetStoreCard.vue";
-import Widgets from "@/widgets";
 import { EventBus } from "@/event-bus";
 
 export default {
@@ -38,7 +37,7 @@ export default {
   }),
   computed: {
     cards() {
-      return Widgets.getAllDescription().map(widget => {
+      return this.$widgets.getAllDescription().map(widget => {
         widget.available = !this.$store.state.card.cards.includes(widget.name);
 
         return widget;

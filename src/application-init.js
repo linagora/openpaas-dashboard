@@ -7,6 +7,7 @@ import "typeface-roboto/index.css";
 
 import App from "@/App";
 import router from "@/router";
+import DashboardPlugin from "@/plugins/dashboard";
 import { api, auth as servicesAuth } from "@/services";
 import ApplicationSettings from "@/services/application-settings";
 import store from "@/store";
@@ -30,9 +31,17 @@ function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth
 
   VueInstance.use(VueMoment);
 
+  VueInstance.use(DashboardPlugin, { store, widgets: loadWidgets() });
+
   VueInstance.config.productionTip = false;
 
   return VueInstance;
+}
+
+function loadWidgets() {
+  const requireComponent = require.context("@/components/widgets", true, /index.js$/);
+
+  return requireComponent.keys().map(fileName => requireComponent(fileName).default);
 }
 
 function getApplication(VueInstance) {

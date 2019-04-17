@@ -25,12 +25,11 @@
 <script>
 import ResizeObserver from "resize-observer-polyfill";
 import Muuri from "muuri";
-import Card from "@/components/Card.vue";
-import Widgets from "@/widgets";
+import Card from "./Card.vue";
 import { EventBus } from "@/event-bus";
 
 export default {
-  name: "card-grid",
+  name: "DashboardCardGrid",
   components: {
     Card
   },
@@ -111,7 +110,7 @@ export default {
 
       this.grid.hide(element[0].$el, {
         onFinish: () => {
-          const widget = Widgets.get(name);
+          const widget = this.$widgets.get(name);
 
           if (widget && widget.hooks && widget.hooks.onRemove) {
             widget.hooks.onRemove(this.$store);

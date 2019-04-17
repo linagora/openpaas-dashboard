@@ -1,19 +1,16 @@
 <template>
   <v-container fluid>
-    <card-grid :cards="cards"/>
+    <dashboard-card-grid :cards="cards"/>
     <widget-store/>
   </v-container>
 </template>
 
 <script>
-import Widgets from "@/widgets";
 import WidgetStore from "@/views/WidgetStore.vue";
-import CardGrid from "@/components/CardGrid.vue";
 
 export default {
   name: "home",
   components: {
-    CardGrid,
     WidgetStore
   },
   computed: {
@@ -21,7 +18,7 @@ export default {
       const { cards } = this.$store.state.card;
 
       return cards
-        .map(card => Widgets.get(card))
+        .map(card => this.$widgets.get(card))
         .filter(Boolean)
         .map(widget => ({
           main: widget.components.main,
