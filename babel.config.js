@@ -1,3 +1,12 @@
 module.exports = {
-  presets: ["@vue/app"]
+  presets: ["@vue/app"],
+  overrides: [
+    {
+      env: {
+        test: {
+          plugins: ["babel-plugin-require-context-hook"]
+        }
+      }
+    }
+  ]
 };

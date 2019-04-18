@@ -39,7 +39,7 @@ function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth
 }
 
 function loadWidgets() {
-  const requireComponent = require.context("@/components/widgets", true, /index.js$/);
+  const requireComponent = require.context("./components/widgets", true, /index.js$/);
 
   return requireComponent.keys().map(fileName => requireComponent(fileName).default);
 }
