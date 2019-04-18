@@ -8,7 +8,6 @@ const DEFAULT_STATE_NAME = "dashboard";
 const VueDashboard = {
   install(Vue, options) {
     console.log("Installing grid plugin", options);
-    const bus = new Vue();
     const store = options.store;
 
     if (!store) {
@@ -24,10 +23,8 @@ const VueDashboard = {
 
     const $dashboard = {
       registry,
-      bus,
       addCard: ({ card }) => {
         store.dispatch("addCard", card.name);
-        bus.$emit("add-card", { card });
       }
     };
 

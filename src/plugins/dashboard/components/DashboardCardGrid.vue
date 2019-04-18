@@ -43,10 +43,7 @@ export default {
   },
   mounted() {
     this.initGrid();
-
-    this.$dashboard.bus.$on("add-card", ({ card }) => {
-      this.addCard(card.name);
-    });
+    this.subscribeToStore();
   },
   beforeDetroy() {
     this.ro.detach();
@@ -83,6 +80,16 @@ export default {
         this.grid.sort("index", { layout: "instant" });
       }
       this.grid.on("dragEnd", this.onDrag);
+    },
+    subscribeToStore() {
+      this.$store.subscribeAction({
+        // needs the store to be commited first, so we handle after action
+        after: action => {
+          if (action.type === "addCard") {
+            this.addCard(action.payload);
+          }
+        }
+      });
     },
     onResize(entries) {
       if (!this.grid) return;
