@@ -10,7 +10,8 @@ module.exports = {
     "^@/(.*)$": "<rootDir>/src/$1",
     "^%/(.*)$": "<rootDir>/tests/$1",
     "^%utils$": "<rootDir>/tests/unit/utils/index.js",
-    "^%utils/(.*)$": "<rootDir>/tests/unit/utils/$1"
+    "^%utils/(.*)$": "<rootDir>/tests/unit/utils/$1",
+    "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
   },
   snapshotSerializers: ["jest-serializer-vue"],
   testMatch: ["**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"],
