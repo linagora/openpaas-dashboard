@@ -1,31 +1,49 @@
-import Widgets from "./widgets";
-import Card from "./components/Card.vue";
-import CardGrid from "./components/CardGrid.vue";
+import CardStore from "./store";
+import Registry from "./registry";
+import DashboardCard from "./components/DashboardCard.vue";
+import DashboardCardGrid from "./components/DashboardCardGrid.vue";
 
-export default {
-  install(Vue, options = {}) {
+const DEFAULT_STATE_NAME = "dashboard";
+
+const VueDashboard = {
+  install(Vue, options) {
     console.log("Installing grid plugin", options);
-    if (!options.store) {
+    const bus = new Vue();
+    const store = options.store;
+
+    if (!store) {
       throw new Error("options.store is required");
     }
+    const registry = new Registry(store);
 
-    const widgets = new Widgets(options.store);
+    store.registerModule(options.vuexModuleName || DEFAULT_STATE_NAME, CardStore);
 
     if (options.widgets) {
-      options.widgets.forEach(widget => widgets.register(widget));
+      options.widgets.forEach(widget => registry.register(widget));
     }
 
+    const $dashboard = {
+      registry,
+      bus,
+      addCard: ({ card }) => {
+        store.dispatch("addCard", card.name);
+        bus.$emit("add-card", { card });
+      }
+    };
+
     Object.defineProperties(Vue.prototype, {
-      $widgets: {
+      $dashboard: {
         get: function get() {
-          return widgets;
+          return $dashboard;
         }
       }
     });
 
-    Vue.$widgets = widgets;
+    Vue.$dashboard = $dashboard;
 
-    Vue.component("DashboardCard", Card);
-    Vue.component("DashboardCardGrid", CardGrid);
+    Vue.component(DashboardCard.name, DashboardCard);
+    Vue.component(DashboardCardGrid.name, DashboardCardGrid);
   }
 };
+
+export default VueDashboard;

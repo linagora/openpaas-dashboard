@@ -1,7 +1,7 @@
 <template>
   <v-container id="card-grid" fluid>
     <div id="card-container" ref="container">
-      <card
+      <dashboard-card
         v-resize
         v-for="card in cards"
         :ref="card.name"
@@ -25,13 +25,12 @@
 <script>
 import ResizeObserver from "resize-observer-polyfill";
 import Muuri from "muuri";
-import Card from "./Card.vue";
-import { EventBus } from "@/event-bus";
+import DashboardCard from "./DashboardCard.vue";
 
 export default {
   name: "DashboardCardGrid",
   components: {
-    Card
+    DashboardCard
   },
   props: {
     cards: {
@@ -44,7 +43,8 @@ export default {
   },
   mounted() {
     this.initGrid();
-    EventBus.$on("add-card", ({ card }) => {
+
+    this.$dashboard.bus.$on("add-card", ({ card }) => {
       this.addCard(card.name);
     });
   },
@@ -110,7 +110,7 @@ export default {
 
       this.grid.hide(element[0].$el, {
         onFinish: () => {
-          const widget = this.$widgets.get(name);
+          const widget = this.$dashboard.registry.get(name);
 
           if (widget && widget.hooks && widget.hooks.onRemove) {
             widget.hooks.onRemove(this.$store);

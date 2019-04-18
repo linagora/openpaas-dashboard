@@ -15,10 +15,10 @@ export default {
   },
   computed: {
     cards() {
-      const { cards } = this.$store.state.card;
+      const { cards } = this.$store.state.dashboard;
 
       return cards
-        .map(card => this.$widgets.get(card))
+        .map(card => this.$dashboard.registry.get(card))
         .filter(Boolean)
         .map(widget => ({
           main: widget.components.main,

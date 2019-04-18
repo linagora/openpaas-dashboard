@@ -1,4 +1,4 @@
-class Widgets {
+class Registry {
   constructor(vuexInstance) {
     this.vuexInstance = vuexInstance;
     this.modules = {};
@@ -26,4 +26,4 @@ class Widgets {
   }
 }
 
-export default Widgets;
+export default Registry;
