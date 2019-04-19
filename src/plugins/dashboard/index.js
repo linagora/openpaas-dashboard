@@ -17,16 +17,30 @@ const VueDashboard = {
 
     store.registerModule(options.vuexModuleName || DEFAULT_STATE_NAME, CardStore);
 
-    if (options.widgets) {
-      options.widgets.forEach(widget => registry.register(widget));
-    }
-
     const $dashboard = {
-      registry,
-      addCard: ({ card }) => {
+      getWidgets: ids => {
+        return ids
+          .map(id => registry.get(id))
+          .filter(Boolean)
+          .map(widget => ({
+            main: widget.components.main,
+            name: widget.name
+          }));
+      },
+      getWidgetsDescription: () => {
+        return registry.getAllDescription();
+      },
+      useWidget: ({ card }) => {
         store.dispatch("addCard", card.name);
+      },
+      registerWidget: widget => {
+        registry.register(widget);
       }
     };
+
+    if (options.widgets) {
+      options.widgets.forEach(widget => $dashboard.registerWidget(widget));
+    }
 
     Object.defineProperties(Vue.prototype, {
       $dashboard: {

@@ -17,13 +17,7 @@ export default {
     cards() {
       const { cards } = this.$store.state.dashboard;
 
-      return cards
-        .map(card => this.$dashboard.registry.get(card))
-        .filter(Boolean)
-        .map(widget => ({
-          main: widget.components.main,
-          name: widget.name
-        }));
+      return this.$dashboard.getWidgets(cards);
     }
   }
 };

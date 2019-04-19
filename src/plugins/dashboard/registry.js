@@ -18,6 +18,14 @@ class Registry {
   }
 
   register(module) {
+    if (!module) {
+      throw new Error("Module is required");
+    }
+
+    if (!module.name) {
+      throw new Error("Module name is required");
+    }
+
     if (module.store) {
       this.vuexInstance.registerModule(module.name, module.store);
     }

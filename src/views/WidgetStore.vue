@@ -13,7 +13,7 @@
         <v-container fluid grid-list-lg>
           <v-layout row wrap>
             <v-flex xs12 md6 v-for="card in cards" :key="card.name">
-              <widget-store-card :card="card" @add="useCard(card)"/>
+              <widget-store-card :card="card" @add="useWidget(card)"/>
             </v-flex>
           </v-layout>
         </v-container>
@@ -36,7 +36,7 @@ export default {
   }),
   computed: {
     cards() {
-      return this.$dashboard.registry.getAllDescription().map(widget => {
+      return this.$dashboard.getWidgetsDescription().map(widget => {
         widget.available = !this.$store.state.dashboard.cards.includes(widget.name);
 
         return widget;
@@ -44,8 +44,8 @@ export default {
     }
   },
   methods: {
-    useCard(card) {
-      this.$dashboard.addCard({ card });
+    useWidget(card) {
+      this.$dashboard.useWidget({ card });
     }
   },
   components: {
