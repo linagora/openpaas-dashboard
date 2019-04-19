@@ -9,6 +9,7 @@ import App from "@/App";
 import router from "@/router";
 import { api, auth as servicesAuth } from "@/services";
 import ApplicationSettings from "@/services/application-settings";
+import Dashboard from "@/dashboard";
 import store from "@/store";
 import i18n from "@/i18n";
 
@@ -29,6 +30,8 @@ function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth
   VueInstance.use(Vuetify, { theme });
 
   VueInstance.use(VueMoment);
+
+  Dashboard.init(VueInstance);
 
   VueInstance.config.productionTip = false;
 

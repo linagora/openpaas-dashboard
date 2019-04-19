@@ -13,7 +13,7 @@
         <v-container fluid grid-list-lg>
           <v-layout row wrap>
             <v-flex xs12 md6 v-for="card in cards" :key="card.name">
-              <widget-store-card :card="card" @add="useCard(card)"/>
+              <widget-store-card :card="card" @add="useWidget(card)"/>
             </v-flex>
           </v-layout>
         </v-container>
@@ -28,8 +28,6 @@
 
 <script>
 import WidgetStoreCard from "@/components/WidgetStoreCard.vue";
-import Widgets from "@/widgets";
-import { EventBus } from "@/event-bus";
 
 export default {
   name: "WidgetStore",
@@ -38,17 +36,16 @@ export default {
   }),
   computed: {
     cards() {
-      return Widgets.getAllDescription().map(widget => {
-        widget.available = !this.$store.state.card.cards.includes(widget.name);
+      return this.$dashboard.getWidgetsDescription().map(widget => {
+        widget.available = !this.$store.state.dashboard.cards.includes(widget.name);
 
         return widget;
       });
     }
   },
   methods: {
-    useCard(card) {
-      this.$store.dispatch("addCard", card.name);
-      EventBus.$emit("add-card", { card });
+    useWidget(card) {
+      this.$dashboard.useWidget({ card });
     }
   },
   components: {

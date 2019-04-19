@@ -13,6 +13,7 @@
   "dependencies": {
     "@websanova/vue-auth": "^2.21.14-beta",
     "axios": "^0.18.0",
+    "babel-plugin-require-context-hook": "^1.0.0",
     "hammerjs": "^2.0.8",
     "ical.js": "^1.3.0",
     "jmap-client": "0.0.25",

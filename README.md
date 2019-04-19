@@ -45,16 +45,46 @@ npm run test:unit
 npm run test:e2e
 ```
 
-## API
+## vue-dashboard plugin
 
-### Widgets
-
-Some definitions first:
+The vue-dashboard plugin allows to create dashboards pages as `grid` from a collection of `widgets`:
 
 - A `widget` is the UI component displayed in a `card`.
 - A `grid` or `card grid` is the component displaying multiple `cards`. In the current case, cards can be moved in a grid.
 
-Widgets components are available in `src/components/widgets`. They are automatically loaded and available to use thanks to the widgets service in `src/widgets.js`.
+The widgets can be added/removed and reordered/sorted from user interaction.
+
+### Usage
+
+```js
+import VueDashboard from "vue-dashboard";
+
+Vue.use(VueDashboard, {
+  store,  // your vuex store instance (required)
+  widgets // array of widgets to be used by the dashboard
+});
+```
+
+You can then build Vue component using the dashboard:
+
+```html
+<template>
+  <dashboard-card-grid :cards="cards"/>
+</template>
+
+<script>
+export default {
+  name: "home",
+  computed: {
+    cards() {
+      // TODO
+    }
+  }
+};
+</script>
+```
+
+### Widgets
 
 Widgets are following the `widget component API`:
 
