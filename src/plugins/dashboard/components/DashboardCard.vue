@@ -11,6 +11,9 @@
             <v-icon>more_vert</v-icon>
           </v-btn>
           <v-list>
+            <v-list-tile v-if="hasSettings" @click.stop="openSettings()">
+              <v-list-tile-title>Settings</v-list-tile-title>
+            </v-list-tile>
             <v-list-tile @click="remove()">
               <v-list-tile-title>Remove</v-list-tile-title>
             </v-list-tile>
@@ -21,14 +24,20 @@
         <component :is="card.component" @loading="onLoading"/>
       </v-card-text>
     </v-card>
+    <v-dialog v-if="hasSettings" v-model="displaySettings" max-width="800px">
+      <dashboard-card-settings :settings="settings" @close="displaySettings = false"/>
+    </v-dialog>
   </div>
 </template>
 
 <script>
+import DashboardCardSettings from "./DashboardCardSettings";
+
 export default {
   name: "DashboardCard",
   props: {
     card: Object,
+    settings: Object,
     id: String,
     height: {
       type: Number
@@ -39,7 +48,8 @@ export default {
     }
   },
   data: () => ({
-    loading: false
+    loading: false,
+    displaySettings: false
   }),
   methods: {
     onLoading(value) {
@@ -47,7 +57,18 @@ export default {
     },
     remove() {
       this.$emit("deleted");
+    },
+    openSettings() {
+      this.displaySettings = true;
     }
+  },
+  computed: {
+    hasSettings() {
+      return !!this.settings;
+    }
+  },
+  components: {
+    DashboardCardSettings
   }
 };
 </script>
