@@ -6,8 +6,8 @@ const components = {
 };
 
 export default {
-  name: "email",
   title: "Email",
+  type: "email",
   icon: "mail_outline",
   description: "Check your last emails",
   store,

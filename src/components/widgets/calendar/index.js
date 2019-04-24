@@ -6,9 +6,9 @@ const components = {
 };
 
 export default {
-  name: "calendar",
-  icon: "today",
   title: "Calendar",
+  type: "calendar",
+  icon: "today",
   description: "Quick view of your events",
   store,
   components,
