@@ -6,8 +6,8 @@ const components = {
 };
 
 export default {
-  name: "weather",
   title: "Weather",
+  type: "weather",
   icon: "cloud_queue",
   description: "Local weather forecast",
   components,

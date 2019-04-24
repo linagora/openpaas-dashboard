@@ -6,8 +6,8 @@ const components = {
 };
 
 export default {
-  name: "member",
   title: "Members",
+  type: "member",
   icon: "account_circle",
   description: "Search for platform members",
   store,

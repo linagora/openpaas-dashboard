@@ -4,11 +4,11 @@
       <dashboard-card
         v-resize
         v-for="card in cards"
-        :ref="card.name"
+        :ref="card.id"
         :card="card.main"
-        :id="card.name"
-        :key="card.name"
-        @deleted="removeCard(card.name)"
+        :id="card.id"
+        :key="card.id"
+        @deleted="removeCard(card)"
       />
     </div>
     <transition name="fade">
@@ -35,6 +35,10 @@ export default {
   props: {
     cards: {
       type: Array,
+      required: true
+    },
+    dashboard: {
+      type: Object,
       required: true
     }
   },
@@ -73,7 +77,7 @@ export default {
         dragSortInterval: 0,
         layoutOnInit: false,
         sortData: {
-          index: (item, el) => this.cards.findIndex(element => element.name === el.id)
+          index: (item, el) => this.cards.findIndex(element => element.id === el.id)
         }
       });
       if (this.cards.length) {
@@ -86,7 +90,7 @@ export default {
         // needs the store to be commited first, so we handle after action
         after: action => {
           if (action.type === "addCard") {
-            this.addCard(action.payload);
+            this.addCard(action.payload.card.id);
           }
         }
       });
@@ -106,10 +110,10 @@ export default {
         .filter(f => f.isActive())
         .map(f => f.getElement().id);
 
-      this.$store.dispatch("setCards", cards);
+      this.$store.dispatch("setCardsOrder", { cards, dashboard: this.dashboard });
     },
-    removeCard(name) {
-      const element = this.$refs[name];
+    removeCard(card) {
+      const element = this.$refs[card.id];
 
       if (!element || !element.length) {
         return;
@@ -117,19 +121,19 @@ export default {
 
       this.grid.hide(element[0].$el, {
         onFinish: () => {
-          const widget = this.$dashboard.registry.get(name);
+          const widget = this.$dashboard.getWidget(card.type);
 
           if (widget && widget.hooks && widget.hooks.onRemove) {
             widget.hooks.onRemove(this.$store);
           }
-          this.$store.dispatch("removeCard", name);
+          this.$store.dispatch("removeCard", { card, dashboard: this.dashboard });
         }
       });
     },
-    addCard(name) {
+    addCard(id) {
       // next tick because cards is updated from props and then needs to wait for the render to have the $ref
       this.$nextTick(() => {
-        const element = this.$refs[name];
+        const element = this.$refs[id];
 
         if (!element || !element.length) {
           return;

@@ -4,13 +4,13 @@ class Registry {
     this.modules = {};
   }
 
-  get(name) {
-    return this.modules[name];
+  get(type) {
+    return this.modules[type];
   }
 
   getAllDescription() {
     return Object.entries(this.modules).map(entry => ({
-      name: entry[1].name,
+      type: entry[1].type,
       title: entry[1].title,
       icon: entry[1].icon,
       description: entry[1].description
@@ -22,15 +22,15 @@ class Registry {
       throw new Error("Module is required");
     }
 
-    if (!module.name) {
-      throw new Error("Module name is required");
+    if (!module.type) {
+      throw new Error("Module type is required");
     }
 
     if (module.store) {
-      this.vuexInstance.registerModule(module.name, module.store);
+      this.vuexInstance.registerModule(module.type, module.store);
     }
 
-    this.modules[module.name] = module;
+    this.modules[module.type] = module;
   }
 }
 

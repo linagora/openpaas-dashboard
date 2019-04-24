@@ -90,7 +90,7 @@ Widgets are following the `widget component API`:
 
 ``` js
 {
-  name,
+  type,
   title,
   icon,
   description,
@@ -102,7 +102,7 @@ Widgets are following the `widget component API`:
 
 Where:
 
-- **name**: The widget name as `String`. This is a unique identifier.
+- **type**: The widget type as `String`. This MUST be unique among all widgets.
 - **title**: The widget title as `String`. Used as display name in the widget store.
 - **icon**: The widget icon as `String`. Possible values are icon names from material icon module. Used in the widget store.
 - **description**: The widget description as `String`. Used to display a short description of the widget in the widget store.
@@ -159,7 +159,7 @@ Thus, creating a new widget is as simple as following the API and file structure
     };
 
     export default {
-      name: "openpaas.dashboard.helloword",
+      type: "openpaas.dashboard.helloword",
       title: "My HelloWorld Component",
       icon: "access_time",
       description: "This is my most famous component",

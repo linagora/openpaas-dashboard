@@ -1,3 +1,4 @@
+import uuidv4 from "uuid/v4";
 import CardStore from "./store";
 import Registry from "./registry";
 import DashboardCard from "./components/DashboardCard.vue";
@@ -18,20 +19,34 @@ const VueDashboard = {
     store.registerModule(options.vuexModuleName || DEFAULT_STATE_NAME, CardStore);
 
     const $dashboard = {
-      getWidgets: ids => {
-        return ids
-          .map(id => registry.get(id))
-          .filter(Boolean)
-          .map(widget => ({
-            main: widget.components.main,
-            name: widget.name
-          }));
+      getWidgets: widgets => {
+        return widgets
+          .map(widget => {
+            const definition = registry.get(widget.type);
+
+            if (!definition) {
+              return;
+            }
+
+            // build a new object to not mutate vuex
+            return {
+              id: widget.id,
+              title: widget.title,
+              type: widget.type,
+              settings: widget.settings,
+              main: definition.components.main
+            };
+          })
+          .filter(Boolean);
       },
       getWidgetsDescription: () => {
         return registry.getAllDescription();
       },
-      useWidget: ({ card }) => {
-        store.dispatch("addCard", card.name);
+      getWidget: type => {
+        return registry.get(type);
+      },
+      useWidget: ({ card, dashboard }) => {
+        store.dispatch("addCard", { card: { id: uuidv4(), type: card.type, settings: {} }, dashboard });
       },
       registerWidget: widget => {
         registry.register(widget);
