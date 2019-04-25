@@ -15,7 +15,8 @@ const types = {
   ADD_DASHBOARD: "ADD_DASHBOARD",
   REMOVE_DASHBOARD: "REMOVE_DASHBOARD",
   ADD_CARD_TO_DASHBOARD: "ADD_CARD_TO_DASHBOARD",
-  REMOVE_CARD_FROM_DASHBOARD: "REMOVE_CARD_FROM_DASHBOARD"
+  REMOVE_CARD_FROM_DASHBOARD: "REMOVE_CARD_FROM_DASHBOARD",
+  UPDATE_CARD_SETTINGS: "UPDATE_CARD_SETTINGS"
 };
 
 const actions = {
@@ -39,6 +40,10 @@ const actions = {
 
   removeDashboard({ commit }, dashboard) {
     commit(types.REMOVE_DASHBOARD, dashboard);
+  },
+
+  updateCardSettings({ commit }, { card, settings }) {
+    commit(types.UPDATE_CARD_SETTINGS, { card, settings });
   }
 };
 
@@ -66,6 +71,15 @@ const mutations = {
     state.dashboards[index].widgets = cards;
 
     localStorage.setItem(LOCALSTORAGE_DASHBOARDS_KEY, JSON.stringify(state.dashboards));
+  },
+
+  [types.UPDATE_CARD_SETTINGS](state, { card, settings }) {
+    if (!state.cards[card.id]) {
+      return;
+    }
+
+    Vue.set(state.cards[card.id], "settings", settings);
+    localStorage.setItem(LOCALSTORAGE_CARDS_KEY, JSON.stringify(state.cards));
   },
 
   [types.ADD_DASHBOARD](state, dashboard) {

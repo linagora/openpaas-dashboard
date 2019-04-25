@@ -108,7 +108,7 @@ Where:
 - **description**: The widget description as `String`. Used to display a short description of the widget in the widget store.
 - **store**: A vuex store module which is defined to be used by the widget only (https://vuex.vuejs.org/guide/modules.html)
 - **components**: Hash of components used to build the UI.
-  - `main` component is the one displayed in the card by default.
+  - `main` component (**required**) is the one displayed in the card by default.
     ```js
     {
       main: {
@@ -118,6 +118,15 @@ Where:
       }
     }
     ```
+  - `settings` component (**optional**) is the one used to display the widget settings.
+    ```js
+    {
+      settings: {
+        component: VueSettingsComponent // a Vue component which handles the settings of the widget
+      }
+    }
+    ```
+
 - **hooks**: Hash of functions used on cards change.
   - `onRemove` is called when the card containing the widget is removed from the grid.
   ``` js

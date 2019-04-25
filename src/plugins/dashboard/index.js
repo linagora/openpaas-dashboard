@@ -34,7 +34,7 @@ const VueDashboard = {
               title: widget.title,
               type: widget.type,
               settings: widget.settings,
-              main: definition.components.main
+              components: definition.components
             };
           })
           .filter(Boolean);
