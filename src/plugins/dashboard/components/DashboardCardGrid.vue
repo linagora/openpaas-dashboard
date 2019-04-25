@@ -5,8 +5,7 @@
         v-resize
         v-for="card in cards"
         :ref="card.id"
-        :card="card.components.main"
-        :settings="card.components.settings"
+        :card="card"
         :id="card.id"
         :key="card.id"
         @deleted="removeCard(card)"

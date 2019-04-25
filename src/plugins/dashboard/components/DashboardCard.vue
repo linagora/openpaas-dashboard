@@ -1,9 +1,9 @@
 <template>
   <div :style="{ width: `${width}` }" class="card" :id="id">
-    <v-card :color="card.color" :width="width" hover raised>
+    <v-card :color="card.components.main.color" :width="width" hover raised>
       <v-card-title class="head-drag">
-        <v-icon v-if="card.icon" large left>{{card.icon}}</v-icon>
-        <span v-if="card.title" class="title font-weight-light ml-2">{{card.title}}</span>
+        <v-icon v-if="card.components.main.icon" large left>{{card.components.main.icon}}</v-icon>
+        <span v-if="card.components.main.title" class="title font-weight-light ml-2">{{card.components.main.title}}</span>
         <v-spacer/>
         <v-progress-circular v-if="loading" indeterminate :size="20" :width="3" color="primary"></v-progress-circular>
         <v-menu lazy bottom offset-y>
@@ -21,24 +21,31 @@
         </v-menu>
       </v-card-title>
       <v-card-text :style="{ height: `${height}px` }">
-        <component :is="card.component" @loading="onLoading"/>
+        <component :is="card.components.main.component" @loading="onLoading"/>
       </v-card-text>
     </v-card>
     <v-dialog v-if="hasSettings" v-model="displaySettings" max-width="800px">
-      <dashboard-card-settings :settings="settings" @close="displaySettings = false"/>
+      <dashboard-card-settings
+        :card="card"
+        :settings="card.settings"
+        :view="card.components.settings.component"
+        @close="displaySettings = false"
+      />
     </v-dialog>
   </div>
 </template>
 
 <script>
-import DashboardCardSettings from "./DashboardCardSettings";
+import DashboardCardSettings from "./DashboardCardSettings.vue";
 
 export default {
   name: "DashboardCard",
   props: {
-    card: Object,
-    settings: Object,
     id: String,
+    card: {
+      type: Object,
+      required: true
+    },
     height: {
       type: Number
     },
@@ -64,7 +71,7 @@ export default {
   },
   computed: {
     hasSettings() {
-      return !!this.settings;
+      return !!this.card.components.settings;
     }
   },
   components: {
