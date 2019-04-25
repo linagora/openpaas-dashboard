@@ -13,7 +13,8 @@ class Registry {
       type: entry[1].type,
       title: entry[1].title,
       icon: entry[1].icon,
-      description: entry[1].description
+      description: entry[1].description,
+      components: entry[1].components
     }));
   }
 
