@@ -3,7 +3,12 @@
     <v-card :color="card.components.main.color" :width="width" hover raised>
       <v-card-title class="head-drag">
         <v-icon v-if="card.components.main.icon" large left>{{card.components.main.icon}}</v-icon>
-        <span v-if="card.components.main.title" class="title font-weight-light ml-2">{{card.components.main.title}}</span>
+        <span
+          v-if="card.components.main.title"
+          class="title font-weight-light ml-2"
+        >
+          {{card.components.main.title}}
+        </span>
         <v-spacer/>
         <v-progress-circular v-if="loading" indeterminate :size="20" :width="3" color="primary"></v-progress-circular>
         <v-menu lazy bottom offset-y>

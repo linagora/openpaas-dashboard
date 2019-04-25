@@ -37,7 +37,7 @@ export default {
       type: Object,
       required: true
     },
-     width: {
+    width: {
       type: String,
       default: "400px"
     }
@@ -51,5 +51,5 @@ export default {
       this.close();
     }
   }
-}
+};
 </script>
