@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ width: `${width}` }" class="card" :id="id">
+  <div :style="{ width: `${width}px` }" class="card" :id="id">
     <v-card :color="card.components.main.color" :width="width" hover raised>
       <v-card-title class="head-drag">
         <v-icon v-if="card.components.main.icon" large left>{{card.components.main.icon}}</v-icon>
@@ -53,10 +53,6 @@ export default {
     },
     height: {
       type: Number
-    },
-    width: {
-      type: String,
-      default: "400px"
     }
   },
   data: () => ({
@@ -75,6 +71,11 @@ export default {
     }
   },
   computed: {
+    width() {
+      const columns = this.card.components.main.columns || 1;
+
+      return 400 * columns + 30 * (columns - 1);
+    },
     hasSettings() {
       return !!this.card.components.settings;
     }

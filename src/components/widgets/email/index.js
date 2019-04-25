@@ -2,7 +2,7 @@ import store from "./store";
 import Email from "./components/Email";
 
 const components = {
-  main: { component: Email, title: "Inbox" }
+  main: { component: Email, title: "Inbox", columns: 2 }
 };
 
 export default {
