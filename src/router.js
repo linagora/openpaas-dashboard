@@ -2,13 +2,15 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
+import Dashboard from "@/views/Dashboard.vue";
 import ApplicationSettings from "@/services/application-settings";
 
 Vue.use(Router);
 
 export const routeNames = Object.freeze({
   HOME: "Home",
-  LOGIN: "Login"
+  LOGIN: "Login",
+  DASHBOARD: "Dashboard"
 });
 
 export default new Router({
@@ -29,6 +31,15 @@ export default new Router({
       component: Login,
       meta: {
         auth: false
+      }
+    },
+    {
+      path: "/dashboard/:id",
+      name: routeNames.DASHBOARD,
+      component: Dashboard,
+      props: true,
+      meta: {
+        auth: true
       }
     }
   ]
