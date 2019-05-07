@@ -1,8 +1,8 @@
 <template>
   <v-dialog v-model="dialog" scrollable max-width="800px">
     <template v-slot:activator="{ on }">
-      <v-btn v-on="on" color="primary" dark fixed bottom right fab>
-        <v-icon>add</v-icon>
+      <v-btn v-on="on" icon ripple>
+        <v-icon color="grey darken-1">add_circle_outline</v-icon>
       </v-btn>
     </template>
     <v-card>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import WidgetStoreCard from "@/components/WidgetStoreCard.vue";
+import WidgetStoreCard from "./WidgetStoreCard.vue";
 
 export default {
   name: "WidgetStore",
