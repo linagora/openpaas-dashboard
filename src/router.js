@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import ApplicationSettings from "@/services/application-settings";
@@ -20,9 +19,12 @@ export default new Router({
     {
       path: "/",
       name: routeNames.HOME,
-      component: Home,
+      redirect: {
+        name: routeNames.DASHBOARD,
+        params: { id: "default" }
+      },
       meta: {
-        auth: true
+        auth: false
       }
     },
     {
