@@ -3,6 +3,7 @@ image: node:10
 stages:
   - lint
   - test
+  - deploy_dev
 
 lint:
   stage: lint
@@ -39,3 +40,26 @@ test_e2e:
     - npm install
     - npm run test:e2e -- --headless
 
+deploy_dev:
+  stage: deploy_dev
+  except:
+    - triggers
+  tags:
+    - dev.open-paas.org
+    - deployment
+  environment:
+    name: dev
+    url: https://dev.open-paas.org
+  only:
+    - master
+  script:
+    - cd /srv/${CI_PROJECT_NAME}
+    - nvm use
+    - git fetch --all
+    - git checkout ${CI_COMMIT_SHA}
+    - npm install
+    - npm update
+    - git checkout -- .
+    - BASE_URL=/dashboard/ npm run build
+    - rm -fr /srv/vue-apps/${CI_PROJECT_NAME}/*
+    - cp -fr /srv/${CI_PROJECT_NAME}/dist/* /srv/vue-apps/${CI_PROJECT_NAME}/
