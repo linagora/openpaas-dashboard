@@ -22,7 +22,7 @@ const actions = {
   },
 
   resetUser({ commit }) {
-    commit(types.SET_USER, {});
+    commit(types.SET_USER, null);
   }
 };
 
