@@ -1,10 +1,10 @@
 <template>
   <div id="sidebar-content">
     <v-list>
-      <v-list-tile color="blue">
+      <v-list-tile color="blue" class="tile-title">
         <v-list-tile-content>
           <v-list-tile-title>
-            <span class="main">{{ dashboard.name }}</span>
+            <span class="tile-title-text">{{ dashboard.name }}</span>
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
@@ -20,10 +20,10 @@
       </v-list-tile>
     </v-list>
     <v-list class="mt-1">
-      <v-list-tile color="blue">
+      <v-list-tile color="blue" class="tile-title">
         <v-list-tile-content>
           <v-list-tile-title>
-            <span class="main">{{$t("My others dashboards")}}</span>
+            <span class="tile-title-text">{{$t("My others dashboards")}}</span>
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
@@ -64,7 +64,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .main
+  span.tile-title-text
     text-transform: uppercase
     font-weight: 500
+
+  .tile-title
+    border-left-width: 5px
+    border-left-style: solid
+
 </style>
