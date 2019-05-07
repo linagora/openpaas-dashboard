@@ -10,9 +10,7 @@
       </v-list-tile>
       <v-list-tile>
         <v-list-tile-action>
-          <v-btn icon ripple @click="addWidget">
-            <v-icon color="grey darken-1">add_circle_outline</v-icon>
-          </v-btn>
+          <widget-store v-if="dashboard" :dashboard="dashboard"/>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>
@@ -46,15 +44,23 @@
 </template>
 
 <script>
+import WidgetStore from "@/components/widget-store/WidgetStore.vue";
+
 export default {
   name: "Sidebar",
+  computed: {
+    dashboard() {
+      // TODO: Have a vuex getter for this
+      return {};
+    }
+  },
   methods: {
     createDashboard() {
       // TODO
-    },
-    addWidget() {
-      // TODO
     }
+  },
+  components: {
+    WidgetStore
   }
 };
 </script>

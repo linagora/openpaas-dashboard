@@ -3,18 +3,12 @@
     <div class="dashboard">
       <dashboard-card-grid :cards="cards" :dashboard="dashboard"/>
     </div>
-    <widget-store v-if="dashboard" :dashboard="dashboard"/>
   </v-container>
 </template>
 
 <script>
-import WidgetStore from "@/views/WidgetStore.vue";
-
 export default {
   name: "home",
-  components: {
-    WidgetStore
-  },
   mounted() {
     if (!this.$store.state.dashboard.dashboards || this.$store.state.dashboard.dashboards.length === 0) {
       this.$store.dispatch("addDashboard", { id: "default", name: "My dashboard", widgets: [] });
