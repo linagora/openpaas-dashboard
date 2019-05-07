@@ -1,7 +1,11 @@
 <template>
   <v-app id="app">
     <div v-if="$auth.ready()" :style="{ backgroundColor: backgroundColor }" id="app-ready">
-      <v-toolbar clipped-left app fixed color="blue" v-if="$auth.check()">
+      <v-navigation-drawer v-model="drawer" fixed clipped hide-overlay app v-if="$auth.check()">
+        <sidebar></sidebar>
+      </v-navigation-drawer>
+      <v-toolbar clipped-left app fixed color="blue" :dark="true" v-if="$auth.check()">
+        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
           <img class="hidden-sm-and-down" id="header-logo" src="@/assets/logo.svg"/>
         </v-toolbar-title>
@@ -27,10 +31,13 @@
 import { mapGetters, mapState } from "vuex";
 import UserMenu from "@/components/ui/UserMenu.vue";
 import Snackbar from "@/components/ui/Snackbar.vue";
+import Sidebar from "@/components/ui/Sidebar.vue";
 import colors from "vuetify/es5/util/colors";
 
 export default {
-  data: () => ({}),
+  data: () => ({
+    drawer: null
+  }),
   computed: {
     backgroundColor() {
       if (!this.$auth.check()) {
@@ -47,7 +54,8 @@ export default {
   },
   components: {
     UserMenu,
-    Snackbar
+    Snackbar,
+    Sidebar
   },
   created() {
     this.$auth.ready(() => {

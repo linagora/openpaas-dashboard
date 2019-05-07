@@ -173,48 +173,6 @@ export default {
     }
   }
 
-  // While waiting for a muuri update this is the easiest way to center the cards.
-  @media (max-width: 859px) {
-    #card-container {
-      width: 430px;
-      &.placeholder {
-        column-count: 1;
-      }
-    }
-  }
-  @media (min-width: 860px) and (max-width: 1289px) {
-    #card-container {
-      width: 860px;
-      &.placeholder {
-        column-count: 2;
-      }
-    }
-  }
-  @media (min-width: 1290px) and (max-width: 1719px) {
-    #card-container {
-      width: 1290px;
-      &.placeholder {
-        column-count: 3;
-      }
-    }
-  }
-  @media (min-width: 1720px) and (max-width: 2149px) {
-    #card-container {
-      width: 1720px;
-      &.placeholder {
-        column-count: 4;
-      }
-    }
-  }
-  @media (min-width: 2150px) {
-    #card-container {
-      width: 2150px;
-      &.placeholder {
-        column-count: 5;
-      }
-    }
-  }
-
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;
   }
