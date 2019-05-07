@@ -4,7 +4,7 @@
       <v-list-tile color="blue">
         <v-list-tile-content>
           <v-list-tile-title>
-            <span class="main">My dashboard</span>
+            <span class="main">{{ dashboard.name }}</span>
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
@@ -44,15 +44,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import WidgetStore from "@/components/widget-store/WidgetStore.vue";
 
 export default {
   name: "Sidebar",
   computed: {
-    dashboard() {
-      // TODO: Have a vuex getter for this
-      return {};
-    }
+    ...mapGetters({ dashboard: "dashboards/getCurrentDashboard" })
   },
   methods: {
     createDashboard() {
