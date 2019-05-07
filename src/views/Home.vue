@@ -1,6 +1,8 @@
 <template>
   <v-container fluid>
-    <dashboard-card-grid :cards="cards" :dashboard="dashboard"/>
+    <div class="dashboard">
+      <dashboard-card-grid :cards="cards" :dashboard="dashboard"/>
+    </div>
     <widget-store v-if="dashboard" :dashboard="dashboard"/>
   </v-container>
 </template>
@@ -34,3 +36,34 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+
+card-width = 430px
+
+@media (max-width: 859px) {
+  .dashboard >>> #card-container {
+    width: card-width;
+  }
+}
+@media (min-width: 860px) and (max-width: 1289px) {
+  .dashboard >>> #card-container  {
+    width: card-width * 2;
+  }
+}
+@media (min-width: 1290px) and (max-width: 1719px) {
+  .dashboard >>> #card-container {
+    width: card-width * 2;
+  }
+}
+@media (min-width: 1720px) and (max-width: 2149px) {
+  .dashboard >>> #card-container  {
+    width: card-width * 3;
+  }
+}
+@media (min-width: 2150px) {
+  .dashboard >>> #card-container {
+    width: card-width * 4;
+  }
+}
+</style>
