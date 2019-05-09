@@ -1,18 +1,15 @@
 <template>
-  <v-dialog v-model="dialog" scrollable max-width="800px">
+  <v-dialog v-model="dialog" scrollable max-width="1200px">
     <template v-slot:activator="{ on }">
       <v-btn v-on="on" icon ripple>
         <v-icon color="grey darken-1">add_circle_outline</v-icon>
       </v-btn>
     </template>
-    <v-card>
-      <v-card-title>
-        <span class="headline">Widget Store</span>
-      </v-card-title>
+    <v-card color="grey lighten-4">
       <v-card-text>
         <v-container fluid grid-list-lg>
           <v-layout row wrap>
-            <v-flex xs12 md6 v-for="card in cards" :key="card.type">
+            <v-flex xs12 md6 lg4 v-for="card in cards" :key="card.type">
               <widget-store-card :card="card" @add="useWidget(card)"/>
             </v-flex>
           </v-layout>
