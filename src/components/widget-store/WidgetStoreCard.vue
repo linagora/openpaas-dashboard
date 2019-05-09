@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import colors from "vuetify/es5/util/colors";
+import { theme } from "@/style";
 
 export default {
   name: "WidgetStoreCard",
@@ -33,7 +33,7 @@ export default {
   },
   data: () => ({
     // TODO: Get the right color from card once available
-    borderColor: colors.blue.base
+    borderColor: theme.colors.blue.base
   }),
   methods: {
     add() {
