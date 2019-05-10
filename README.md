@@ -134,6 +134,9 @@ Where:
     // do something
   }
   ```
+- **settings**: Hash of settings for the component.
+  - `data`: Hash of settings
+  - `validate(settings)`: A function which returns `true` if settings are valid, `false` otherwise
 
 Thus, creating a new widget is as simple as following the API and file structure. Let's say we want to create a simple hello world component:
 
@@ -167,12 +170,19 @@ Thus, creating a new widget is as simple as following the API and file structure
       main: { component: HelloWorld, color: "purple" }
     };
 
+    const settings = {
+      validate(settings) {
+        return settings.foo === "Bar";
+      }
+    }
+
     export default {
       type: "openpaas.dashboard.helloword",
       title: "My HelloWorld Component",
       icon: "access_time",
       description: "This is my most famous component",
-      components
+      components,
+      settings
     };
     ```
 
