@@ -1,10 +1,10 @@
 <template>
   <div id="sidebar-content">
     <v-list>
-      <v-list-tile color="blue" class="tile-title">
+      <v-list-tile color="blue" class="tile-title" :style="{ borderLeftColor: borderColor }">
         <v-list-tile-content>
           <v-list-tile-title>
-            <span class="tile-title-text">{{ dashboard.name }}</span>
+            <span class="tile-title-text" :style="{ color: titleColor }">{{ dashboard.name }}</span>
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
@@ -45,12 +45,18 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { theme } from "@/style";
 import WidgetStore from "@/components/widget-store/WidgetStore.vue";
 
 export default {
   name: "Sidebar",
+  data: () => ({
+    borderColor: theme.colors.blue.base,
+    titleColor: theme.colors.blue.base
+  }),
   computed: {
-    ...mapGetters({ dashboard: "dashboards/getCurrentDashboard" })
+    ...mapGetters({ dashboard: "dashboards/getCurrentDashboard" }),
+    style: () => theme.colors
   },
   methods: {
     createDashboard() {

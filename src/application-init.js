@@ -1,25 +1,19 @@
 import VueAxios from "vue-axios";
 import Vuetify from "vuetify";
 import VueMoment from "vue-moment";
-import colors from "vuetify/es5/util/colors";
-import "material-design-icons/iconfont/material-icons.css";
-import "typeface-roboto/index.css";
 
 import App from "@/App";
 import router from "@/router";
 import { api, auth as servicesAuth } from "@/services";
+import { theme as appTheme } from "@/style";
 import ApplicationSettings from "@/services/application-settings";
 import Dashboard from "@/dashboard";
 import store from "@/store";
 import i18n from "@/i18n";
 
-const defaultTheme = {
-  primary: colors.orange
-};
-
 // This prevents polluting the global Axios and Vue instances
 // See for instance : https://github.com/vuetifyjs/vuetify/issues/4068#issuecomment-446988490
-function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth, theme = defaultTheme } = {}) {
+function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth, theme = appTheme.colors } = {}) {
   VueInstance.use(VueAxios, axiosInstance);
   axiosInstance.defaults.baseURL = store.state.applicationConfiguration.baseUrl;
 
@@ -51,4 +45,4 @@ function getApplication(VueInstance) {
   return Application;
 }
 
-export { ApplicationSettings, applicationInit, defaultTheme, getApplication };
+export { ApplicationSettings, applicationInit, getApplication };

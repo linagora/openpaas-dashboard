@@ -29,10 +29,10 @@
 
 <script>
 import { mapGetters, mapState } from "vuex";
+import { theme } from "@/style";
 import UserMenu from "@/components/ui/UserMenu.vue";
 import Snackbar from "@/components/ui/Snackbar.vue";
 import Sidebar from "@/components/ui/Sidebar.vue";
-import colors from "vuetify/es5/util/colors";
 
 export default {
   data: () => ({
@@ -41,7 +41,7 @@ export default {
   computed: {
     backgroundColor() {
       if (!this.$auth.check()) {
-        return colors.blue.base;
+        return theme.colors.blue.base;
       }
     },
     ...mapState({
