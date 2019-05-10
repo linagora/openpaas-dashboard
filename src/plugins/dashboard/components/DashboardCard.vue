@@ -4,10 +4,10 @@
       <v-card-title class="head-drag">
         <v-icon v-if="card.components.main.icon" large left>{{card.components.main.icon}}</v-icon>
         <span
-          v-if="card.components.main.title"
+          v-if="title"
           class="title font-weight-light ml-2"
         >
-          {{card.components.main.title}}
+          {{title}}
         </span>
         <v-spacer/>
         <v-progress-circular v-if="loading" indeterminate :size="20" :width="3" color="primary"></v-progress-circular>
@@ -26,7 +26,13 @@
         </v-menu>
       </v-card-title>
       <v-card-text :style="{ height: `${height}px` }">
-        <component :is="card.components.main.component" @loading="onLoading"/>
+        <component
+          :is="card.components.main.component"
+          :id="card.id"
+          :settings="card.settings"
+          @loading="onLoading"
+          @updateTitle="onTitleUpdate"
+        />
       </v-card-text>
     </v-card>
     <v-dialog v-if="hasSettings" v-model="displaySettings" max-width="800px">
@@ -57,11 +63,15 @@ export default {
   },
   data: () => ({
     loading: false,
-    displaySettings: false
+    displaySettings: false,
+    updatedTitle: null
   }),
   methods: {
     onLoading(value) {
       this.loading = value;
+    },
+    onTitleUpdate(value) {
+      this.updatedTitle = value;
     },
     remove() {
       this.$emit("deleted");
@@ -78,6 +88,9 @@ export default {
     },
     hasSettings() {
       return !!this.card.components.settings;
+    },
+    title() {
+      return this.updatedTitle || this.card.components.main.title;
     }
   },
   components: {
