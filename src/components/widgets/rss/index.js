@@ -6,10 +6,17 @@ const components = {
   settings: { component: FeedSettings }
 };
 
+const settings = {
+  validate(settings) {
+    return settings && settings.url && settings.url.length > 0;
+  }
+};
+
 export default {
   title: "RSS",
   type: "rss",
   icon: "rss_feed",
   description: "Display news from RSS feed",
-  components
+  components,
+  settings
 };
