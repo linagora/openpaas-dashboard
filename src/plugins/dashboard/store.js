@@ -134,6 +134,14 @@ const getters = {
     }
 
     return (state.dashboards[index].widgets || []).map(id => state.cards[id]).filter(Boolean);
+  },
+
+  getSettingsForWidget: state => id => {
+    if (!state.cards[id]) {
+      return null;
+    }
+
+    return state.cards[id].settings || {};
   }
 };
 

@@ -11,7 +11,7 @@
       <v-container fluid grid-list-lg>
         <v-layout row wrap>
           <v-flex xs12>
-            <component :is="view" :settings="settings" @updated="updateSettings"/>
+            <component :is="view" :settings="settings" :card="card" @updated="updateSettings"/>
           </v-flex>
         </v-layout>
       </v-container>

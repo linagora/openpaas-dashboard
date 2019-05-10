@@ -4,10 +4,10 @@
       <v-card-title class="head-drag">
         <v-icon v-if="card.components.main.icon" large left>{{card.components.main.icon}}</v-icon>
         <span
-          v-if="card.components.main.title"
+          v-if="title"
           class="title font-weight-light ml-2"
         >
-          {{card.components.main.title}}
+          {{title}}
         </span>
         <v-spacer/>
         <v-progress-circular v-if="loading" indeterminate :size="20" :width="3" color="primary"></v-progress-circular>
@@ -17,16 +17,31 @@
           </v-btn>
           <v-list>
             <v-list-tile v-if="hasSettings" @click.stop="openSettings()">
-              <v-list-tile-title>Settings</v-list-tile-title>
+              <v-list-tile-title>{{$t("Settings")}}</v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click="remove()">
-              <v-list-tile-title>Remove</v-list-tile-title>
+              <v-list-tile-title>{{$t("Remove")}}</v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
       </v-card-title>
       <v-card-text :style="{ height: `${height}px` }">
-        <component :is="card.components.main.component" @loading="onLoading"/>
+        <div v-if="hasSettings && !isCorrectlyConfigured" id="configure">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn color="primary" @click="openSettings()" v-on="on">{{$t("Settings")}}</v-btn>
+            </template>
+            <span>{{$t("This widget needs to be configured")}}</span>
+          </v-tooltip>
+        </div>
+        <component
+          v-else
+          :is="card.components.main.component"
+          :id="card.id"
+          :settings="card.settings"
+          @loading="onLoading"
+          @updateTitle="onTitleUpdate"
+        />
       </v-card-text>
     </v-card>
     <v-dialog v-if="hasSettings" v-model="displaySettings" max-width="800px">
@@ -57,11 +72,15 @@ export default {
   },
   data: () => ({
     loading: false,
-    displaySettings: false
+    displaySettings: false,
+    updatedTitle: null
   }),
   methods: {
     onLoading(value) {
       this.loading = value;
+    },
+    onTitleUpdate(value) {
+      this.updatedTitle = value;
     },
     remove() {
       this.$emit("deleted");
@@ -78,6 +97,18 @@ export default {
     },
     hasSettings() {
       return !!this.card.components.settings;
+    },
+    title() {
+      return this.updatedTitle || this.card.components.main.title;
+    },
+    isCorrectlyConfigured() {
+      const widget = this.$dashboard.getWidget(this.card.type);
+
+      if (!widget || !widget.settings || !widget.settings.validate) {
+        return true;
+      }
+
+      return widget.settings.validate(this.card.settings);
     }
   },
   components: {
@@ -133,5 +164,10 @@ export default {
 .muuri-item-hidden {
   z-index: 0 !important;
 }
+
+#configure
+  display: flex
+  justify-content: center
+  align-items: center
 
 </style>
