@@ -20,6 +20,9 @@ import FeedItem from "./FeedItem.vue";
 export default {
   name: "Feed",
   mounted() {
+    if (!this.settings.url) {
+      return;
+    }
     this.fetchFeed();
   },
   props: {
