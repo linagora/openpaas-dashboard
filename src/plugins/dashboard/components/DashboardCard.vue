@@ -26,14 +26,24 @@
         </v-menu>
       </v-card-title>
       <v-card-text :style="{ height: `${height}px` }">
-        <div v-if="hasSettings && !isCorrectlyConfigured" id="configure">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-              <v-btn color="primary" @click="openSettings()" v-on="on">{{$t("Settings")}}</v-btn>
-            </template>
-            <span>{{$t("This widget needs to be configured")}}</span>
-          </v-tooltip>
-        </div>
+        <v-container
+          v-if="hasSettings && !isCorrectlyConfigured"
+          pt-0 align-center justify-center align-content-center d-flex :style="{flexDirection: 'column'}"
+        >
+          <v-flex pb-2>
+            <span class="title font-weight-light grey--text text--darken-1">
+              {{$t("This widget needs to be configured")}}
+            </span>
+          </v-flex>
+          <v-flex>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn color="primary" @click="openSettings()" v-on="on">{{$t("Settings")}}</v-btn>
+              </template>
+              <span>{{$t("Click to configure widget")}}</span>
+            </v-tooltip>
+          </v-flex>
+        </v-container>
         <component
           v-else
           :is="card.components.main.component"
@@ -164,10 +174,5 @@ export default {
 .muuri-item-hidden {
   z-index: 0 !important;
 }
-
-#configure
-  display: flex
-  justify-content: center
-  align-items: center
 
 </style>
