@@ -20,10 +20,10 @@
       </v-list-tile>
     </v-list>
     <v-list class="mt-1">
-      <v-list-tile color="blue" class="tile-title">
+      <v-list-tile color="blue" class="tile-title" :style="{ borderLeftColor: borderColor }">
         <v-list-tile-content>
           <v-list-tile-title>
-            <span class="tile-title-text">{{$t("My others dashboards")}}</span>
+            <span class="tile-title-text" :style="{ color: titleColor }">{{$t("My others dashboards")}}</span>
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
