@@ -10,6 +10,14 @@
         </v-list>
       </v-flex>
     </v-layout>
+    <v-container
+      v-else-if="error"
+      pt-0 align-center justify-center align-content-center d-flex :style="{flexDirection: 'column'}"
+    >
+      <v-flex pb-2>
+        <span class="title font-weight-light red--text">{{$t(error)}}</span>
+      </v-flex>
+    </v-container>
   </div>
 </template>
 
@@ -35,7 +43,8 @@ export default {
     delay: 60 * 1000, // TODO: Make it configurable
     limit: 5, // TODO: Make it configurable
     timeout: null,
-    feed: null
+    feed: null,
+    error: null
   }),
   computed: {
     lastItems() {
@@ -56,10 +65,14 @@ export default {
         .then(feed => {
           // TODO: order items by date
           // TODO: limit nb of items
+          this.error && (this.error = null); // avoid tilt while loading after an error by waiting for feed items
           this.feed = feed;
           this.$emit("updateTitle", this.feed.title);
         })
-        .catch(err => console.log("err", err))
+        .catch(err => {
+          console.log("Error while getting RSS feed", err);
+          this.error = "Can not load feed";
+        })
         .finally(() => this.$emit("loading", false));
 
       this.timeout = setTimeout(this.fetchFeed, this.delay);
