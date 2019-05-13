@@ -29,9 +29,7 @@
       </v-list-tile>
       <v-list-tile>
         <v-list-tile-action>
-          <v-btn icon ripple @click="createDashboard">
-            <v-icon color="grey darken-1">add_circle_outline</v-icon>
-          </v-btn>
+          <dashboard-form />
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>
@@ -47,6 +45,7 @@
 import { mapGetters } from "vuex";
 import { theme } from "@/style";
 import WidgetStore from "@/components/widget-store/WidgetStore.vue";
+import DashboardForm from "@/components/ui/DashboardForm.vue";
 
 export default {
   name: "Sidebar",
@@ -58,13 +57,9 @@ export default {
     ...mapGetters({ dashboard: "dashboards/getCurrentDashboard" }),
     style: () => theme.colors
   },
-  methods: {
-    createDashboard() {
-      // TODO
-    }
-  },
   components: {
-    WidgetStore
+    WidgetStore,
+    DashboardForm
   }
 };
 </script>
