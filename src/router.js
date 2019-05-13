@@ -36,7 +36,7 @@ export default new Router({
       }
     },
     {
-      path: "/dashboard/:id",
+      path: "/boards/:id",
       name: routeNames.DASHBOARD,
       component: Dashboard,
       props: true,
