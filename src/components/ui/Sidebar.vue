@@ -27,10 +27,10 @@
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
-      <v-list-tile 
-        :to="`/boards/${board.id}`" 
-        active-class="grey darken-2" 
-        v-for="board in getOtherDashboards" 
+      <v-list-tile
+        :to="`/boards/${board.id}`"
+        active-class="grey lighten-5"
+        v-for="board in getOtherDashboards"
         :key="board.id"
       >
         <v-list-tile-content>
