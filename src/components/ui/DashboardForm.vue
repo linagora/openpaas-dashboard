@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dashboardDialog" scrollable max-width="1200px">
+  <v-dialog v-model="dashboardDialog" scrollable max-width="800px">
     <template v-slot:activator="{ on }">
       <v-btn v-on="on" icon ripple>
         <v-icon color="grey darken-1">add_circle_outline</v-icon>
