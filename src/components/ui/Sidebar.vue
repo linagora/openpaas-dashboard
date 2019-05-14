@@ -47,7 +47,7 @@
       </v-list-tile>
       <v-list-tile>
         <v-list-tile-action>
-          <dashboard-form />
+          <dashboard-create-form/>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>
@@ -63,7 +63,7 @@
 import { mapGetters } from "vuex";
 import { theme } from "@/style";
 import WidgetStore from "@/components/widget-store/WidgetStore.vue";
-import DashboardForm from "@/components/ui/DashboardForm.vue";
+import DashboardCreateForm from "@/components/dashboard/DashboardCreateForm.vue";
 
 export default {
   name: "Sidebar",
@@ -77,7 +77,7 @@ export default {
   },
   components: {
     WidgetStore,
-    DashboardForm
+    DashboardCreateForm
   }
 };
 </script>
