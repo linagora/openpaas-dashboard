@@ -27,6 +27,16 @@
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
+      <v-list-tile 
+        :to="`/boards/${board.id}`" 
+        active-class="grey darken-2" 
+        v-for="board in getOtherDashboards" 
+        :key="board.id"
+      >
+        <v-list-tile-content>
+          <v-list-tile-title v-text="board.name"></v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
       <v-list-tile>
         <v-list-tile-action>
           <dashboard-form />
@@ -54,7 +64,7 @@ export default {
     titleColor: theme.colors.blue.base
   }),
   computed: {
-    ...mapGetters({ dashboard: "dashboards/getCurrentDashboard" }),
+    ...mapGetters({ dashboard: "dashboards/getCurrentDashboard", getOtherDashboards: "getOtherDashboards" }),
     style: () => theme.colors
   },
   components: {
