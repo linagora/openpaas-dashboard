@@ -4,7 +4,12 @@
       <v-list-tile color="blue" class="tile-title" :style="{ borderLeftColor: borderColor }">
         <v-list-tile-content>
           <v-list-tile-title>
-            <span class="tile-title-text" :style="{ color: titleColor }">{{ dashboard.name }}</span>
+            <transition name="fadein">
+              <span
+                class="tile-title-text"
+                :style="{ color: titleColor }"
+                :key="dashboard.id">{{ dashboard.name }}</span>
+            </transition>
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
@@ -23,18 +28,21 @@
       <v-list-tile color="blue" class="tile-title" :style="{ borderLeftColor: borderColor }">
         <v-list-tile-content>
           <v-list-tile-title>
-            <span class="tile-title-text" :style="{ color: titleColor }">{{$t("My others dashboards")}}</span>
+            <span class="tile-title-text" :style="{ color: titleColor }">{{$t("My dashboards")}}</span>
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
       <v-list-tile
-        :to="`/boards/${board.id}`"
+        v-for="dashboard in dashboards"
+        :to="`/boards/${dashboard.id}`"
+        :key="dashboard.id"
         active-class="grey lighten-5"
-        v-for="board in getOtherDashboards"
-        :key="board.id"
       >
+        <v-list-tile-action>
+          <v-icon>dashboard</v-icon>
+        </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title v-text="board.name"></v-list-tile-title>
+          <v-list-tile-title v-text="dashboard.name"></v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
       <v-list-tile>
@@ -64,7 +72,7 @@ export default {
     titleColor: theme.colors.blue.base
   }),
   computed: {
-    ...mapGetters({ dashboard: "dashboards/getCurrentDashboard", getOtherDashboards: "getOtherDashboards" }),
+    ...mapGetters({ dashboard: "dashboards/getCurrentDashboard", dashboards: "getDashboards" }),
     style: () => theme.colors
   },
   components: {
@@ -82,5 +90,11 @@ export default {
   .tile-title
     border-left-width: 5px
     border-left-style: solid
+
+  .fadein-enter-active
+    transition: all .2s ease;
+
+  .fadein-enter, .fadein-leave-to
+    opacity: 0;
 
 </style>

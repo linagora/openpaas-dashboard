@@ -7,9 +7,8 @@ const types = {
 };
 
 const actions = {
-  loadDashboard({ commit, rootState }) {
-    // TODO: Load/get from ID
-    commit(types.SET_CURRENT_DASHBOARD, rootState.dashboard.dashboards[0]);
+  loadDashboard({ commit, rootGetters }, id) {
+    commit(types.SET_CURRENT_DASHBOARD, rootGetters.getDashboardFromId(id));
   }
 };
 
