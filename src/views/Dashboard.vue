@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <div class="dashboard">
-      <dashboard-card-grid :cards="cards" :dashboard="dashboard"/>
+      <dashboard-card-grid :cards="cards" :dashboard="dashboard" :key="dashboard.id"/>
     </div>
   </v-container>
 </template>
