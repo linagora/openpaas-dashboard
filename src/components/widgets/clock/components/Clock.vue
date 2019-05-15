@@ -1,6 +1,6 @@
 <template>
-  <div id="clock" class="pb-3">
-    <div class="date">{{dateString}}</div>
+  <div class="pb-3 clock">
+    <span class="date headline white--text">{{dateString}}</span>
     <analog-clock v-if="date" :date="date"/>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
     };
   },
   mounted() {
+    this.updateTime();
     this.timer = setInterval(this.updateTime, 1000);
   },
   methods: {
@@ -37,15 +38,11 @@ export default {
 <style scoped lang="stylus">
 $clock_color = white;
 
-#clock {
+.clock {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: $clock_color;
-
-  .date {
-    font-size: 2em;
-  }
 }
 </style>
