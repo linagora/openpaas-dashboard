@@ -52,6 +52,7 @@ export default {
       const dashboard = { id, name: this.newDashboardName, widgets: [] };
 
       await this.$store.dispatch("addDashboard", dashboard);
+      this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Dashboard has been created", { name: dashboard.name }));
 
       this.dashboardDialog = false;
       this.newDashboardName = "";
