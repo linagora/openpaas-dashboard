@@ -7,7 +7,7 @@
     </template>
     <v-card color="grey lighten-4">
       <v-card-title>
-       <span class="headline">Create a new Dashboard</span>
+       <span class="headline">{{ $t('Create a new dashboard') }}</span>
       </v-card-title>
       <v-card-text>
         <v-form v-model="valid">
@@ -25,7 +25,7 @@
               color="primary"
               :disabled="!newDashboardName || !valid"
               @click="create">
-              Create
+              {{ $t('Create') }}
             </v-btn>
           </v-card-actions>
         </v-form>
