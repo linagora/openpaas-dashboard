@@ -7,7 +7,7 @@
     </template>
     <v-card color="grey lighten-4">
       <v-card-title>
-       <span class="headline">Create a new Dashboard</span>
+       <span class="headline">{{ $t('Create a new dashboard') }}</span>
       </v-card-title>
       <v-card-text>
         <v-form v-model="valid">
@@ -24,8 +24,8 @@
               flat
               color="primary"
               :disabled="!newDashboardName || !valid"
-              @click="submitDashboardCreateForm">
-              Create
+              @click="create">
+              {{ $t('Create') }}
             </v-btn>
           </v-card-actions>
         </v-form>
@@ -36,6 +36,8 @@
 
 <script>
 import uuidv4 from "uuid/v4";
+import { routeNames } from "@/router";
+
 export default {
   name: "DashboardCreateForm",
   data: () => ({
@@ -45,10 +47,16 @@ export default {
     dashboardNameRules: [v => v.length >= 5 || "Name must be more than 5 characters"]
   }),
   methods: {
-    submitDashboardCreateForm() {
-      let payload = { id: uuidv4(), name: this.newDashboardName, widgets: [] };
-      this.$store.dispatch("addDashboard", payload);
+    async create() {
+      const id = uuidv4();
+      const dashboard = { id, name: this.newDashboardName, widgets: [] };
+
+      await this.$store.dispatch("addDashboard", dashboard);
+      this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Dashboard has been created"));
+
       this.dashboardDialog = false;
+      this.newDashboardName = "";
+      this.$router.push({ name: routeNames.DASHBOARD, params: { id } });
     }
   }
 };

@@ -70,7 +70,7 @@ export default {
           return response.data;
         })
         .catch(() => {
-          this.$store.dispatch("ui/displaySnackbar", { message: "Login error, please retry" });
+          this.$store.dispatch("ui/displaySnackbarMessage", "Login error, please retry");
         })
         .finally(() => {
           setTimeout(() => (this.logMeIn = false), 300);
