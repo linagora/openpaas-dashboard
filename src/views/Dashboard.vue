@@ -29,9 +29,13 @@ export default {
       return this.$dashboard.getWidgets(widgets || []);
     }
   },
-  mounted() {
+  async mounted() {
     if (!this.$store.state.dashboard.dashboards || this.$store.state.dashboard.dashboards.length === 0) {
-      this.$store.dispatch("addDashboard", { id: "default", name: "My dashboard", widgets: [] });
+      const id = "default";
+
+      await this.$store.dispatch("addDashboard", { id, name: "My dashboard", widgets: [] });
+
+     this.$router.push({ name: routeNames.DASHBOARD, params: { id }})
     }
   },
   beforeRouteEnter(to, from, next) {

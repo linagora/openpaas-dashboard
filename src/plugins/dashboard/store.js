@@ -38,7 +38,10 @@ const actions = {
     if (!dashboard.widgets) {
       dashboard.widgets = [];
     }
-    commit(types.ADD_DASHBOARD, dashboard);
+    return new Promise(resolve => {
+      commit(types.ADD_DASHBOARD, dashboard);
+      resolve();
+    });
   },
 
   removeDashboard({ commit }, dashboard) {

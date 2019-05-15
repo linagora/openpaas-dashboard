@@ -24,7 +24,7 @@
               flat
               color="primary"
               :disabled="!newDashboardName || !valid"
-              @click="submitDashboardCreateForm">
+              @click="create">
               Create
             </v-btn>
           </v-card-actions>
@@ -36,6 +36,8 @@
 
 <script>
 import uuidv4 from "uuid/v4";
+import { routeNames } from "@/router";
+
 export default {
   name: "DashboardCreateForm",
   data: () => ({
@@ -45,10 +47,15 @@ export default {
     dashboardNameRules: [v => v.length >= 5 || "Name must be more than 5 characters"]
   }),
   methods: {
-    submitDashboardCreateForm() {
-      let payload = { id: uuidv4(), name: this.newDashboardName, widgets: [] };
-      this.$store.dispatch("addDashboard", payload);
+    async create() {
+      const id = uuidv4();
+      const dashboard = { id, name: this.newDashboardName, widgets: [] };
+
+      await this.$store.dispatch("addDashboard", dashboard);
+
       this.dashboardDialog = false;
+      this.newDashboardName = "";
+      this.$router.push({ name: routeNames.DASHBOARD, params: { id }})
     }
   }
 };
