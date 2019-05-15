@@ -18,6 +18,7 @@ export default {
     };
   },
   mounted() {
+    this.updateTime();
     this.timer = setInterval(this.updateTime, 1000);
   },
   methods: {
