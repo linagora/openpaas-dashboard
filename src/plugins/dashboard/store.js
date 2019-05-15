@@ -136,8 +136,14 @@ const getters = {
     return (state.dashboards[index].widgets || []).map(id => state.cards[id]).filter(Boolean);
   },
 
-  getOtherDashboards: state => {
+  getDashboards: state => {
     return state.dashboards;
+  },
+
+  getDashboardFromId: state => id => {
+    const index = state.dashboards.findIndex(dashboard => dashboard.id === id);
+
+    return state.dashboards[index];
   },
 
   getSettingsForWidget: state => id => {

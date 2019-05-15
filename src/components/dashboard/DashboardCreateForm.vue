@@ -10,7 +10,7 @@
        <span class="headline">Create a new Dashboard</span>
       </v-card-title>
       <v-card-text>
-        <v-form v-model="valid">      
+        <v-form v-model="valid">
           <v-text-field
             v-model="newDashboardName"
             :rules="dashboardNameRules"
@@ -37,7 +37,7 @@
 <script>
 import uuidv4 from "uuid/v4";
 export default {
-  name: "DashboardForm",
+  name: "DashboardCreateForm",
   data: () => ({
     valid: false,
     dashboardDialog: false,
