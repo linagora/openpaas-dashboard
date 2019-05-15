@@ -9,6 +9,7 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
+import { routeNames } from "@/router";
 
 export default {
   name: "dashboard",
@@ -35,7 +36,7 @@ export default {
 
       await this.$store.dispatch("addDashboard", { id, name: "My dashboard", widgets: [] });
 
-     this.$router.push({ name: routeNames.DASHBOARD, params: { id }})
+      this.$router.push({ name: routeNames.DASHBOARD, params: { id } });
     }
   },
   beforeRouteEnter(to, from, next) {
