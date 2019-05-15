@@ -46,7 +46,7 @@ export default {
   }),
   methods: {
     submitDashboardCreateForm() {
-      let payload = { id: uuidv4(), name: this.newDashboardName };
+      let payload = { id: uuidv4(), name: this.newDashboardName, widgets: [] };
       this.$store.dispatch("addDashboard", payload);
       this.dashboardDialog = false;
     }

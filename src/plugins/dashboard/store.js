@@ -35,6 +35,9 @@ const actions = {
   },
 
   addDashboard({ commit }, dashboard) {
+    if (!dashboard.widgets) {
+      dashboard.widgets = [];
+    }
     commit(types.ADD_DASHBOARD, dashboard);
   },
 
