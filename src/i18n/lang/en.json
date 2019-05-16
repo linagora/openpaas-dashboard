@@ -1,11 +1,16 @@
 {
   "Close": "Close",
   "OpenPaaS Login": "OpenPaaS Login",
+  "Identifier": "Identifier",
   "Login": "Login",
   "Logout": "Logout",
   "Password": "Password",
   "Profile": "Profile",
   "Settings": "Settings",
-  "This is an about page": "This is an about page",
-  "Welcome to Your OpenPaaS Vue.js App": "Welcome to Your OpenPaaS Vue.js App"
+  "Name": "Name",
+  "Create": "Create",
+  "Create a new dashboard": "Create a new dashboard",
+  "Add a new widget": "Add a new widget",
+  "My dashboards": "My dashboards",
+  "Dashboard {name} has been created": "Dashboard {name} has been created"
 }
