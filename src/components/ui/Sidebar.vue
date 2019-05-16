@@ -44,6 +44,18 @@
         <v-list-tile-content>
           <v-list-tile-title v-text="dashboard.name"></v-list-tile-title>
         </v-list-tile-content>
+        <v-list-tile-action>
+          <v-menu lazy bottom left offset-y>
+            <v-btn slot="activator" flat icon>
+              <v-icon>more_vert</v-icon>
+            </v-btn>
+            <v-list>
+              <v-list-tile>
+                <dashboard-delete v-if="dashboard" :dashboard="dashboard"/>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+        </v-list-tile-action>
       </v-list-tile>
       <v-list-tile>
         <v-list-tile-action>
@@ -64,6 +76,7 @@ import { mapGetters } from "vuex";
 import { theme } from "@/style";
 import WidgetStore from "@/components/widget-store/WidgetStore.vue";
 import DashboardCreateForm from "@/components/dashboard/DashboardCreateForm.vue";
+import DashboardDelete from "@/components/dashboard/DashboardDelete.vue";
 
 export default {
   name: "Sidebar",
@@ -77,7 +90,8 @@ export default {
   },
   components: {
     WidgetStore,
-    DashboardCreateForm
+    DashboardCreateForm,
+    DashboardDelete
   }
 };
 </script>

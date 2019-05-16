@@ -98,7 +98,7 @@ const mutations = {
     const index = state.dashboards.findIndex(d => d.id === dashboard.id);
 
     if (index > -1) {
-      state.dasboards.splice(index, 1);
+      state.dashboards.splice(index, 1);
     }
 
     localStorage.setItem(LOCALSTORAGE_DASHBOARDS_KEY, JSON.stringify(state.dashboards));
