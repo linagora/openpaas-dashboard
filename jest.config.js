@@ -11,6 +11,7 @@ module.exports = {
     "^%/(.*)$": "<rootDir>/tests/$1",
     "^%utils$": "<rootDir>/tests/unit/utils/index.js",
     "^%utils/(.*)$": "<rootDir>/tests/unit/utils/$1",
+    "^@i18n/(.*)$": "<rootDir>/src/i18n/lang/$1",
     "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
   },
   snapshotSerializers: ["jest-serializer-vue"],

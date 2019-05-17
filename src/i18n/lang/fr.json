@@ -1,11 +1,16 @@
 {
-  "Close": "Close",
+  "Close": "Fermer",
   "OpenPaaS Login": "Se connecter avec OpenPaas",
+  "Identifier": "Identifiant",
   "Login": "Se connecter",
   "Logout": "Se déconnecter",
   "Password": "Mot de Passe",
   "Profile": "Profil",
   "Settings": "Paramètres",
-  "This is an about page": "Ceci est une page 'A propos'",
-  "Welcome to Your OpenPaaS Vue.js App": "Bienvenue dans notre application OpenPaas Vue.js"
+  "Name": "Nom",
+  "Create": "Créer",
+  "Create a new dashboard": "Créer un nouveau tableau de bord",
+  "Add a new widget": "Ajouter un widget",
+  "My dashboards": "Mes tableaux de bord",
+  "Dashboard {name} has been created": "Le tableau de bord {name} a été créé"
 }

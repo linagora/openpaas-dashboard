@@ -204,7 +204,4 @@ Once done, the widget will be availble in the widget store 🐼
 
 - If your widget needs to be decomposed into several Vue components, just do it as is you are creating any other components. Just put them into a `components` folder.
 - Keep things related to the widget in the widget folder.
-
-## TODO
-
-- Be able to define in which grid cards can be added. This will need some refactoring on the way events are dispatched in the vue store and in the EventBus
+- i18n files are generated at build time. In order to have translated widgets, i18 files must be defined per widget in `src/components/widgets/**/i18n/*.json`

@@ -9,7 +9,7 @@
                 <v-text-field
                     prepend-icon="account_circle"
                     name="login"
-                    :label="$t('Login')"
+                    :label="$t('Identifier')"
                     type="text"
                     v-model="email"
                 ></v-text-field>

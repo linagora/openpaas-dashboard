@@ -1,7 +1,7 @@
 import { createLocalVue } from "%utils";
 import { shallowMount } from "@vue/test-utils";
 
-import i18n from "@/i18n";
+import { i18n } from "@/i18n";
 import store from "@/store";
 import router from "@/router";
 import UserMenu from "@/components/ui/UserMenu";
@@ -17,7 +17,7 @@ describe("The UserMenu component", () => {
       localVue: mockLocalVue,
       store,
       router,
-      i18n: i18n(mockLocalVue)
+      i18n
     });
 
     await target.vm.logout();

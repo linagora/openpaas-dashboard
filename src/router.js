@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Login from "@/views/Login.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import ApplicationSettings from "@/services/application-settings";
+import { loadLanguage, getLocale } from "@/i18n";
 
 Vue.use(Router);
 
@@ -12,7 +13,7 @@ export const routeNames = Object.freeze({
   DASHBOARD: "Dashboard"
 });
 
-export default new Router({
+const router = new Router({
   base: ApplicationSettings.BASE_URL, // Needed for dev/build and HTML history
   mode: "history",
   routes: [
@@ -46,3 +47,9 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  loadLanguage(getLocale()).then(() => next());
+});
+
+export default router;
