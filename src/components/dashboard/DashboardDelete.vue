@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { routeNames } from "@/router";
 export default {
   name: "DashboardDelete",
   props: {
@@ -54,6 +55,7 @@ export default {
     remove(dashboard) {
       this.$store.dispatch("removeDashboard", dashboard);
       this.deleteDashboardDialog = false;
+      this.$router.push({ name: routeNames.DASHBOARD, params: { id: "default" } });
     }
   }
 };
