@@ -5,10 +5,10 @@
     </div>
     <v-card-text class="text-xs-center">
       <div id="title">
-        <span class="headline font-weight-bold grey--text text--darken-1">{{card.title}}</span>
+        <span class="headline font-weight-bold grey--text text--darken-1">{{$t(card.title)}}</span>
       </div>
       <div id="description">
-        <span class="title grey--text">{{card.description}}</span>
+        <span class="title grey--text">{{$t(card.description)}}</span>
       </div>
     </v-card-text>
     <v-card-actions>
