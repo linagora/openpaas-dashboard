@@ -24,21 +24,20 @@
     "rss-parser": "^3.7.0",
     "typeface-roboto": "0.0.54",
     "uuid": "^3.3.2",
-    "vue": "^2.6.7",
+    "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
-    "vue-i18n": "^8.8.2",
+    "vue-i18n": "^8.11.2",
     "vue-moment": "^4.0.0",
-    "vue-router": "^3.0.2",
-    "vuetify": "^1.5.3",
-    "vuex": "^3.1.0"
+    "vue-router": "^3.0.6",
+    "vuetify": "^1.5.14",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@cypress/webpack-preprocessor": "^3.0.0",
-    "@vue/cli-plugin-babel": "^3.4.1",
-    "@vue/cli-plugin-e2e-cypress": "^3.4.1",
-    "@vue/cli-plugin-eslint": "^3.4.1",
-    "@vue/cli-plugin-unit-jest": "^3.4.1",
-    "@vue/cli-service": "^3.4.1",
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-plugin-unit-jest": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
     "@vue/eslint-config-prettier": "^3.0.5",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
@@ -48,6 +47,6 @@
     "resize-observer-polyfill": "^1.5.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.6.7"
+    "vue-template-compiler": "^2.6.10"
   }
 }
