@@ -46,7 +46,19 @@ const VueDashboard = {
         return registry.get(type);
       },
       useWidget: ({ card, dashboard }) => {
-        store.dispatch("addCard", { card: { id: uuidv4(), type: card.type, settings: {} }, dashboard });
+        const definition = registry.get(card.type);
+        if (!definition) {
+          return;
+        }
+
+        store.dispatch("addCard", {
+          card: {
+            id: uuidv4(),
+            type: card.type,
+            settings: { ...(definition.settings && definition.settings.data) }
+          },
+          dashboard
+        });
       },
       registerWidget: widget => {
         registry.register(widget);
