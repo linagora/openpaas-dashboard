@@ -51,6 +51,9 @@
             </v-btn>
             <v-list>
               <v-list-tile>
+                <dashboard-edit v-if="dashboard" :dashboard="dashboard"/>
+              </v-list-tile>
+              <v-list-tile>
                 <dashboard-delete v-if="dashboard" :dashboard="dashboard"/>
               </v-list-tile>
             </v-list>
@@ -77,6 +80,7 @@ import { theme } from "@/style";
 import WidgetStore from "@/components/widget-store/WidgetStore.vue";
 import DashboardCreateForm from "@/components/dashboard/DashboardCreateForm.vue";
 import DashboardDelete from "@/components/dashboard/DashboardDelete.vue";
+import DashboardEdit from "@/components/dashboard/DashboardEdit.vue";
 
 export default {
   name: "Sidebar",
@@ -91,7 +95,8 @@ export default {
   components: {
     WidgetStore,
     DashboardCreateForm,
-    DashboardDelete
+    DashboardDelete,
+    DashboardEdit
   }
 };
 </script>
