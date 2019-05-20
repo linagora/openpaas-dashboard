@@ -205,3 +205,25 @@ Once done, the widget will be availble in the widget store 🐼
 - If your widget needs to be decomposed into several Vue components, just do it as is you are creating any other components. Just put them into a `components` folder.
 - Keep things related to the widget in the widget folder.
 - i18n files are generated at build time. In order to have translated widgets, i18 files must be defined per widget in `src/components/widgets/**/i18n/*.json`
+
+## Docker
+
+### Build
+
+Before building the image for production, you will have to configure it from an environment file. By default, `vue-cli` (used by `npm run build`) will set the `NODE_ENV` to production on build step. In order to define production environment values, you will have to create a `.env.production.local` file at the root or the repository and set the required values (copy, paste and adapt `.env` file properties). Once done, you can build the image like:
+
+```
+docker build -t linagora/openpaas-dashboard .
+```
+
+### Run
+
+```
+docker run -it -p 8888:80 --rm --name openpaas-dashboard linagora/openpaas-dashboard
+```
+
+In order to define the OpenPaaS endpoint to use (override the `VUE_APP_OPENPAAS_URL` variable from `.env*` files), the `public/env/openpaas.js` file has to be updated. In order to do this, a Docker volume is available in the container and the `openpaas.js` file can be redefined by mounting a volume. By using this, the image is generated once, and can be used in multiple application deployments.
+
+```
+docker run -it -p 8888:80 --rm --name openpaas-dashboard -v $PWD/.config/env:/usr/share/nginx/html/env linagora/openpaas-dashboard
+```

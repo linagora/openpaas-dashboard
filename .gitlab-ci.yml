@@ -3,6 +3,7 @@ image: node:10
 stages:
   - lint
   - test
+  - docker_build
   - deploy_dev
 
 lint:
@@ -39,6 +40,18 @@ test_e2e:
   script:
     - npm install
     - npm run test:e2e -- --headless
+docker_build:
+  stage: docker_build
+  tags:
+    - docker
+  services:
+    - name: docker-registry.linagora.com:5000/linshare-snapshots/linshare-dind:latest
+      alias: docker-dind
+  variables:
+    DOCKER_HOST: "tcp://docker-dind"
+  image: docker-registry.linagora.com:5000/linshare-snapshots/linshare-dind:latest
+  script:
+    - docker build .
 
 deploy_dev:
   stage: deploy_dev
