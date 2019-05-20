@@ -41,14 +41,17 @@ export default {
   },
   data: () => ({
     delay: 60 * 1000, // TODO: Make it configurable
-    limit: 5, // TODO: Make it configurable
+    limit: 5,
     timeout: null,
     feed: null,
     error: null
   }),
   computed: {
     lastItems() {
-      return this.feed && this.feed.items ? this.feed.items.slice(0, this.limit) : null;
+      return this.feed && this.feed.items ? this.feed.items.slice(0, this.itemsSize) : null;
+    },
+    itemsSize() {
+      return this.settings.limit || this.limit;
     }
   },
   methods: {

@@ -7,6 +7,9 @@ const components = {
 };
 
 const settings = {
+  data: {
+    limit: 5
+  },
   validate(settings) {
     return settings && settings.url && settings.url.length > 0;
   }
