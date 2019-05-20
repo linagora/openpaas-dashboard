@@ -6,7 +6,8 @@ const components = {
 
 const settings = {
   data: {
-    url: "https://news.ycombinator.com/rss"
+    url: "https://news.ycombinator.com/rss",
+    limit: 8
   }
 };
 
