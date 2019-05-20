@@ -1,6 +1,6 @@
 <template>
   <div class="pb-3 clock">
-    <span class="date headline white--text">{{dateString}}</span>
+    <span v-if="settings.displayDate" class="date headline white--text">{{dateString}}</span>
     <analog-clock v-if="date" :date="date"/>
   </div>
 </template>
@@ -16,6 +16,12 @@ export default {
       dateString: null,
       timer: null
     };
+  },
+  props: {
+    settings: {
+      type: Object,
+      required: true
+    }
   },
   mounted() {
     this.updateTime();

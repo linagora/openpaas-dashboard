@@ -4,10 +4,17 @@ const components = {
   main: { component: Clock, color: "purple" }
 };
 
+const settings = {
+  data: {
+    displayDate: true
+  }
+};
+
 export default {
   title: "Clock",
   type: "clock",
   icon: "access_time",
   description: "Display local time and date",
-  components
+  components,
+  settings
 };
