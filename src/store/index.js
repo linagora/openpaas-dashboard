@@ -8,6 +8,7 @@ import session from "./modules/session";
 import ui from "./modules/ui";
 import user from "./modules/user";
 import dashboards from "./modules/dashboards";
+import widgets from "./modules/widgets";
 
 Vue.use(Vuex);
 
@@ -17,7 +18,8 @@ export default new Vuex.Store({
     session,
     ui,
     user,
-    dashboards
+    dashboards,
+    widgets
   },
   plugins,
   state,
