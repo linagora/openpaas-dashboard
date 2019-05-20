@@ -135,7 +135,7 @@ Where:
   }
   ```
 - **settings**: Hash of settings for the component.
-  - `data`: Hash of settings
+  - `data`: Hash of settings to be used by the widget. The settings are then available on the `settings` `props` of the Vue main component
   - `validate(settings)`: A function which returns `true` if settings are valid, `false` otherwise
 
 Thus, creating a new widget is as simple as following the API and file structure. Let's say we want to create a simple hello world component:
