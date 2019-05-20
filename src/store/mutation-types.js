@@ -1,1 +1,0 @@
-// export const MUTATION_SAMPLE = 'MUTATION_SAMPLE';
