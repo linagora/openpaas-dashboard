@@ -14,6 +14,7 @@ const types = {
   ORDER_CARDS: "ORDER_CARDS",
   ADD_DASHBOARD: "ADD_DASHBOARD",
   REMOVE_DASHBOARD: "REMOVE_DASHBOARD",
+  RENAME_DASHBOARD: "RENAME_DASHBOARD",
   ADD_CARD_TO_DASHBOARD: "ADD_CARD_TO_DASHBOARD",
   REMOVE_CARD_FROM_DASHBOARD: "REMOVE_CARD_FROM_DASHBOARD",
   UPDATE_CARD_SETTINGS: "UPDATE_CARD_SETTINGS"
@@ -46,6 +47,10 @@ const actions = {
 
   removeDashboard({ commit }, dashboard) {
     commit(types.REMOVE_DASHBOARD, dashboard);
+  },
+
+  renameDashboard({ commit }, { dashboard, newname }) {
+    commit(types.RENAME_DASHBOARD, { dashboard, newname });
   },
 
   updateCardSettings({ commit }, { card, settings }) {
@@ -101,6 +106,11 @@ const mutations = {
       state.dashboards.splice(index, 1);
     }
 
+    localStorage.setItem(LOCALSTORAGE_DASHBOARDS_KEY, JSON.stringify(state.dashboards));
+  },
+
+  [types.RENAME_DASHBOARD](state, { dashboard, newname }) {
+    dashboard.name = newname;
     localStorage.setItem(LOCALSTORAGE_DASHBOARDS_KEY, JSON.stringify(state.dashboards));
   },
 

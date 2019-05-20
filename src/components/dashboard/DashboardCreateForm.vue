@@ -37,14 +37,14 @@
 <script>
 import uuidv4 from "uuid/v4";
 import { routeNames } from "@/router";
-
+import { dashboardNameRulesAll } from "@/utils/rules";
 export default {
   name: "DashboardCreateForm",
   data: () => ({
     valid: false,
     dashboardDialog: false,
     newDashboardName: "",
-    dashboardNameRules: [v => v.length >= 5 || "Name must be more than 5 characters"]
+    dashboardNameRules: dashboardNameRulesAll
   }),
   methods: {
     async create() {
