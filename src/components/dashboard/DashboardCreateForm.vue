@@ -10,7 +10,7 @@
        <span class="headline">{{ $t('Create a new dashboard') }}</span>
       </v-card-title>
       <v-card-text>
-        <v-form v-model="valid">
+        <v-form v-model="valid" @submit.prevent="create">
           <v-text-field
             v-model="newDashboardName"
             :rules="dashboardNameRules"
@@ -48,18 +48,20 @@ export default {
   }),
   methods: {
     async create() {
-      const id = uuidv4();
-      const dashboard = { id, name: this.newDashboardName, widgets: [] };
+      if (this.valid) {
+        const id = uuidv4();
+        const dashboard = { id, name: this.newDashboardName, widgets: [] };
 
-      await this.$store.dispatch("addDashboard", dashboard);
-      this.$store.dispatch(
-        "ui/displaySnackbarMessage",
-        this.$t("Dashboard {name} has been created", { name: dashboard.name })
-      );
+        await this.$store.dispatch("addDashboard", dashboard);
+        this.$store.dispatch(
+          "ui/displaySnackbarMessage",
+          this.$t("Dashboard {name} has been created", { name: dashboard.name })
+        );
 
-      this.dashboardDialog = false;
-      this.newDashboardName = "";
-      this.$router.push({ name: routeNames.DASHBOARD, params: { id } });
+        this.dashboardDialog = false;
+        this.newDashboardName = "";
+        this.$router.push({ name: routeNames.DASHBOARD, params: { id } });
+      }
     }
   }
 };
