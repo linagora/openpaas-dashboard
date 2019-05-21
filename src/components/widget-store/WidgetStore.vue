@@ -25,6 +25,7 @@
 
 <script>
 import WidgetStoreCard from "./WidgetStoreCard.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "WidgetStore",
@@ -39,12 +40,16 @@ export default {
   },
   computed: {
     cards() {
-      return this.$dashboard.getWidgetsDescription().map(widget => {
-        widget.available = true;
+      return this.$dashboard
+        .getWidgetsDescription()
+        .map(widget => {
+          widget.available = true;
 
-        return widget;
-      });
-    }
+          return widget;
+        })
+        .filter(widget => !this.isDisabled(widget));
+    },
+    ...mapGetters({ isDisabled: "widgets/isDisabled" })
   },
   methods: {
     useWidget(card) {
