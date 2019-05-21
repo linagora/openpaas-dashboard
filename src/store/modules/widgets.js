@@ -1,5 +1,7 @@
+import { getDisabledWidgets } from "@/services/application-settings";
+
 const state = {
-  disabled: []
+  disabled: getDisabledWidgets() || []
 };
 
 const getters = {
