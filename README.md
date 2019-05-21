@@ -206,6 +206,13 @@ Once done, the widget will be availble in the widget store 🐼
 - Keep things related to the widget in the widget folder.
 - i18n files are generated at build time. In order to have translated widgets, i18 files must be defined per widget in `src/components/widgets/**/i18n/*.json`
 
+## Runtime configuration
+
+As defined by `vue-cli`, you can set environment variables from `.env` files. In order to run in containers and to be able to configure from a central places, the `public/env/openpaas.js` file can be used also to configure the application. This file takes higher priority over Vue `.env` files. Variables which can be defined are:
+
+- `VUE_APP_OPENPAAS_URL`: The OpenPaaS URL to use when having to talk to OpenPaaS, especially used for REST APIs
+- `VUE_APP_DISABLED_WIDGETS`: The list of widgets to disable as CSV (`"clock,email"`) or as Array (`["clock", "email"]`)
+
 ## Docker
 
 ### Build
