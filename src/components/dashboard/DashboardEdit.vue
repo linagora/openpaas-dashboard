@@ -1,47 +1,41 @@
 <template>
-  <v-dialog 
-    v-model="editDashboardDialog" 
-    width="300"
-  >
-    <template v-slot:activator="{ on }">
-      <v-list-tile-title
-        v-on="on"
-      >
-        {{$t("Edit")}}
-      </v-list-tile-title>
-    </template>
-    <v-card>
-      <v-card-text>
-        <v-form v-model="valid">
-          <v-text-field
-            v-model="newDashboardName"
-            :rules="dashboardNameRules"
-            :label="$t('Name')"
-            required
-          >
-          </v-text-field>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-             color="primary"
-             flat
-             @click="editDashboardDialog = false"
+  <div>
+    <v-list-tile @click="openDialog()">
+      {{$t("Edit")}}
+    </v-list-tile>
+    <v-dialog v-model="editDashboardDialog" width="300">
+      <v-card>
+        <v-card-text>
+          <v-form v-model="valid">
+            <v-text-field
+              v-model="newDashboardName"
+              :rules="dashboardNameRules"
+              :label="$t('Name')"
+              required
             >
-              {{$t("Cancel")}}
-            </v-btn>
-            <v-btn
-              flat
+            </v-text-field>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
               color="primary"
-              :disabled="!newDashboardName || !valid"
-              @click="edit(dashboard)">
-              {{ $t('Edit') }}
-            </v-btn>
-          </v-card-actions>
-        </v-form>
-      </v-card-text>
-
-    </v-card>
-  </v-dialog>
+              flat
+              @click="editDashboardDialog = false"
+              >
+                {{$t("Cancel")}}
+              </v-btn>
+              <v-btn
+                flat
+                color="primary"
+                :disabled="!newDashboardName || !valid"
+                @click="edit(dashboard)">
+                {{ $t('Edit') }}
+              </v-btn>
+            </v-card-actions>
+          </v-form>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -61,6 +55,9 @@ export default {
     dashboardNameRules: dashboardNameRulesAll
   }),
   methods: {
+    openDialog() {
+      setTimeout(() => (this.editDashboardDialog = true));
+    },
     async edit(dashboard) {
       let newname = this.newDashboardName;
 
