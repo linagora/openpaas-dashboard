@@ -200,6 +200,61 @@ Thus, creating a new widget is as simple as following the API and file structure
 
 Once done, the widget will be availble in the widget store 🐼
 
+#### Abstract widgets
+
+To ease development, some abstract widgets are available.
+
+##### DashboardRestWidget
+
+This widgets makes a `HTTP GET` call to a defined URL and allows the developer to customize the display of the API call response assuming that the response is a JSON array. It can be used like this:
+
+``` html
+<template>
+  <dashboard-rest-widget
+    @response="onResponse"
+    @error="onError"
+    @loading="onLoading"
+    :url="url"
+    :items="items"
+  >
+    <template slot-scope="{ item }">
+      <v-list-tile :href="`http://localhost:8080/samples/${item.id}`" target="_blank">
+        <v-list-tile-content>
+          <v-list-tile-title>
+            <span class="font-weight-medium">{{ item.name }}</span>
+          </v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </template>
+  </dashboard-rest-widget>
+</template>
+
+<script>
+export default {
+  name: "MyRestWidget",
+  data: () => ({
+    url: "https://myapi/foo/bar",
+    items: []
+  }),
+  methods: {
+    onResponse(response) {
+      this.items = response.data.data;
+    },
+    onError(error) {
+      this.$emit("error", error);
+    },
+    onLoading(status) {
+      this.$emit("loading", status);
+    }
+  }
+};
+</script>
+```
+
+1. If the REST API does not send back a JSON array, the API response can be retrieved by listening to the `response` event (cf `@response="onResponse"` in the sample above). In this case, you **have to** fill `items` which is bound to the `dashboard-rest-widget` component in the event listener.
+2. If there are no `response` event listener, the `dashboard-rest-widget` component will render the JSON array as list
+3. Items in the array can be customized by using Vue scoped slot as defined in the example above (`template slot-scope="{ item }"`). Then each item of the array is available and can be used in any template you want to define in the slot.
+
 #### Good practices
 
 - If your widget needs to be decomposed into several Vue components, just do it as is you are creating any other components. Just put them into a `components` folder.
