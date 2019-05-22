@@ -33,29 +33,26 @@
         </v-list-tile-content>
       </v-list-tile>
       <v-list-tile
+        avatar
         v-for="dashboard in dashboards"
         :to="`/boards/${dashboard.id}`"
         :key="dashboard.id"
         active-class="grey lighten-5"
       >
-        <v-list-tile-action>
+        <v-list-tile-avatar>
           <v-icon>dashboard</v-icon>
-        </v-list-tile-action>
+        </v-list-tile-avatar>
         <v-list-tile-content>
           <v-list-tile-title v-text="dashboard.name"></v-list-tile-title>
         </v-list-tile-content>
         <v-list-tile-action>
-          <v-menu lazy bottom left offset-y>
-            <v-btn slot="activator" flat icon>
+          <v-menu bottom left offset-y close-on-click>
+            <v-btn slot="activator" flat icon ripple>
               <v-icon>more_vert</v-icon>
             </v-btn>
             <v-list>
-              <v-list-tile>
-                <dashboard-edit v-if="dashboard" :dashboard="dashboard"/>
-              </v-list-tile>
-              <v-list-tile>
-                <dashboard-delete v-if="dashboard" :dashboard="dashboard"/>
-              </v-list-tile>
+              <dashboard-edit v-if="dashboard" :dashboard="dashboard"/>
+              <dashboard-delete v-if="dashboard" :dashboard="dashboard"/>
             </v-list>
           </v-menu>
         </v-list-tile-action>
