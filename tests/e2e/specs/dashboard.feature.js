@@ -26,10 +26,6 @@ describe("The dashboard feature", () => {
       });
     }
 
-    beforeEach(() => {
-      cy.viewport(1280, 720);
-    });
-
     it("should display a dialog on sidebar create click", () => {
       openForm();
 
