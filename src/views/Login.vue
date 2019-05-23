@@ -5,7 +5,7 @@
         <v-flex xs12 sm6 md5 lg4>
           <v-card class="pa-3" flat>
             <v-card-text>
-              <form>
+              <v-form data-test="login-form" @keydown.native.enter="login">
                 <v-text-field
                     prepend-icon="account_circle"
                     name="login"
@@ -22,7 +22,7 @@
                     v-model="password"
                     required
                 ></v-text-field>
-              </form>
+              </v-form>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>

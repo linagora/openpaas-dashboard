@@ -63,7 +63,7 @@ Cypress.Commands.add(
         url: "api/jwt/generate",
         auth: {
           username: user,
-          password: password
+          password
         },
         rememberMe: false
       });
