@@ -13,7 +13,9 @@ describe("The dashboard feature", () => {
 
   describe("Dashboard creation", () => {
     function openForm() {
-      cy.get("[data-test=dashboard-create-button]").click();
+      cy.get("[data-test=sidebar]").within(() => {
+        cy.get("[data-test=dashboard-create-button]").click();
+      });
     }
 
     function submitForm() {
