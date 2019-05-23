@@ -1,5 +1,5 @@
 <template>
-  <v-container id="card-grid" fluid>
+  <v-container id="card-grid" fluid data-test="dashboard-card-grid">
     <div id="card-container" ref="container">
       <dashboard-card
         v-resize

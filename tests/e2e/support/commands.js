@@ -25,6 +25,8 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 Cypress.Commands.add("application", () => cy.window().its("Application"));
 Cypress.Commands.add("nextTick", callback => cy.application().then(app => app.$nextTick(() => callback(app))));
+// eslint-disable-next-line vue-i18n/no-dynamic-keys
+Cypress.Commands.add("$t", text => cy.application().then(app => app.$t(text)));
 Cypress.Commands.add(
   "login",
   ({
