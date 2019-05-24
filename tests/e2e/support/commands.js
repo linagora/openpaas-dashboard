@@ -61,6 +61,12 @@ Cypress.Commands.add(
     });
 
     cy.application().then(app => {
+      app.$auth.ready = () => {
+        return true;
+      };
+      app.$auth.check = () => {
+        return true;
+      };
       app.$auth.login({
         url: "api/jwt/generate",
         auth: {
