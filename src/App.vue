@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" data-test="app">
     <div v-if="$auth.ready()" :style="{ backgroundColor: backgroundColor }" id="app-ready">
       <v-navigation-drawer v-model="drawer" fixed clipped hide-overlay app v-if="$auth.check()">
         <sidebar></sidebar>

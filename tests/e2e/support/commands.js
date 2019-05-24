@@ -24,7 +24,9 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 Cypress.Commands.add("application", () => cy.window().its("Application"));
-Cypress.Commands.add("nextTick", callback => cy.application().then(app => app.$nextTick(() => callback(app))));
+Cypress.Commands.add("nextTick", callback =>
+  cy.application().then(app => app.$nextTick(() => callback && callback(app)))
+);
 // eslint-disable-next-line vue-i18n/no-dynamic-keys
 Cypress.Commands.add("$t", text => cy.application().then(app => app.$t(text)));
 Cypress.Commands.add(
@@ -48,7 +50,7 @@ Cypress.Commands.add(
         url: "/api/jwt/generate",
         status: 200,
         response: fixture1
-      });
+      }).as("jwtAPIResponse");
     });
 
     cy.fixture(userFixture).then(fixture2 => {
@@ -57,13 +59,24 @@ Cypress.Commands.add(
         url: "/api/user",
         status: 200,
         response: fixture2
-      });
+      }).as("userAPIResponse");
     });
 
+    cy.fixture("avatar.png").as("userAvatar");
+    cy.route("GET", "/api/users/5bebeeae1931ee6d1cc1f32a/profile/avatar", "@userAvatar");
+
     cy.application().then(app => {
-      app.$auth.ready = () => {
+      cy.wait("@userAPIResponse");
+      cy.wait("@jwtAPIResponse");
+
+      app.$auth.ready = callback => {
+        if (callback) {
+          return callback();
+        }
+
         return true;
       };
+
       app.$auth.check = () => {
         return true;
       };

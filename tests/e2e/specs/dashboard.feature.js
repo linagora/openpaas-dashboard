@@ -3,6 +3,8 @@ describe("The dashboard feature", () => {
     cy.server();
     cy.fixture("adminUser.json").then(fixture => cy.route("/api/user", fixture));
     cy.login("user", "secret");
+    cy.get("[data-test=app]").as("app");
+    cy.nextTick();
   });
 
   it("should display an empty dashboard", () => {
