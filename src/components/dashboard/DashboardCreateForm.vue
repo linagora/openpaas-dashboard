@@ -1,17 +1,18 @@
 <template>
   <v-dialog v-model="dashboardDialog" scrollable max-width="800px">
     <template v-slot:activator="{ on }">
-      <v-btn v-on="on" icon ripple>
+      <v-btn v-on="on" icon ripple data-test="dashboard-create-button">
         <v-icon color="grey darken-1">add_circle_outline</v-icon>
       </v-btn>
     </template>
-    <v-card color="grey lighten-4">
+    <v-card color="grey lighten-4" data-test="dashboard-create-dialog">
       <v-card-title>
        <span class="headline">{{ $t('Create a new dashboard') }}</span>
       </v-card-title>
       <v-card-text>
-        <v-form v-model="valid" @submit.prevent="create">
+        <v-form v-model="valid" @submit.prevent="create" data-test="dashboard-create-form">
           <v-text-field
+            name="name"
             v-model="newDashboardName"
             :rules="dashboardNameRules"
             :label="$t('Name')"
@@ -24,6 +25,7 @@
               flat
               color="primary"
               :disabled="!newDashboardName || !valid"
+              data-test="dashboard-create-form-button"
               @click="create">
               {{ $t('Create') }}
             </v-btn>

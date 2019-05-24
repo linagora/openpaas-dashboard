@@ -1,7 +1,12 @@
 <template>
-  <div id="sidebar-content">
+  <div id="sidebar-content" data-test="sidebar">
     <v-list>
-      <v-list-tile color="blue" class="tile-title" :style="{ borderLeftColor: borderColor }">
+      <v-list-tile
+        color="blue"
+        class="tile-title"
+        :style="{ borderLeftColor: borderColor }"
+        data-test="sidebar-dashboard-current"
+      >
         <v-list-tile-content>
           <v-list-tile-title>
             <transition name="fadein">
@@ -38,6 +43,7 @@
         :to="`/boards/${dashboard.id}`"
         :key="dashboard.id"
         active-class="grey lighten-5"
+        data-test="sidebar-dashboard-item"
       >
         <v-list-tile-avatar>
           <v-icon>dashboard</v-icon>
