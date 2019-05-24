@@ -4,9 +4,21 @@
       <v-icon>{{card.icon}}</v-icon>
     </div>
     <v-card-text class="text-xs-center">
+
       <div id="title">
-        <span class="headline font-weight-bold grey--text text--darken-1">{{$t(card.title)}}</span>
+        <v-badge>
+          <template v-slot:badge>
+                <v-tooltip v-if="counter" bottom>
+                  <template v-slot:activator="{ on }">
+                    <span v-on="on" >{{ counter }}</span>
+                  </template>
+                  <span>{{ `Used ${counter} times` }}</span>
+                </v-tooltip>
+          </template>
+          <span class="headline font-weight-bold grey--text text--darken-1">{{$t(card.title)}}</span>
+        </v-badge>
       </div>
+            
       <div id="description">
         <span class="title grey--text">{{$t(card.description)}}</span>
       </div>
@@ -29,6 +41,9 @@ export default {
   props: {
     card: {
       type: Object
+    },
+    counter: {
+      type: Number
     }
   },
   data: () => ({
