@@ -4,6 +4,7 @@ import Registry from "./registry";
 import DashboardCard from "./components/DashboardCard.vue";
 import DashboardCardGrid from "./components/DashboardCardGrid.vue";
 import DashboardRestWidget from "./widgets/rest/RestWidget.vue";
+import DashboardAppsGridWidget from "./widgets/apps/AppsGridWidget.vue";
 
 const DEFAULT_STATE_NAME = "dashboard";
 
@@ -83,6 +84,7 @@ const VueDashboard = {
     Vue.component(DashboardCard.name, DashboardCard);
     Vue.component(DashboardCardGrid.name, DashboardCardGrid);
     Vue.component(DashboardRestWidget.name, DashboardRestWidget);
+    Vue.component(DashboardAppsGridWidget.name, DashboardAppsGridWidget);
   }
 };
 
