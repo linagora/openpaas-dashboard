@@ -10,7 +10,7 @@
         <v-container fluid grid-list-lg>
           <v-layout row wrap>
             <v-flex xs12 md6 lg4 v-for="card in cards" :key="card.type">
-              <widget-store-card :card="card" @add="useWidget(card)"/>
+              <widget-store-card :card="card" :counter="countInstanceOfType(card.type)" @add="useWidget(card)"/>
             </v-flex>
           </v-layout>
         </v-container>
@@ -49,11 +49,14 @@ export default {
         })
         .filter(widget => !this.isDisabled(widget));
     },
-    ...mapGetters({ isDisabled: "widgets/isDisabled" })
+    ...mapGetters({ isDisabled: "widgets/isDisabled", getWidgetInstances: "widgets/getWidgetInstances" })
   },
   methods: {
     useWidget(card) {
       this.$dashboard.useWidget({ card, dashboard: this.dashboard });
+    },
+    countInstanceOfType(cardType) {
+      return (this.getWidgetInstances(cardType, this.dashboard) || []).length;
     }
   },
   components: {
