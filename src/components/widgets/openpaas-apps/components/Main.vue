@@ -26,7 +26,7 @@ export default {
       },
       {
         name: "Video Conference",
-        url: "/videoconference",
+        url: "/videoconf",
         icon: "/videoconference/images/videoconference.svg"
       }
     ]
