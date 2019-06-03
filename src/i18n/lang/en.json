@@ -12,5 +12,11 @@
   "Create a new dashboard": "Create a new dashboard",
   "Add a new widget": "Add a new widget",
   "My dashboards": "My dashboards",
-  "Dashboard {name} has been created": "Dashboard {name} has been created"
+  "Dashboard {name} has been created": "Dashboard {name} has been created",
+  "Edit": "Edit",
+  "Cancel": "Cancel",
+  "Remove": "Remove",
+  "Delete dashboard?": "Delete dashboard?",
+  "Delete": "Delete",
+  "There are no widgets": "There are no widgets"
 }
