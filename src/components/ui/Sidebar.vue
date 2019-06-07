@@ -53,7 +53,7 @@
         </v-list-tile-content>
         <v-list-tile-action>
           <v-menu bottom left offset-y close-on-click>
-            <v-btn slot="activator" flat icon ripple>
+            <v-btn data-test="dashboard-operations" slot="activator" flat icon ripple>
               <v-icon>more_vert</v-icon>
             </v-btn>
             <v-list>
