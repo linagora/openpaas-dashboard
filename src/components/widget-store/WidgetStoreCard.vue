@@ -1,5 +1,5 @@
 <template>
-  <v-card height="220" flat hover id="card" :style="{  borderLeftColor: borderColor }">
+  <v-card data-test="widget-card" height="220" flat hover id="card" :style="{  borderLeftColor: borderColor }">
     <div id="icon" v-if="card.icon">
       <v-icon>{{card.icon}}</v-icon>
     </div>
@@ -25,7 +25,7 @@
     </v-card-text>
     <v-card-actions>
       <v-layout align-end justify-center fill-height pb-3>
-        <v-btn @click="add" color="primary" :disabled="!card.available" fab dark depressed>
+        <v-btn data-test="widget-card-add" @click="add" color="primary" :disabled="!card.available" fab dark depressed>
           <v-icon dark>add</v-icon>
         </v-btn>
       </v-layout>
