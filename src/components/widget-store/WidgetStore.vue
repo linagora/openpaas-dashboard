@@ -1,11 +1,11 @@
 <template>
   <v-dialog v-model="dialog" scrollable max-width="1200px">
     <template v-slot:activator="{ on }">
-      <v-btn v-on="on" icon ripple>
+      <v-btn v-on="on" icon ripple data-test="widget-add-button">
         <v-icon color="grey darken-1">add_circle_outline</v-icon>
       </v-btn>
     </template>
-    <v-card color="grey lighten-4">
+    <v-card data-test="widget-store-dialog" color="grey lighten-4">
       <v-card-text>
         <v-container fluid grid-list-lg>
           <v-layout row wrap>
@@ -17,7 +17,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn flat color="primary" @click="dialog = false">{{$t("Close")}}</v-btn>
+        <v-btn data-test="widget-dialog-close" flat color="primary" @click="dialog = false">{{$t("Close")}}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
