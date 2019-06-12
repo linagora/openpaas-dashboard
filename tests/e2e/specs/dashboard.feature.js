@@ -92,4 +92,68 @@ describe("The dashboard feature", () => {
       });
     });
   });
+
+  describe("Dashboard deletion", () => {
+    function createTestBoardAndOpenItsDeleteDialog() {
+      cy.get("[data-test=sidebar]").within(() => {
+        cy.get("[data-test=dashboard-create-button]").click();
+      });
+      cy.get("[data-test=dashboard-create-form]").within(() => {
+        cy.get("[name=name]").type("To Delete");
+      });
+      cy.get("[data-test=dashboard-create-form-button]").click();
+      cy.get("[data-test=dashboard-operations]")
+        .last()
+        .click();
+      cy.get("[data-test=dashboard-delete-trigger]")
+        .first()
+        .click();
+    }
+
+    it("should display a dialog on sidebar delete click", () => {
+      createTestBoardAndOpenItsDeleteDialog();
+      cy.get("[data-test=dashboard-delete-dialog]").should("be.visible");
+    });
+
+    describe("on dashboard dialog CANCEL submit", () => {
+      beforeEach(() => {
+        createTestBoardAndOpenItsDeleteDialog();
+        cy.get("[data-test=dashboard-delete-dialog-cancel]")
+          .first()
+          .click();
+      });
+      it("should NOT delete the dashboard", () => {
+        cy.get("[data-test=sidebar]").within(() => {
+          cy.get("[data-test=sidebar-dashboard-item]").should($items => {
+            expect($items).to.have.length(2);
+          });
+        });
+      });
+      it("should close the dialog", () => {
+        cy.get("[data-test=dashboard-delete-dialog]").should("not.be.visible");
+      });
+    });
+
+    describe("on dashboard dialog DELETE submit", () => {
+      beforeEach(() => {
+        createTestBoardAndOpenItsDeleteDialog();
+        cy.get("[data-test=dashboard-delete-dialog-delete]")
+          .first()
+          .click();
+      });
+      it("should disappear in the sidebar", () => {
+        cy.get("[data-test=sidebar]").within(() => {
+          cy.get("[data-test=sidebar-dashboard-item]").should($items => {
+            expect($items).to.have.length(1);
+          });
+        });
+      });
+      it("should redirect to the default dashboard", () => {
+        cy.url().should("include", "/boards/default");
+      });
+      it("should close the dialog", () => {
+        cy.get("[data-test=dashboard-delete-dialog]").should("not.be.visible");
+      });
+    });
+  });
 });
