@@ -57,6 +57,7 @@
     <v-dialog v-if="hasSettings" v-model="displaySettings" max-width="800px">
       <dashboard-card-settings
         :card="card"
+        :dashboard="dashboard"
         :settings="card.settings"
         :view="card.components.settings.component"
         @close="displaySettings = false"
@@ -73,6 +74,10 @@ export default {
   props: {
     id: String,
     card: {
+      type: Object,
+      required: true
+    },
+    dashboard: {
       type: Object,
       required: true
     },

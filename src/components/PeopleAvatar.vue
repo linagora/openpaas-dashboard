@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import Vue from "vue";
+
 export default {
   name: "PeopleAvatar",
   props: {
@@ -28,7 +30,7 @@ export default {
     url: undefined
   }),
   mounted() {
-    this.$http
+    Vue.$openpaas.people
       .searchPeople({ q: this.email, objectTypes: this.types, limit: 1 })
       .then(({ data }) => {
         if (data && data.length) {

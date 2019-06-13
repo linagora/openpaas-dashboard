@@ -1,5 +1,9 @@
-export default {
-  searchPeople(query) {
-    return this.post(`/api/people/search`, query);
+export default class People {
+  constructor(client) {
+    this.client = client;
   }
-};
+
+  searchPeople(query) {
+    return this.client.post("/api/people/search", query);
+  }
+}

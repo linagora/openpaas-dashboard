@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import uuidv4 from "uuid/v4";
 import { routeNames } from "@/router";
 import { dashboardNameRulesAll } from "@/utils/rules";
 export default {
@@ -51,18 +50,16 @@ export default {
   methods: {
     async create() {
       if (this.valid) {
-        const id = uuidv4();
-        const dashboard = { id, name: this.newDashboardName, widgets: [] };
+        const newDashboard = await this.$store.dispatch("addDashboard", { name: this.newDashboardName, widgets: [] });
 
-        await this.$store.dispatch("addDashboard", dashboard);
         this.$store.dispatch(
           "ui/displaySnackbarMessage",
-          this.$t("Dashboard {name} has been created", { name: dashboard.name })
+          this.$t("Dashboard {name} has been created", { name: newDashboard.name })
         );
 
         this.dashboardDialog = false;
         this.newDashboardName = "";
-        this.$router.push({ name: routeNames.DASHBOARD, params: { id } });
+        this.$router.push({ name: routeNames.DASHBOARD, params: { id: newDashboard.id } });
       }
     }
   }

@@ -9,17 +9,14 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
-import { routeNames } from "@/router";
 
 export default {
   name: "dashboard",
-  props: {
-    id: {
-      type: String
-    }
-  },
   computed: {
-    ...mapGetters({ dashboard: "dashboards/getCurrentDashboard" }),
+    ...mapGetters({
+      dashboard: "dashboards/getCurrentDashboard",
+      currentUser: "user/getCurrentUser"
+    }),
     cards() {
       if (!this.dashboard) {
         return [];
@@ -30,21 +27,14 @@ export default {
       return this.$dashboard.getWidgets(widgets || []);
     }
   },
-  async mounted() {
-    if (!this.$store.state.dashboard.dashboards || this.$store.state.dashboard.dashboards.length === 0) {
-      const id = "default";
-
-      await this.$store.dispatch("addDashboard", { id, name: "My dashboard", widgets: [] });
-
-      this.$router.push({ name: routeNames.DASHBOARD, params: { id } });
-    }
-  },
   beforeRouteEnter(to, from, next) {
     store.dispatch("dashboards/loadDashboard", to.params.id);
     next();
   },
   beforeRouteUpdate(to, from, next) {
-    store.dispatch("dashboards/loadDashboard", to.params.id);
+    const id = to.params.id || this.currentUser._id;
+
+    store.dispatch("dashboards/loadDashboard", id);
     next();
   }
 };

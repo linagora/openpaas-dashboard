@@ -59,8 +59,17 @@ describe("The dashboard feature", () => {
       let dashboardName;
 
       beforeEach(() => {
-        cy.url().as("initialUrl");
         dashboardName = "OpenPaaS";
+        cy.route({
+          method: "PUT",
+          url: "/linagora.esn.dashboard/api/boards",
+          response: {
+            _id: "1",
+            name: dashboardName
+          }
+        });
+
+        cy.url().as("initialUrl");
         openForm();
         fillForm(dashboardName);
         submitForm();
@@ -94,12 +103,27 @@ describe("The dashboard feature", () => {
   });
 
   describe("Dashboard deletion", () => {
+    let dashboardName, dashboardId;
+
+    beforeEach(() => {
+      dashboardName = "To Delete";
+      dashboardId = "123456789";
+      cy.route({
+        method: "PUT",
+        url: "/linagora.esn.dashboard/api/boards",
+        response: {
+          _id: dashboardId,
+          name: dashboardName
+        }
+      });
+    });
+
     function createTestBoardAndOpenItsDeleteDialog() {
       cy.get("[data-test=sidebar]").within(() => {
         cy.get("[data-test=dashboard-create-button]").click();
       });
       cy.get("[data-test=dashboard-create-form]").within(() => {
-        cy.get("[name=name]").type("To Delete");
+        cy.get("[name=name]").type(dashboardName);
       });
       cy.get("[data-test=dashboard-create-form-button]").click();
       cy.get("[data-test=dashboard-operations]")
@@ -122,6 +146,7 @@ describe("The dashboard feature", () => {
           .first()
           .click();
       });
+
       it("should NOT delete the dashboard", () => {
         cy.get("[data-test=sidebar]").within(() => {
           cy.get("[data-test=sidebar-dashboard-item]").should($items => {
@@ -129,6 +154,7 @@ describe("The dashboard feature", () => {
           });
         });
       });
+
       it("should close the dialog", () => {
         cy.get("[data-test=dashboard-delete-dialog]").should("not.be.visible");
       });
@@ -136,21 +162,29 @@ describe("The dashboard feature", () => {
 
     describe("on dashboard dialog DELETE submit", () => {
       beforeEach(() => {
+        cy.route({
+          method: "DELETE",
+          url: `/linagora.esn.dashboard/api/boards/${dashboardId}`,
+          response: {}
+        });
         createTestBoardAndOpenItsDeleteDialog();
         cy.get("[data-test=dashboard-delete-dialog-delete]")
           .first()
           .click();
       });
-      it("should disappear in the sidebar", () => {
+
+      it("should disappear from the sidebar", () => {
         cy.get("[data-test=sidebar]").within(() => {
           cy.get("[data-test=sidebar-dashboard-item]").should($items => {
             expect($items).to.have.length(1);
           });
         });
       });
+
       it("should redirect to the default dashboard", () => {
-        cy.url().should("include", "/boards/default");
+        cy.url().should("eq", `${Cypress.config().baseUrl}boards`);
       });
+
       it("should close the dialog", () => {
         cy.get("[data-test=dashboard-delete-dialog]").should("not.be.visible");
       });
@@ -163,9 +197,11 @@ describe("The dashboard feature", () => {
         cy.get("[data-test=widget-add-button]").click();
       });
     }
+
     it("should display a button to open widget store dialog", () => {
       cy.get("[data-test=widget-add-button]").should("be.visible");
     });
+
     it("should not open widget store dialog", () => {
       cy.get("[data-test=widget-store-dialog]").should("not.be.visible");
     });
@@ -175,10 +211,12 @@ describe("The dashboard feature", () => {
         openWidgetStore();
         cy.get("[data-test=widget-store-dialog]").should("be.visible");
       });
+
       it("should have a close dialog button", () => {
         openWidgetStore();
         cy.get("[data-test=widget-dialog-close]").should("be.visible");
       });
+
       it("should contain some widgets", () => {
         openWidgetStore();
         cy.get("[data-test=widget-store-dialog]")
@@ -186,6 +224,7 @@ describe("The dashboard feature", () => {
           .its("length")
           .should("be.gte", 1);
       });
+
       it("should close the dialog on close button click", () => {
         openWidgetStore();
         cy.get("[data-test=widget-dialog-close]").click();
@@ -194,12 +233,23 @@ describe("The dashboard feature", () => {
     });
 
     describe("on a widget selection, add widget to dashboard", () => {
+      beforeEach(() => {
+        cy.get("@user").then(user => {
+          cy.route({
+            method: "PUT",
+            url: `linagora.esn.dashboard/api/boards/${user._id}/widgets`,
+            response: {}
+          });
+        });
+      });
+
       it("should find a widget selection button", () => {
         openWidgetStore();
         cy.get("[data-test=widget-card-add]")
           .its("length")
           .should("be.gte", 1);
       });
+
       it("should add the widget to dashboard when clicked", () => {
         openWidgetStore();
         cy.get("[data-test=widget-card-add]")

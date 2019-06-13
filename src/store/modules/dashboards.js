@@ -14,7 +14,9 @@ const actions = {
 
 const mutations = {
   [types.SET_CURRENT_DASHBOARD](state, dashboard) {
-    state.current = dashboard;
+    if (dashboard) {
+      state.current = dashboard;
+    }
   }
 };
 
