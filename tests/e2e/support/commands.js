@@ -53,12 +53,13 @@ Cypress.Commands.add(
       }).as("jwtAPIResponse");
     });
 
-    cy.fixture(userFixture).then(fixture2 => {
+    cy.fixture(userFixture).as("user");
+    cy.get("@user").then(user => {
       cy.route({
         method: "GET",
         url: "/api/user",
         status: 200,
-        response: fixture2
+        response: user
       }).as("userAPIResponse");
 
       cy.route({
@@ -66,7 +67,7 @@ Cypress.Commands.add(
         url: "/linagora.esn.dashboard/api/boards",
         response: [
           {
-            _id: fixture2._id,
+            _id: user._id,
             name: "default",
             widgets: {
               instances: [],
