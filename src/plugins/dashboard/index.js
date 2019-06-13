@@ -1,5 +1,6 @@
 import uuidv4 from "uuid/v4";
-import CardStore from "./store";
+// TODO: Make it configurable
+import CardStore from "./store/openpaas";
 import Registry from "./registry";
 import DashboardCard from "./components/DashboardCard.vue";
 import DashboardCardGrid from "./components/DashboardCardGrid.vue";

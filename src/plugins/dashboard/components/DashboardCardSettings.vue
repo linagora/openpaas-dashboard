@@ -23,6 +23,10 @@
 export default {
   name: "DashboardCardSettings",
   props: {
+    dashboard: {
+      type: Object,
+      required: true
+    },
     card: {
       type: Object,
       required: true
@@ -47,7 +51,7 @@ export default {
       this.$emit("close");
     },
     updateSettings(settings) {
-      this.$store.dispatch("updateCardSettings", { card: this.card, settings });
+      this.$store.dispatch("updateCardSettings", { dashboard: this.dashboard, card: this.card, settings });
       this.close();
     }
   }

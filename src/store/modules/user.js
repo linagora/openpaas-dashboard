@@ -10,7 +10,7 @@ const types = {
 
 const actions = {
   fetchUser({ commit, dispatch }) {
-    Vue.axios
+    return Vue.axios
       .get("api/user")
       .then(response => {
         commit(types.SET_USER, response.data);
@@ -49,6 +49,10 @@ const getters = {
 
   getEmail(state) {
     return state.user && state.user.preferredEmail;
+  },
+
+  getCurrentUser(state) {
+    return state.user;
   }
 };
 

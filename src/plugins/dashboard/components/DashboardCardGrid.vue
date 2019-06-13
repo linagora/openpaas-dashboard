@@ -6,6 +6,7 @@
         v-for="card in cards"
         :ref="card.id"
         :card="card"
+        :dashboard="dashboard"
         :id="card.id"
         :key="card.id"
         @deleted="removeCard(card)"

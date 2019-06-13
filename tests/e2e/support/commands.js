@@ -60,6 +60,21 @@ Cypress.Commands.add(
         status: 200,
         response: fixture2
       }).as("userAPIResponse");
+
+      cy.route({
+        method: "GET",
+        url: "/linagora.esn.dashboard/api/boards",
+        response: [
+          {
+            _id: fixture2._id,
+            name: "default",
+            widgets: {
+              instances: [],
+              order: []
+            }
+          }
+        ]
+      });
     });
 
     cy.fixture("avatar.png").as("userAvatar");

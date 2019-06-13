@@ -59,8 +59,17 @@ describe("The dashboard feature", () => {
       let dashboardName;
 
       beforeEach(() => {
-        cy.url().as("initialUrl");
         dashboardName = "OpenPaaS";
+        cy.route({
+          method: "PUT",
+          url: "/linagora.esn.dashboard/api/boards",
+          response: {
+            _id: "1",
+            name: dashboardName
+          }
+        });
+
+        cy.url().as("initialUrl");
         openForm();
         fillForm(dashboardName);
         submitForm();

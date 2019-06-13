@@ -37,6 +37,8 @@
 
 <script>
 import { routeNames } from "@/router";
+import { mapGetters } from "vuex";
+
 export default {
   name: "DashboardDelete",
   props: {
@@ -48,14 +50,17 @@ export default {
   data: () => ({
     deleteDashboardDialog: false
   }),
+  computed: {
+    ...mapGetters({ currentUser: "user/getCurrentUser" })
+  },
   methods: {
     openDialog() {
       setTimeout(() => (this.deleteDashboardDialog = true));
     },
-    remove(dashboard) {
-      this.$store.dispatch("removeDashboard", dashboard);
+    async remove(dashboard) {
+      await this.$store.dispatch("removeDashboard", dashboard);
       this.deleteDashboardDialog = false;
-      this.$router.push({ name: routeNames.DASHBOARD, params: { id: "default" } });
+      this.$router.push({ name: routeNames.DASHBOARD });
     }
   }
 };

@@ -2,16 +2,25 @@ import Axios from "axios";
 import store from "@/store";
 
 import PeopleAPI from "./people";
+import DashboardAPI from "./dashboard";
 
 const defaults = {
   baseURL: store.state.applicationConfiguration.baseUrl
 };
 
-function Api(config) {
-  const instance = Axios.create(Object.assign({}, defaults, config));
-  Object.assign(instance, PeopleAPI);
+class Api {
+  constructor(config) {
+    this.client = Axios.create(Object.assign({}, defaults, config));
 
-  return instance;
+    this.client.interceptors.request.use(config => {
+      config.headers.Authorisation = `Bearer ${store.state.session.jwtToken}`;
+
+      return config;
+    });
+
+    this.dashboard = new DashboardAPI(this.client);
+    this.people = new PeopleAPI(this.client);
+  }
 }
 
 export { Api };

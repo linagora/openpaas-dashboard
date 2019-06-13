@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar-content" data-test="sidebar">
-    <v-list>
+    <v-list v-if="dashboard">
       <v-list-tile
         color="blue"
         class="tile-title"
