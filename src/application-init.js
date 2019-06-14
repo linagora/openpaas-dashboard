@@ -21,7 +21,12 @@ function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth
 
   VueInstance.use(require("@websanova/vue-auth"), auth);
 
-  VueInstance.use(Vuetify, { theme });
+  VueInstance.use(Vuetify, {
+    theme,
+    options: {
+      customProperties: true
+    }
+  });
 
   VueInstance.use(VueMoment);
 
