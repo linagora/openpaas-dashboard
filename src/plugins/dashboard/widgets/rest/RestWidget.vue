@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "DashboardRestWidget",
   props: {
@@ -24,12 +26,13 @@ export default {
   computed: {
     apiItems() {
       return this.localItems || this.items;
-    }
+    },
+    ...mapGetters({ proxyUrl: "applicationConfiguration/getProxyServiceUrl" })
   },
   mounted() {
     this.$emit("loading", true);
     this.$http
-      .get(`https://cors-anywhere.herokuapp.com/${this.url}`)
+      .get(`${this.proxyUrl}${this.url}`)
       .then(response => {
         // if there is a listener to transform data, emit response, else consider that the response.data is an array
         if (this.$listeners["response"]) {

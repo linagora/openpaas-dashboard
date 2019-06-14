@@ -4,4 +4,14 @@ const state = {
   baseUrl: ApplicationSettings.VUE_APP_OPENPAAS_URL
 };
 
-export default { namespaced: true, state };
+const getters = {
+  getProxyServiceUrl() {
+    return new URL("linagora.esn.dashboard/api/cors/", state.baseUrl).toString();
+  }
+};
+
+export default {
+  namespaced: true,
+  state,
+  getters
+};
