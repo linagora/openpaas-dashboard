@@ -1,26 +1,19 @@
 <template>
-  <v-dialog v-model="dialog" scrollable max-width="1200px">
-    <template v-slot:activator="{ on }">
-      <v-btn v-on="on" icon ripple data-test="widget-add-button">
-        <v-icon color="grey darken-1">add_circle_outline</v-icon>
-      </v-btn>
-    </template>
-    <v-card data-test="widget-store-dialog" color="grey lighten-4">
-      <v-card-text>
-        <v-container fluid grid-list-lg>
-          <v-layout row wrap>
-            <v-flex xs12 md6 lg4 v-for="card in cards" :key="card.type">
-              <widget-store-card :card="card" :counter="countInstanceOfType(card.type)" @add="useWidget(card)"/>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn data-test="widget-dialog-close" flat color="primary" @click="dialog = false">{{$t("Close")}}</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+  <v-card color="grey lighten-4" data-test="widget-store">
+    <v-card-text>
+      <v-container fluid grid-list-lg>
+        <v-layout row wrap>
+          <v-flex xs12 md6 lg4 v-for="card in cards" :key="card.type">
+            <widget-store-card :card="card" :counter="countInstanceOfType(card.type)" @add="useWidget(card)"/>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-card-text>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn data-test="widget-dialog-close" flat color="primary" @click="close()">{{$t("Close")}}</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
@@ -57,6 +50,9 @@ export default {
     },
     countInstanceOfType(cardType) {
       return (this.getWidgetInstances(cardType, this.dashboard) || []).length;
+    },
+    close() {
+      this.$emit("close");
     }
   },
   components: {

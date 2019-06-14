@@ -1,39 +1,39 @@
 <template>
-  <v-dialog v-model="dashboardDialog" scrollable max-width="800px">
-    <template v-slot:activator="{ on }">
-      <v-btn v-on="on" icon ripple data-test="dashboard-create-button">
-        <v-icon color="grey darken-1">add_circle_outline</v-icon>
-      </v-btn>
-    </template>
-    <v-card color="grey lighten-4" data-test="dashboard-create-dialog">
-      <v-card-title>
-       <span class="headline">{{ $t('Create a new dashboard') }}</span>
-      </v-card-title>
-      <v-card-text>
-        <v-form v-model="valid" @submit.prevent="create" data-test="dashboard-create-form">
-          <v-text-field
-            name="name"
-            v-model="newDashboardName"
-            :rules="dashboardNameRules"
-            :label="$t('Name')"
-            required
-          >
-          </v-text-field>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              flat
-              color="primary"
-              :disabled="!newDashboardName || !valid"
-              data-test="dashboard-create-form-button"
-              @click="create">
-              {{ $t('Create') }}
-            </v-btn>
-          </v-card-actions>
-        </v-form>
-      </v-card-text>
-    </v-card>
-  </v-dialog>
+  <div>
+    <v-list-tile data-test="dashboard-create-item" @click="openDialog()">
+      {{$t("Create a new dashboard")}}
+    </v-list-tile>
+    <v-dialog v-model="dashboardDialog" scrollable max-width="800px">
+      <v-card color="grey lighten-4" data-test="dashboard-create-dialog">
+        <v-card-title>
+        <span class="headline">{{ $t('Create a new dashboard') }}</span>
+        </v-card-title>
+        <v-card-text>
+          <v-form v-model="valid" @submit.prevent="create" data-test="dashboard-create-form">
+            <v-text-field
+              name="name"
+              v-model="newDashboardName"
+              :rules="dashboardNameRules"
+              :label="$t('Name')"
+              required
+            >
+            </v-text-field>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                flat
+                color="primary"
+                :disabled="!newDashboardName || !valid"
+                data-test="dashboard-create-form-button"
+                @click="create">
+                {{ $t('Create') }}
+              </v-btn>
+            </v-card-actions>
+          </v-form>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -48,6 +48,9 @@ export default {
     dashboardNameRules: dashboardNameRulesAll
   }),
   methods: {
+    openDialog() {
+      setTimeout(() => (this.dashboardDialog = true));
+    },
     async create() {
       if (this.valid) {
         const newDashboard = await this.$store.dispatch("addDashboard", { name: this.newDashboardName, widgets: [] });
