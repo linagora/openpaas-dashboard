@@ -3,6 +3,7 @@ import store from "@/store";
 
 import PeopleAPI from "./people";
 import DashboardAPI from "./dashboard";
+import TwitterAPI from "./twitter";
 
 const defaults = {
   baseURL: store.state.applicationConfiguration.baseUrl
@@ -20,6 +21,7 @@ class Api {
 
     this.dashboard = new DashboardAPI(this.client);
     this.people = new PeopleAPI(this.client);
+    this.twitter = new TwitterAPI(this.client);
   }
 }
 
