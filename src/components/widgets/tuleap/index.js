@@ -1,7 +1,9 @@
 import Main from "./components/Main.vue";
+import Settings from "./components/Settings.vue";
 
 const components = {
-  main: { component: Main, title: "Tuleap projects" }
+  main: { component: Main, title: "Tuleap projects" },
+  settings: { component: Settings }
 };
 
 const settings = {
