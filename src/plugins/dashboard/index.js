@@ -11,7 +11,7 @@ const DEFAULT_STATE_NAME = "dashboard";
 
 const VueDashboard = {
   install(Vue, options) {
-    console.log("Installing grid plugin", options);
+    console.log("Installing Dashboard plugin", options);
     const store = options.store;
 
     if (!store) {
