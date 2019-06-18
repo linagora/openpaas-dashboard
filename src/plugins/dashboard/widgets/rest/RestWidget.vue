@@ -32,7 +32,7 @@ export default {
   mounted() {
     this.$emit("loading", true);
     this.$http
-      .get(`${this.proxyUrl}${this.url}`)
+      .get(`${this.proxyUrl}?proxy=${this.url}`)
       .then(response => {
         // if there is a listener to transform data, emit response, else consider that the response.data is an array
         if (this.$listeners["response"]) {

@@ -66,7 +66,7 @@ export default {
       console.log("Fetching feed", this.settings.url);
       this.$emit("loading", true);
 
-      fetch(`${this.proxyUrl}${this.settings.url}`)
+      fetch(`${this.proxyUrl}?proxy=${this.settings.url}`)
         .then(feed => {
           // TODO: order items by date
           // TODO: limit nb of items
