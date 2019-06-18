@@ -7,6 +7,9 @@ const state = {
 const getters = {
   getProxyServiceUrl() {
     return new URL("linagora.esn.dashboard/api/cors/", state.baseUrl).toString();
+  },
+  getServiceUrl(state) {
+    return url => new URL(url, state.baseUrl).toString();
   }
 };
 

@@ -18,6 +18,17 @@
         <span class="title font-weight-light red--text">{{$t(error)}}</span>
       </v-flex>
     </v-container>
+    <v-container
+      v-if="!configuration"
+      pt-0 align-center justify-center align-content-center d-flex :style="{flexDirection: 'column'}"
+    >
+      <v-flex pb-2>
+        <span class="title font-weight-light">{{$t("Your Github account is not configured")}}</span>
+      </v-flex>
+      <v-flex pb-2>
+        <a class="title font-weight-light" :href="configurationLink" target="_blank">{{$t("Configure")}}</a>
+      </v-flex>
+    </v-container>
   </div>
 </template>
 
@@ -50,15 +61,17 @@ export default {
 
       return githubAccount && githubAccount.data;
     },
+    configurationLink() {
+      return this.getServiceUrl("#/controlcenter/accounts");
+    },
     ...mapGetters({
-      currentUser: "user/getCurrentUser"
+      currentUser: "user/getCurrentUser",
+      getServiceUrl: "applicationConfiguration/getServiceUrl"
     })
   },
   methods: {
     fetch() {
       if (!this.configuration) {
-        this.error = "Github account is not configured";
-
         return;
       }
 
