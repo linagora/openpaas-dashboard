@@ -1,4 +1,5 @@
 {
-  "RSS": "RSS",
-  "Display news from RSS feed": "Hiển thị tin tức từ nguồn cấp dữ liệu RSS"
+  "Github": "Github",
+  "Display your Github feed": "Hiển thị nguồn cấp dữ liệu Github của bạn",
+  "Your Github account is not configured": "Tài khoản Github của bạn chưa được định cấu hình"
 }

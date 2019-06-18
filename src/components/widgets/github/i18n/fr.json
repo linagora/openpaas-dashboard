@@ -1,4 +1,5 @@
 {
-  "RSS": "RSS",
-  "Display news from RSS feed": "Afficher les nouvelles depuis des flux RSS"
+  "Github": "Github",
+  "Display your Github feed": "Afficher votre flux Github",
+  "Your Github account is not configured": "Votre compte Github n'est pas configuré"
 }
