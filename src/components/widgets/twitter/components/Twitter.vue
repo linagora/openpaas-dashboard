@@ -23,7 +23,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Vue from "vue";
 import Tweet from "./Tweet.vue";
 
 export default {
@@ -63,7 +62,7 @@ export default {
 
       this.$emit("loading", true);
 
-      Vue.$openpaas.twitter
+      this.$openpaas.api.twitter
         .getMentions({ account_id: this.configuration.id })
         .then(items => {
           this.error && (this.error = null); // avoid tilt while loading after an error by waiting for feed items

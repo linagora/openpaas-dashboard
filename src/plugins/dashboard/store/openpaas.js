@@ -20,27 +20,27 @@ const types = {
 
 const actions = {
   addCard({ commit }, { card, dashboard }) {
-    return Vue.$openpaas.dashboard.createWidget(dashboard.id, card).then(() => {
+    return Vue.$openpaas.api.dashboard.createWidget(dashboard.id, card).then(() => {
       commit(types.ADD_CARD, card);
       commit(types.ADD_CARD_TO_DASHBOARD, { card, dashboard });
     });
   },
 
   removeCard({ commit }, { card, dashboard }) {
-    return Vue.$openpaas.dashboard.deleteWidget(dashboard.id, card.id).then(() => {
+    return Vue.$openpaas.api.dashboard.deleteWidget(dashboard.id, card.id).then(() => {
       commit(types.REMOVE_CARD, card);
       commit(types.REMOVE_CARD_FROM_DASHBOARD, { card, dashboard });
     });
   },
 
   setCardsOrder({ commit }, { cards, dashboard }) {
-    return Vue.$openpaas.dashboard.reorderWidgets(dashboard.id, cards).then(() => {
+    return Vue.$openpaas.api.dashboard.reorderWidgets(dashboard.id, cards).then(() => {
       commit(types.ORDER_CARDS, { cards, dashboard });
     });
   },
 
   addDashboard({ commit }, dashboard) {
-    return Vue.$openpaas.dashboard.create(dashboard).then(created => {
+    return Vue.$openpaas.api.dashboard.create(dashboard).then(created => {
       const newDashboard = {
         id: created._id,
         name: created.name,
@@ -54,7 +54,7 @@ const actions = {
   },
 
   loadDashboards({ commit }) {
-    return Vue.$openpaas.dashboard.list().then(dashboards => {
+    return Vue.$openpaas.api.dashboard.list().then(dashboards => {
       dashboards.forEach(dashboard => {
         const newDashboard = {
           id: dashboard._id,
@@ -78,19 +78,19 @@ const actions = {
   },
 
   removeDashboard({ commit }, dashboard) {
-    return Vue.$openpaas.dashboard.delete(dashboard.id).then(() => {
+    return Vue.$openpaas.api.dashboard.delete(dashboard.id).then(() => {
       commit(types.REMOVE_DASHBOARD, dashboard);
     });
   },
 
   renameDashboard({ commit }, { dashboard, newname }) {
-    return Vue.$openpaas.dashboard.rename(dashboard.id, newname).then(() => {
+    return Vue.$openpaas.api.ashboard.rename(dashboard.id, newname).then(() => {
       commit(types.RENAME_DASHBOARD, { dashboard, newname });
     });
   },
 
   updateCardSettings({ commit }, { dashboard, card, settings }) {
-    return Vue.$openpaas.dashboard.updateWidgetSettings(dashboard.id, card.id, settings).then(() => {
+    return Vue.$openpaas.api.dashboard.updateWidgetSettings(dashboard.id, card.id, settings).then(() => {
       commit(types.UPDATE_CARD_SETTINGS, { card, settings });
     });
   }

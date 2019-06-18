@@ -4,18 +4,24 @@ import VueMoment from "vue-moment";
 
 import App from "@/App";
 import router from "@/router";
-import { api, auth as servicesAuth } from "@/services";
+import { Api, auth as servicesAuth } from "@/services";
 import { theme as appTheme } from "@/style";
 import ApplicationSettings from "@/services/application-settings";
 import Dashboard from "@/dashboard";
+import VueOpenPaaS from "@/plugins/openpaas";
 import store from "@/store";
 import { i18n } from "@/i18n";
 
 // This prevents polluting the global Axios and Vue instances
 // See for instance : https://github.com/vuetifyjs/vuetify/issues/4068#issuecomment-446988490
-function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth, theme = appTheme.colors } = {}) {
-  VueInstance.use(VueAxios, axiosInstance.client);
-  axiosInstance.client.defaults.baseURL = store.state.applicationConfiguration.baseUrl;
+function applicationInit(VueInstance, { auth = servicesAuth, theme = appTheme.colors } = {}) {
+  const api = new Api({
+    baseURL: store.state.applicationConfiguration.baseUrl
+  });
+
+  VueInstance.use(VueOpenPaaS, { api });
+
+  VueInstance.use(VueAxios, api.client);
 
   VueInstance.router = router;
 
@@ -29,8 +35,6 @@ function applicationInit(VueInstance, { axiosInstance = api, auth = servicesAuth
   });
 
   VueInstance.use(VueMoment);
-
-  VueInstance.$openpaas = api;
 
   Dashboard.init(VueInstance);
 
