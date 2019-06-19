@@ -16,7 +16,7 @@ const settings = {
 export default {
   title: "Tuleap projects",
   type: "tuleap",
-  icon: "work_outline",
+  icon: "subject",
   description: "Display Tuleap projects",
   components,
   settings
