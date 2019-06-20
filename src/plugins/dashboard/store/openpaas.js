@@ -84,7 +84,7 @@ const actions = {
   },
 
   renameDashboard({ commit }, { dashboard, newname }) {
-    return Vue.$openpaas.api.ashboard.rename(dashboard.id, newname).then(() => {
+    return Vue.$openpaas.api.dashboard.rename(dashboard.id, newname).then(() => {
       commit(types.RENAME_DASHBOARD, { dashboard, newname });
     });
   },
