@@ -7,22 +7,22 @@ const types = {
 };
 
 const actions = {
-  loadDashboard({ commit, rootGetters }, id) {
-    commit(types.SET_CURRENT_DASHBOARD, rootGetters.getDashboardFromId(id));
+  loadDashboard({ commit }, id) {
+    commit(types.SET_CURRENT_DASHBOARD, id);
   }
 };
 
 const mutations = {
-  [types.SET_CURRENT_DASHBOARD](state, dashboard) {
-    if (dashboard) {
-      state.current = dashboard;
+  [types.SET_CURRENT_DASHBOARD](state, dashboardId) {
+    if (dashboardId) {
+      state.current = dashboardId;
     }
   }
 };
 
 const getters = {
-  getCurrentDashboard(state) {
-    return state.current;
+  getCurrentDashboard(state, getters, rootState, rootGetters) {
+    return rootGetters.getDashboardFromId(state.current);
   }
 };
 
