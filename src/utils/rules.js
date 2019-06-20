@@ -1,3 +1,3 @@
-const dashboardNameRulesAll = [v => v.length >= 5 || "Name must be more than 5 characters"];
+const dashboardNameRulesAll = [v => v.length >= 3 || "Name must be more than 3 characters"];
 
 export { dashboardNameRulesAll };
