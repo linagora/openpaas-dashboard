@@ -44,6 +44,7 @@ const router = new Router({
       },
       beforeEnter: async (to, from, next) => {
         await store.getters["session/ready"];
+        await store.dispatch("widgets/getSettings");
 
         if (!store.state.dashboard.dashboards || store.state.dashboard.dashboards.length === 0) {
           await store.dispatch("loadDashboards");
