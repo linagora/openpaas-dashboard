@@ -103,7 +103,7 @@ const mutations = {
     const index = state.dashboards.findIndex(d => d.id === dashboard.id);
 
     if (index > -1) {
-      state.dashboards.splice(index, 1);
+      Vue.delete(state.dashboards, index);
     }
 
     localStorage.setItem(LOCALSTORAGE_DASHBOARDS_KEY, JSON.stringify(state.dashboards));
@@ -127,10 +127,10 @@ const mutations = {
     const index = state.dashboards.findIndex(d => d.id === dashboard.id);
 
     if (index > -1) {
-      const cardIndex = state.dashboards[index].widgets.findIndex(widget => widget.id === card.id);
+      const cardIndex = state.dashboards[index].widgets.findIndex(widget => widget === card.id);
 
       if (cardIndex > -1) {
-        state.dasboards.splice(cardIndex, 1);
+        Vue.delete(state.dasboards[index].widgets, cardIndex);
         localStorage.setItem(LOCALSTORAGE_DASHBOARDS_KEY, JSON.stringify(state.dashboards));
       }
     }
