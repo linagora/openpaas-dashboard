@@ -48,7 +48,7 @@ const VueDashboard = {
       getWidget: type => {
         return registry.get(type);
       },
-      useWidget: ({ card, dashboard }) => {
+      useWidget: ({ card, dashboard, settings = {} }) => {
         const definition = registry.get(card.type);
         if (!definition) {
           return;
@@ -58,7 +58,7 @@ const VueDashboard = {
           card: {
             id: uuidv4(),
             type: card.type,
-            settings: { ...(definition.settings && definition.settings.data) }
+            settings: { ...(definition.settings && definition.settings.data), ...settings }
           },
           dashboard
         });

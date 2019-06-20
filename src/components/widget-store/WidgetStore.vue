@@ -32,21 +32,15 @@ export default {
     }
   },
   computed: {
-    cards() {
-      return this.$dashboard
-        .getWidgetsDescription()
-        .map(widget => {
-          widget.available = true;
-
-          return widget;
-        })
-        .filter(widget => !this.isDisabled(widget));
-    },
-    ...mapGetters({ isDisabled: "widgets/isDisabled", getWidgetInstances: "widgets/getWidgetInstances" })
+    ...mapGetters({
+      getWidgetInstances: "widgets/getWidgetInstances",
+      cards: "widgets/getStoreWidgets",
+      getSettings: "widgets/getWidgetSettings"
+    })
   },
   methods: {
     useWidget(card) {
-      this.$dashboard.useWidget({ card, dashboard: this.dashboard });
+      this.$dashboard.useWidget({ card, dashboard: this.dashboard, settings: this.getSettings(card.type) });
     },
     countInstanceOfType(cardType) {
       return (this.getWidgetInstances(cardType, this.dashboard) || []).length;

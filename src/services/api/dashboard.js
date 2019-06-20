@@ -46,6 +46,10 @@ class Dashboard {
       .post(`${PATH}/boards/${dashboardId}/widgets/${widgetId}/settings`, settings)
       .then(response => response.data);
   }
+
+  getSettings() {
+    return this.client.get(`${PATH}/settings`).then(response => response.data);
+  }
 }
 
 export default Dashboard;
