@@ -9,7 +9,6 @@ const settings = {};
 export default {
   title: "Github",
   type: "github",
-  icon: "tools",
   description: "Display your Github feed",
   components,
   settings
