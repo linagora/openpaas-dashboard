@@ -46,6 +46,10 @@ const getters = {
         name: "linagora.esn.unifiedinbox"
       });
 
+      if (!inboxConfiguration) {
+        return defaultUrl;
+      }
+
       return _.find(inboxConfiguration.configurations || [], { name: "api" }).value;
     }
 
