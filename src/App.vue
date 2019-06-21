@@ -6,10 +6,12 @@
       </v-navigation-drawer>
       <v-toolbar clipped-left app fixed color="blue" :dark="true" v-if="$auth.check()">
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
+        <v-toolbar-title style="max-width: 300px" class="ml-0 pl-3 hidden-sm-and-down">
           <img class="hidden-sm-and-down" id="header-logo" src="@/assets/logo.svg"/>
         </v-toolbar-title>
-        <v-spacer></v-spacer>
+        <div id="search">
+          <search-header/>
+        </div>
         <user-menu v-if="connectedUser"/>
       </v-toolbar>
       <v-content>
@@ -33,6 +35,7 @@ import { theme } from "@/style";
 import UserMenu from "@/components/ui/UserMenu.vue";
 import Snackbar from "@/components/ui/Snackbar.vue";
 import Sidebar from "@/components/ui/Sidebar.vue";
+import SearchHeader from "@/components/ui/SearchHeader.vue";
 
 export default {
   data: () => ({
@@ -55,7 +58,8 @@ export default {
   components: {
     UserMenu,
     Snackbar,
-    Sidebar
+    Sidebar,
+    SearchHeader
   },
   created() {
     this.$auth.ready(() => {
@@ -86,4 +90,9 @@ export default {
     align-items: center;
     justify-content: center;
   }
+
+  #search
+    display: flex
+    flex-grow: 1
+    justify-content: center
 </style>

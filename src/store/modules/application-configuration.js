@@ -10,6 +10,10 @@ const getters = {
   },
   getServiceUrl(state) {
     return url => new URL(url, state.baseUrl).toString();
+  },
+  getSearchUrl(state) {
+    // TODO: must be configurable from API configuration endpoint
+    return new URL("/#/search/?q=", state.baseUrl).toString();
   }
 };
 
