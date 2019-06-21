@@ -11,6 +11,7 @@
               v-model="newDashboardName"
               :rules="dashboardNameRules"
               :label="$t('Name')"
+              :disabled="!canEdit"
               required
             >
             </v-text-field>
@@ -26,7 +27,7 @@
               <v-btn
                 flat
                 color="primary"
-                :disabled="!newDashboardName || !valid"
+                :disabled="!canEdit || !newDashboardName || !valid"
                 @click="edit(dashboard)">
                 {{ $t('Edit') }}
               </v-btn>
@@ -40,6 +41,7 @@
 
 <script>
 import { dashboardNameRulesAll } from "@/utils/rules";
+import { mapGetters } from "vuex";
 export default {
   name: "DashboardEdit",
   props: {
@@ -54,6 +56,12 @@ export default {
     newDashboardName: "",
     dashboardNameRules: dashboardNameRulesAll
   }),
+  computed: {
+    ...mapGetters({ currentUser: "user/getCurrentUser" }),
+    canEdit() {
+      return this.dashboard.id !== this.currentUser._id;
+    }
+  },
   methods: {
     openDialog() {
       setTimeout(() => (this.editDashboardDialog = true));

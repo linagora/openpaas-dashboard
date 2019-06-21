@@ -40,7 +40,7 @@
             </v-btn>
             <v-list>
               <dashboard-edit v-if="dashboard" :dashboard="dashboard"/>
-              <dashboard-delete v-if="dashboard" :dashboard="dashboard"/>
+              <dashboard-delete v-if="dashboard && canDelete(dashboard)" :dashboard="dashboard"/>
             </v-list>
           </v-menu>
         </v-list-tile-action>
@@ -64,8 +64,17 @@ export default {
     titleColor: theme.colors.blue.base
   }),
   computed: {
-    ...mapGetters({ dashboard: "dashboards/getCurrentDashboard", dashboards: "getDashboards" }),
+    ...mapGetters({
+      currentUser: "user/getCurrentUser",
+      dashboard: "dashboards/getCurrentDashboard",
+      dashboards: "getDashboards"
+    }),
     style: () => theme.colors
+  },
+  methods: {
+    canDelete(dashboard) {
+      return dashboard.id !== this.currentUser._id;
+    }
   },
   components: {
     OpenWidgetStore,
