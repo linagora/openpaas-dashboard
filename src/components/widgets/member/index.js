@@ -10,6 +10,7 @@ export default {
   type: "member",
   icon: "account_circle",
   description: "Search for platform members",
+  categories: ["contact", "openpaas"],
   store,
   components,
   hooks: {

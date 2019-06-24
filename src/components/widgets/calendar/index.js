@@ -10,6 +10,7 @@ export default {
   type: "calendar",
   icon: "today",
   description: "Quick view of your events",
+  categories: ["calendar", "openpaas"],
   store,
   components,
   hooks: {

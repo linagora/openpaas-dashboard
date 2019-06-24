@@ -9,5 +9,6 @@ export default {
   type: "openpaas.apps",
   icon: "apps",
   description: "Display your OpenPaaS Applications",
+  categories: ["tools", "openpaas"],
   components
 };

@@ -14,6 +14,7 @@ class Registry {
       title: entry[1].title,
       icon: entry[1].icon,
       description: entry[1].description,
+      categories: entry[1].categories,
       components: entry[1].components
     }));
   }

@@ -10,6 +10,7 @@ export default {
   type: "contact",
   icon: "account_circle",
   description: "Search contacts",
+  categories: ["contact", "openpaas"],
   store,
   components,
   hooks: {

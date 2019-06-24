@@ -15,6 +15,7 @@ export default {
   type: "crypto",
   icon: "attach_money",
   description: "Live Cryptocurrency Prices",
+  categories: ["cryptocurrency"],
   components,
   settings
 };

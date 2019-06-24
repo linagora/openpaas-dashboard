@@ -16,6 +16,7 @@ export default {
   type: "hackernews",
   icon: "rss_feed",
   description: "Display latest from Hacker News",
+  categories: ["news"],
   components,
   settings
 };

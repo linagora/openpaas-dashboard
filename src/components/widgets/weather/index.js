@@ -10,6 +10,7 @@ export default {
   type: "weather",
   icon: "cloud_queue",
   description: "Local weather forecast",
+  categories: ["weather"],
   components,
   store,
   hooks: {

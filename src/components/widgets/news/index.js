@@ -16,6 +16,7 @@ export default {
   type: "googlenews",
   icon: "public",
   description: "Display latest new from Google",
+  categories: ["news", "google"],
   components,
   settings
 };

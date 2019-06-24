@@ -1,5 +1,5 @@
 <template>
-  <v-card data-test="widget-card" height="110" flat hover id="card" :style="{  borderLeftColor: borderColor }">
+  <v-card data-test="widget-card" height="110" flat id="card" :style="{  borderLeftColor: borderColor }">
     <div id="icon" v-if="card.icon">
       <v-icon>{{card.icon}}</v-icon>
     </div>
@@ -14,7 +14,7 @@
       </template>
       <v-container id="cardcontainer" fluid grid-list-lg>
         <v-layout row wrap>
-          <v-flex xs8 md8 lg8>
+          <div class="meta">
             <v-card-text class="text-xs-left pa-0">
               <div id="title">
                 <span class="headline font-weight-bold grey--text text--darken-1">{{$t(card.title)}}</span>
@@ -22,11 +22,20 @@
               <div id="description">
                 <span class="title grey--text">{{$t(card.description)}}</span>
               </div>
+              <div id="categories">
+                <v-chip
+                  v-for="category in orderCategories(card.categories)"
+                  :key="category"
+                  small
+                  color="primary"
+                  text-color="white"
+                >{{ category }}</v-chip>
+              </div>
             </v-card-text>
-          </v-flex>
-          <v-flex xs4 md4 lg4>
+          </div>
+          <div class="actions pr-1">
             <v-card-actions>
-              <v-layout align-end justify-end pb-3>
+              <v-layout align-end justify-end>
                 <v-btn
                   data-test="widget-card-add"
                   @click="add" color="primary" :disabled="!card.available" fab dark depressed
@@ -35,7 +44,7 @@
                 </v-btn>
               </v-layout>
             </v-card-actions>
-          </v-flex>
+          </div>
         </v-layout>
       </v-container>
     </v-badge>
@@ -62,6 +71,9 @@ export default {
   methods: {
     add() {
       this.$emit("add");
+    },
+    orderCategories(categories) {
+      return (categories || []).sort((a, b) => a.localeCompare(b));
     }
   }
 };
@@ -100,4 +112,12 @@ span
     width: 25px
     font-size: 18px;
     font-weight: 500;
+
+.meta
+  display: flex
+  flex-grow: 1
+
+.actions
+  display: flex
+
 </style>

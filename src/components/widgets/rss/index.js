@@ -20,6 +20,7 @@ export default {
   type: "rss",
   icon: "rss_feed",
   description: "Display news from RSS feed",
+  categories: ["rss", "news"],
   components,
   settings
 };

@@ -15,6 +15,7 @@ export default {
   type: "clock",
   icon: "access_time",
   description: "Display local time and date",
+  categories: ["clock"],
   components,
   settings
 };
