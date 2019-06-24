@@ -16,7 +16,7 @@
           <v-flex xs4 md4 lg4 offset-xs4>
             <v-select
               :items="dashBoards"
-              item-text="name"
+              :item-text="getDashboardName"
               item-value="id"
               v-on:change="changeTargetBoard"
               :value="currentDashboard.id"
@@ -56,7 +56,8 @@ export default {
       cards: "widgets/getStoreWidgets",
       currentDashboard: "dashboards/getCurrentDashboard",
       getSettings: "widgets/getWidgetSettings",
-      dashBoards: "dashboards/getAllDashboards"
+      dashBoards: "dashboards/getAllDashboards",
+      getDashboardName: "dashboards/getDashboardName"
     })
   },
   methods: {
