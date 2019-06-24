@@ -2,7 +2,7 @@
   <v-card color="grey lighten-4" data-test="widget-store">
     <v-toolbar id="store-toolbar" dense color="blue" :dark="true" >
       <v-spacer></v-spacer>
-      <v-toolbar-title>
+      <v-toolbar-title class="headline">
         {{$t("Add a widget")}}
       </v-toolbar-title>
       <v-spacer></v-spacer>
