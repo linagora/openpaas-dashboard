@@ -11,6 +11,7 @@ export default {
   type: "twitter",
   icon: "chat_bubble_outline",
   description: "Display your Twitter mentions and messages",
+  categories: ["twitter", "social"],
   components,
   settings
 };

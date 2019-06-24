@@ -10,6 +10,7 @@ export default {
   type: "email",
   icon: "mail_outline",
   description: "Check your last emails",
+  categories: ["email", "openpaas"],
   store,
   components,
   hooks: {

@@ -10,6 +10,7 @@ export default {
   title: "Github",
   type: "github",
   description: "Display your Github feed",
+  categories: ["github", "social", "developer"],
   components,
   settings
 };

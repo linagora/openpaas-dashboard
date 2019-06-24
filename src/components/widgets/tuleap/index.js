@@ -18,6 +18,7 @@ export default {
   type: "tuleap",
   icon: "subject",
   description: "Display Tuleap projects",
+  categories: ["tuleap", "tools", "developer"],
   components,
   settings
 };
