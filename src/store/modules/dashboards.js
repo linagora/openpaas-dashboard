@@ -23,6 +23,9 @@ const mutations = {
 const getters = {
   getCurrentDashboard(state, getters, rootState, rootGetters) {
     return rootGetters.getDashboardFromId(state.current);
+  },
+  getAllDashboards(state, getters, rootState, rootGetters) {
+    return rootGetters.getDashboards;
   }
 };
 

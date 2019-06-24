@@ -10,6 +10,7 @@
   "Name": "tên",
   "Create": "Tạo",
   "Create a new dashboard": "Tạo bảng điều khiển mới",
+  "Add a widget": "Thêm một tiện ích",
   "Add a new widget": "Thêm tiện ích mới",
   "My dashboards": "Bảng điều khiển của tôi",
   "Dashboard {name} has been created": "Bảng điều khiển {name} đã được tạo",
@@ -20,5 +21,6 @@
   "Delete": "Xóa",
   "There are no widgets": "Không có vật dụng",
   "Configure": "Cấu hình",
-  "Search...": "Tìm kiếm..."
+  "Search...": "Tìm kiếm...",
+  "Add a widget to dashboard": "Thêm một tiện ích vào bảng điều khiển"
 }

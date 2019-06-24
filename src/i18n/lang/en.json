@@ -10,6 +10,7 @@
   "Name": "Name",
   "Create": "Create",
   "Create a new dashboard": "Create a new dashboard",
+  "Add a widget": "Add a widget",
   "Add a new widget": "Add a new widget",
   "My dashboards": "My dashboards",
   "Dashboard {name} has been created": "Dashboard {name} has been created",
@@ -20,5 +21,6 @@
   "Delete": "Delete",
   "There are no widgets": "There are no widgets",
   "Configure": "Configure",
-  "Search...": "Search..."
+  "Search...": "Search...",
+  "Add a widget to dashboard": "Add a widget to dashboard"
 }
