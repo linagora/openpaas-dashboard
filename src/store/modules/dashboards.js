@@ -1,3 +1,5 @@
+import { i18n } from "@/i18n";
+
 const state = {
   current: null
 };
@@ -26,7 +28,11 @@ const getters = {
   },
   getAllDashboards(state, getters, rootState, rootGetters) {
     return rootGetters.getDashboards;
-  }
+  },
+  isMainDashboard: (state, getters, rootState, rootGetters) => dashboard =>
+    rootGetters["user/getCurrentUser"]._id === dashboard.id,
+  getDashboardName: (state, getters) => dashboard =>
+    getters.isMainDashboard(dashboard) ? i18n.t("Main") : dashboard.name
 };
 
 export default {
