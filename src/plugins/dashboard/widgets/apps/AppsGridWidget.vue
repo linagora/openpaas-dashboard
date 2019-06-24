@@ -9,10 +9,7 @@
         <v-tooltip top>
           <template v-slot:activator="{ on }">
             <v-card flat tile :href="application.url" target="_blank" v-on="on">
-              <v-img
-                :src="application.icon"
-                :height="iconSize"
-              ></v-img>
+              <apps-grid-icon :url="application.icon" :default-url="defaultIconUrl" :height="iconSize"/>
             </v-card>
           </template>
           <span>{{application.name}}</span>
@@ -23,16 +20,24 @@
 </template>
 
 <script>
+import AppsGridIcon from "./AppsGridIcon.vue";
+
 export default {
   name: "DashboardAppsGridWidget",
   props: {
     applications: {
       type: Array
     },
+    defaultIconUrl: {
+      type: String
+    },
     iconSize: {
       type: String,
       default: "80px"
     }
+  },
+  components: {
+    AppsGridIcon
   }
 };
 </script>

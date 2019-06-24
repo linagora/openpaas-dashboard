@@ -1,5 +1,9 @@
 <template>
-  <dashboard-apps-grid-widget :applications="apps" icon-size="80px"/>
+  <dashboard-apps-grid-widget
+    :applications="apps"
+    :default-icon-url="defaultIconUrl"
+    icon-size="80px"
+  />
 </template>
 
 <script>
@@ -40,6 +44,9 @@ export default {
           icon: this.buildUrl(application.icon)
         })
       );
+    },
+    defaultIconUrl() {
+      return this.buildUrl("/images/application.png");
     },
     ...mapState("applicationConfiguration", {
       openpaasUrl: state => state.baseUrl
