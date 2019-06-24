@@ -57,7 +57,10 @@ export default {
     dashboardNameRules: dashboardNameRulesAll
   }),
   computed: {
-    ...mapGetters({ currentUser: "user/getCurrentUser" }),
+    ...mapGetters({
+      currentUser: "user/getCurrentUser",
+      getDashboardName: "dashboards/getDashboardName"
+    }),
     canEdit() {
       return this.dashboard.id !== this.currentUser._id;
     }
@@ -76,7 +79,7 @@ export default {
     }
   },
   mounted: function() {
-    this.newDashboardName = this.dashboard.name;
+    this.newDashboardName = this.getDashboardName(this.dashboard);
   }
 };
 </script>

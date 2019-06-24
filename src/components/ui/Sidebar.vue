@@ -31,7 +31,7 @@
           <v-icon class="selected">dashboard</v-icon>
         </v-list-tile-avatar>
         <v-list-tile-content>
-          <v-list-tile-title class="selected" v-text="dashboard.name"></v-list-tile-title>
+          <v-list-tile-title class="selected" v-text="getDashboardName(dashboard)"></v-list-tile-title>
         </v-list-tile-content>
         <v-list-tile-action>
           <v-menu bottom left offset-y close-on-click>
@@ -67,6 +67,7 @@ export default {
     ...mapGetters({
       currentUser: "user/getCurrentUser",
       dashboard: "dashboards/getCurrentDashboard",
+      getDashboardName: "dashboards/getDashboardName",
       dashboards: "getDashboards"
     }),
     style: () => theme.colors
