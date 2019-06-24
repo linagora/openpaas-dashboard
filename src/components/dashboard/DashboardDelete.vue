@@ -5,7 +5,7 @@
     </v-list-tile>
     <v-dialog v-model="deleteDashboardDialog" width="300">
       <v-card data-test="dashboard-delete-dialog">
-        <v-card-text>
+        <v-card-text class="headline" >
           {{ $t("Delete dashboard?") }}
         </v-card-text>
 

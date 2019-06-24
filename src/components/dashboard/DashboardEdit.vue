@@ -5,6 +5,9 @@
     </v-list-tile>
     <v-dialog v-model="editDashboardDialog" width="300">
       <v-card>
+        <v-card-title>
+          <span class="headline">{{ $t('Edit dashboard') }}</span>
+        </v-card-title>
         <v-card-text>
           <v-form v-model="valid">
             <v-text-field
