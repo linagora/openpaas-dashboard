@@ -24,7 +24,7 @@
               </div>
               <div id="categories">
                 <v-chip
-                  v-for="category in card.categories"
+                  v-for="category in orderCategories(card.categories)"
                   :key="category"
                   small
                   color="primary"
@@ -71,6 +71,9 @@ export default {
   methods: {
     add() {
       this.$emit("add");
+    },
+    orderCategories(categories) {
+      return (categories || []).sort((a, b) => a.localeCompare(b));
     }
   }
 };
