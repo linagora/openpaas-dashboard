@@ -10,6 +10,7 @@
   "Name": "Nom",
   "Create": "Créer",
   "Create a new dashboard": "Créer un nouveau tableau de bord",
+  "Add a widget": "Ajouter un widget",
   "Add a new widget": "Ajouter un nouveau widget",
   "My dashboards": "Mes tableaux de bord",
   "Dashboard {name} has been created": "Le tableau de bord {name} a été créé",
@@ -20,5 +21,6 @@
   "Delete": "Supprimer",
   "There are no widgets": "Il n'y a pas de widgets",
   "Configure": "Configurer",
-  "Search...": "Rechercher..."
+  "Search...": "Rechercher...",
+  "Add a widget to dashboard": "Ajouter un widget au dashboard"
 }

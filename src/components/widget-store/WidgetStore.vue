@@ -1,23 +1,42 @@
 <template>
   <v-card color="grey lighten-4" data-test="widget-store">
+    <v-toolbar id="store-toolbar" dense color="blue" :dark="true" >
+      <v-spacer></v-spacer>
+      <v-toolbar-title>
+        {{$t("Add a widget")}}
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-card-actions class="store-toolbar-action">
+        <v-btn data-test="widget-dialog-close" flat fab @click="close()"><v-icon>close</v-icon></v-btn>
+      </v-card-actions>
+    </v-toolbar>
     <v-card-text>
-      <v-container fluid grid-list-lg>
+      <v-container fill-height fluid grid-list-lg pt-5>
         <v-layout row wrap>
-          <v-flex xs12 md6 lg4 v-for="card in cards" :key="card.type">
+          <v-flex xs4 md4 lg4 offset-xs4>
+            <v-select
+              :items="dashBoards"
+              item-text="name"
+              item-value="id"
+              v-on:change="changeTargetBoard"
+              :value="currentDashboard.id"
+              :label="$t('Add a widget to dashboard')"
+              color="blue"
+            >
+            </v-select>
+          </v-flex>
+          <v-flex xs12 md6 lg6 v-for="card in cards" :key="card.type" px-3>
             <widget-store-card :card="card" :counter="countInstanceOfType(card.type)" @add="useWidget(card)"/>
           </v-flex>
         </v-layout>
       </v-container>
     </v-card-text>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn data-test="widget-dialog-close" flat color="primary" @click="close()">{{$t("Close")}}</v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
 <script>
 import WidgetStoreCard from "./WidgetStoreCard.vue";
+import { routeNames } from "@/router";
 import { mapGetters } from "vuex";
 
 export default {
@@ -35,7 +54,9 @@ export default {
     ...mapGetters({
       getWidgetInstances: "widgets/getWidgetInstances",
       cards: "widgets/getStoreWidgets",
-      getSettings: "widgets/getWidgetSettings"
+      currentDashboard: "dashboards/getCurrentDashboard",
+      getSettings: "widgets/getWidgetSettings",
+      dashBoards: "dashboards/getAllDashboards"
     })
   },
   methods: {
@@ -47,6 +68,10 @@ export default {
     },
     close() {
       this.$emit("close");
+      this.$router.push({ name: routeNames.DASHBOARD, params: { id: this.currentDashboard.id } });
+    },
+    changeTargetBoard(uuid) {
+      this.$store.dispatch("dashboards/loadDashboard", uuid);
     }
   },
   components: {
@@ -54,3 +79,15 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+#store-toolbar
+  .store-toolbar-action
+    padding 0
+    button
+      padding 0
+      width: 40px;
+      height: 40px;
+  >>> div
+    padding 0
+</style>
