@@ -13,7 +13,9 @@
               <v-icon>add_circle_outline</v-icon>
             </v-btn>
             <v-list>
-              <open-widget-store v-if="dashboard" :dashboard="dashboard"/>
+              <v-list-tile data-test="dashboard-open-store" @click="openStore()">
+                {{$t("Add a new widget")}}
+              </v-list-tile>
               <dashboard-create-form/>
             </v-list>
           </v-menu>
@@ -52,7 +54,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { theme } from "@/style";
-import OpenWidgetStore from "@/components/widget-store/OpenWidgetStore.vue";
+import { routeNames } from "@/router";
 import DashboardCreateForm from "@/components/dashboard/DashboardCreateForm.vue";
 import DashboardDelete from "@/components/dashboard/DashboardDelete.vue";
 import DashboardEdit from "@/components/dashboard/DashboardEdit.vue";
@@ -75,10 +77,12 @@ export default {
   methods: {
     canDelete(dashboard) {
       return dashboard.id !== this.currentUser._id;
+    },
+    openStore() {
+      this.$router.push({ name: routeNames.STORE });
     }
   },
   components: {
-    OpenWidgetStore,
     DashboardCreateForm,
     DashboardDelete,
     DashboardEdit

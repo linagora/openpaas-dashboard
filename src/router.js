@@ -1,7 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Login from "@/views/Login.vue";
-import Dashboard from "@/views/Dashboard.vue";
+import Dashboard from "@/views/dashboard/Dashboard.vue";
+import DashboardSidebar from "@/views/dashboard/DashboardSidebar.vue";
+import WidgetStore from "@/views/widget-store/WidgetStore.vue";
+import WidgetStoreSidebar from "@/views/widget-store/WidgetStoreSidebar.vue";
 import ApplicationSettings from "@/services/application-settings";
 import { loadLanguage, getLocale } from "@/i18n";
 import store from "@/store";
@@ -11,7 +14,8 @@ Vue.use(Router);
 export const routeNames = Object.freeze({
   HOME: "Home",
   LOGIN: "Login",
-  DASHBOARD: "Dashboard"
+  DASHBOARD: "Dashboard",
+  STORE: "Store"
 });
 
 const router = new Router({
@@ -35,9 +39,28 @@ const router = new Router({
       }
     },
     {
+      path: "/store/:category?",
+      name: routeNames.STORE,
+      components: {
+        default: WidgetStore,
+        sidebar: WidgetStoreSidebar
+      },
+      props: {
+        default: true,
+        sidebar: true
+      },
+      meta: {
+        auth: true,
+        showToolbarExtension: true
+      }
+    },
+    {
       path: "/boards/:id?",
       name: routeNames.DASHBOARD,
-      component: Dashboard,
+      components: {
+        default: Dashboard,
+        sidebar: DashboardSidebar
+      },
       props: true,
       meta: {
         auth: true

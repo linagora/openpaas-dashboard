@@ -52,7 +52,8 @@ const getters = {
         return widget;
       })
       .filter(widget => !getters.isDisabled(widget));
-  }
+  },
+  getCategories: (state, getters) => [...new Set(getters.getStoreWidgets.map(card => card.categories).flat())]
 };
 
 export default {
