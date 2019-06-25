@@ -9,7 +9,7 @@
           <span class="headline">{{ $t('Edit dashboard') }}</span>
         </v-card-title>
         <v-card-text>
-          <v-form v-model="valid">
+          <v-form v-model="valid" @submit.prevent="edit(dashboard)">
             <v-text-field
               v-model="newDashboardName"
               :rules="dashboardNameRules"
@@ -73,12 +73,12 @@ export default {
       setTimeout(() => (this.editDashboardDialog = true));
     },
     async edit(dashboard) {
-      let newname = this.newDashboardName;
-
-      await this.$store.dispatch("renameDashboard", { dashboard, newname });
-      this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Dashboard has been edited"));
-
-      this.editDashboardDialog = false;
+      if (this.valid) {
+        let newname = this.newDashboardName;
+        await this.$store.dispatch("renameDashboard", { dashboard, newname });
+        this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Dashboard has been edited"));
+        this.editDashboardDialog = false;
+      }
     }
   },
   mounted: function() {
