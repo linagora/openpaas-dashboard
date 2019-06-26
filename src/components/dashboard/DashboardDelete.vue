@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-list-tile data-test="dashboard-delete-trigger" @click="openDialog()">
-      {{$t("Remove")}}
+      {{$t("Delete")}}
     </v-list-tile>
-    <v-dialog v-model="deleteDashboardDialog" width="300">
+    <v-dialog v-model="deleteDashboardDialog" max-width="500px">
       <v-card data-test="dashboard-delete-dialog">
         <v-card-text class="headline" >
           {{ $t("Delete dashboard?") }}

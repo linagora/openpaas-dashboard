@@ -3,7 +3,7 @@
     <v-list-tile @click="openDialog()">
       {{$t("Edit")}}
     </v-list-tile>
-    <v-dialog v-model="editDashboardDialog" width="300">
+    <v-dialog v-model="editDashboardDialog" max-width="500px">
       <v-card>
         <v-card-title>
           <span class="headline">{{ $t('Edit dashboard') }}</span>
