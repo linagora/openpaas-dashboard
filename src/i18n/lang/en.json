@@ -25,5 +25,10 @@
   "Add a widget to dashboard": "Add a widget to dashboard",
   "Main": "Main",
   "Edit dashboard": "Edit dashboard",
-  "Widgets store": "Widgets store"
+  "Widgets store": "Widgets store",
+  "count": {
+    "widget": {
+      "sidebar": "No widgets | One widget | {count} widgets"
+    }
+  }
 }
