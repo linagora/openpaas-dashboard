@@ -27,8 +27,9 @@
                   v-for="category in orderCategories(card.categories)"
                   :key="category"
                   @click="filterByCategory(category)"
+                  :color="borderColor"
                   class="button"
-                  small round color="primary" dark depressed>{{ category }}</v-btn>
+                  small outline round dark depressed>{{ category }}</v-btn>
               </div>
             </v-card-text>
           </div>
