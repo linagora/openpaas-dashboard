@@ -1,6 +1,7 @@
 import VueAxios from "vue-axios";
 import Vuetify from "vuetify";
 import VueMoment from "vue-moment";
+import PortalVue from "portal-vue";
 
 import App from "@/App";
 import router from "@/router";
@@ -22,6 +23,8 @@ function applicationInit(VueInstance, { auth = servicesAuth, theme = appTheme.co
   VueInstance.use(VueOpenPaaS, { api });
 
   VueInstance.use(VueAxios, api.client);
+
+  VueInstance.use(PortalVue);
 
   VueInstance.router = router;
 
