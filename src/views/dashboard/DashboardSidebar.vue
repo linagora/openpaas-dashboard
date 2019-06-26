@@ -30,7 +30,12 @@
         data-test="sidebar-dashboard-item"
       >
         <v-list-tile-avatar>
-          <v-icon class="selected">dashboard</v-icon>
+          <v-tooltip top>
+            <template v-slot:activator="{ on }">
+              <v-icon class="selected" v-on="on">dashboard</v-icon>
+            </template>
+            <span>{{ $tc("count.widget.sidebar", countWidgets(dashboard)) }}</span>
+          </v-tooltip>
         </v-list-tile-avatar>
         <v-list-tile-content>
           <v-list-tile-title class="selected" v-text="getDashboardName(dashboard)"></v-list-tile-title>
@@ -80,6 +85,9 @@ export default {
     },
     openStore() {
       this.$router.push({ name: routeNames.STORE });
+    },
+    countWidgets(dashboard) {
+      return (dashboard.widgets && dashboard.widgets.length) || 0;
     }
   },
   components: {

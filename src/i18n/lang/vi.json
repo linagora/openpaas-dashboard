@@ -25,5 +25,10 @@
   "Add a widget to dashboard": "Thêm một tiện ích vào bảng điều khiển",
   "Main": "Chủ yếu",
   "Edit dashboard": "Chỉnh sửa bảng điều khiển",
-  "Widgets store": "Cửa hàng widget"
+  "Widgets store": "Cửa hàng widget",
+  "count": {
+    "widget": {
+      "sidebar": "Không có vật dụng | Một widget | {count} vật dụng"
+    }
+  }
 }

@@ -25,5 +25,10 @@
   "Add a widget to dashboard": "Ajouter un widget au dashboard",
   "Main": "Principal",
   "Edit dashboard": "Edition du tableau de bord",
-  "Widgets store": "Magasin de widgets"
+  "Widgets store": "Magasin de widgets",
+  "count": {
+    "widget": {
+      "sidebar": "Pas de widgets | Un widget | {count} widgets"
+    }
+  }
 }
