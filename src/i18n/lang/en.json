@@ -32,5 +32,7 @@
       "used": "Not used | Used one time | Used {count} times",
       "sidebar": "No widgets | One widget | {count} widgets"
     }
-  }
+  },
+  "Go to home page": "Go to home page",
+  "We couldn't find this page": "We couldn't find this page"
 }

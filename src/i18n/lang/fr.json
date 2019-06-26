@@ -32,5 +32,7 @@
       "used": "Non utilisé | Utilisé une fois | Utilisé {count} fois",
       "sidebar": "Pas de widgets | Un widget | {count} widgets"
     }
-  }
+  },
+  "Go to home page": "Aller à la page d'accueil",
+  "We couldn't find this page": "Nous n'avons pas trouvé cette page"
 }

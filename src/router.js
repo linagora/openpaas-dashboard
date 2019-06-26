@@ -5,6 +5,7 @@ import Dashboard from "@/views/dashboard/Dashboard.vue";
 import DashboardSidebar from "@/views/dashboard/DashboardSidebar.vue";
 import WidgetStore from "@/views/widget-store/WidgetStore.vue";
 import WidgetStoreSidebar from "@/views/widget-store/WidgetStoreSidebar.vue";
+import NotFound from "@/views/NotFound.vue";
 import ApplicationSettings from "@/services/application-settings";
 import { loadLanguage, getLocale } from "@/i18n";
 import store from "@/store";
@@ -15,7 +16,8 @@ export const routeNames = Object.freeze({
   HOME: "Home",
   LOGIN: "Login",
   DASHBOARD: "Dashboard",
-  STORE: "Store"
+  STORE: "Store",
+  NOTFOUND: "NotFound"
 });
 
 const router = new Router({
@@ -90,6 +92,11 @@ const router = new Router({
 
         next();
       }
+    },
+    {
+      path: "*",
+      name: routeNames.NOTFOUND,
+      component: NotFound
     }
   ]
 });
