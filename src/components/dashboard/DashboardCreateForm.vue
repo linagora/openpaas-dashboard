@@ -21,13 +21,17 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
+                data-test="dashboard-create-dialog-cancel"
+                color="primary"
+                flat
+                @click="cancel()"
+              >{{$t("Cancel")}}</v-btn>
+              <v-btn
                 flat
                 color="primary"
                 :disabled="!newDashboardName || !valid"
                 data-test="dashboard-create-form-button"
-                @click="create">
-                {{ $t('Create') }}
-              </v-btn>
+                @click="create">{{ $t('Create') }}</v-btn>
             </v-card-actions>
           </v-form>
         </v-card-text>
@@ -50,6 +54,10 @@ export default {
   methods: {
     openDialog() {
       setTimeout(() => (this.dashboardDialog = true));
+    },
+    cancel() {
+      this.dashboardDialog = false;
+      this.newDashboardName = "";
     },
     async create() {
       if (this.valid) {
