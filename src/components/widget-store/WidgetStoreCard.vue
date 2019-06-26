@@ -1,5 +1,5 @@
 <template>
-  <v-card data-test="widget-card" height="110" flat id="card" :style="{  borderLeftColor: borderColor }">
+  <v-card data-test="widget-card" min-height="110" flat id="card" :style="{  borderLeftColor: borderColor }">
     <div id="icon" v-if="card.icon">
       <v-icon>{{card.icon}}</v-icon>
     </div>
@@ -9,18 +9,18 @@
           <template v-slot:activator="{ on }">
             <span v-on="on" >{{ counter }}</span>
           </template>
-          <span>{{ `Used ${counter} times` }}</span>
+          <span>{{ $tc("count.widget.used", counter) }}</span>
         </v-tooltip>
       </template>
       <v-container id="cardcontainer" fluid grid-list-lg>
-        <v-layout row wrap>
+        <v-layout row>
           <div class="meta">
             <v-card-text class="text-xs-left pa-0">
               <div id="title">
-                <span class="headline font-weight-bold grey--text text--darken-1">{{$t(card.title)}}</span>
+                <span class="title font-weight-bold grey--text text--darken-1">{{$t(card.title)}}</span>
               </div>
               <div id="description">
-                <span class="title grey--text">{{$t(card.description)}}</span>
+                <span class="subheading grey--text">{{$t(card.description)}}</span>
               </div>
               <div id="categories">
                 <v-btn
@@ -35,12 +35,21 @@
           <div class="actions pr-1">
             <v-card-actions>
               <v-layout align-end justify-end>
-                <v-btn
-                  data-test="widget-card-add"
-                  @click="add" color="primary" :disabled="!card.available" fab dark depressed
-                >
-                  <v-icon dark size="50">add</v-icon>
-                </v-btn>
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      v-on="on"
+                      data-test="widget-card-add"
+                      @click="add"
+                      color="primary"
+                      :disabled="!card.available"
+                      fab dark depressed
+                    >
+                      <v-icon dark>add</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>{{ $t("Use this widget") }}</span>
+                </v-tooltip>
               </v-layout>
             </v-card-actions>
           </div>

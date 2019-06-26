@@ -26,8 +26,10 @@
   "Main": "Chủ yếu",
   "Edit dashboard": "Chỉnh sửa bảng điều khiển",
   "Widgets store": "Cửa hàng widget",
+  "Use this widget": "Sử dụng tiện ích này",
   "count": {
     "widget": {
+      "used": "Không được sử dụng | Sử dụng một lần | Sử dụng {count} lần",
       "sidebar": "Không có vật dụng | Một widget | {count} vật dụng"
     }
   }
