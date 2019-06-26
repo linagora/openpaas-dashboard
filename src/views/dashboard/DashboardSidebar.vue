@@ -12,7 +12,7 @@
             <v-btn slot="activator" flat icon ripple data-test="dashboard-sidebar-actions">
               <v-icon>add_circle_outline</v-icon>
             </v-btn>
-            <v-list>
+            <v-list class="pa-0">
               <v-list-tile data-test="dashboard-open-store" @click="openStore()">
                 {{$t("Add a new widget")}}
               </v-list-tile>
@@ -36,11 +36,11 @@
           <v-list-tile-title class="selected" v-text="getDashboardName(dashboard)"></v-list-tile-title>
         </v-list-tile-content>
         <v-list-tile-action>
-          <v-menu bottom left offset-y close-on-click>
+          <v-menu bottom left offset-y close-on-click min-width="150px">
             <v-btn data-test="dashboard-operations" slot="activator" flat icon ripple @click.native.prevent>
               <v-icon>more_vert</v-icon>
             </v-btn>
-            <v-list>
+            <v-list class="pa-0">
               <dashboard-edit v-if="dashboard" :dashboard="dashboard"/>
               <dashboard-delete v-if="dashboard && canDelete(dashboard)" :dashboard="dashboard"/>
             </v-list>
