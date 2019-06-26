@@ -53,7 +53,12 @@ const getters = {
       })
       .filter(widget => !getters.isDisabled(widget));
   },
-  getCategories: (state, getters) => [...new Set(getters.getStoreWidgets.map(card => card.categories).flat())]
+  getCategories: (state, getters) => [...new Set(getters.getStoreWidgets.map(card => card.categories).flat())],
+  getCategorySize: (state, getters) => category =>
+    getters.getStoreWidgets
+      .map(card => card.categories)
+      .flat()
+      .filter(element => element === category).length
 };
 
 export default {
