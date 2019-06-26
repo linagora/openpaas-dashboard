@@ -32,5 +32,7 @@
       "used": "Không được sử dụng | Sử dụng một lần | Sử dụng {count} lần",
       "sidebar": "Không có vật dụng | Một widget | {count} vật dụng"
     }
-  }
+  },
+  "Go to home page": "Về trang chủ",
+  "We couldn't find this page": "Chúng tôi không thể tìm thấy trang này"
 }
