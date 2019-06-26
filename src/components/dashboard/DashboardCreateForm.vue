@@ -3,7 +3,7 @@
     <v-list-tile data-test="dashboard-create-item" @click="openDialog()">
       {{$t("Create a new dashboard")}}
     </v-list-tile>
-    <v-dialog v-model="dashboardDialog" scrollable max-width="800px">
+    <v-dialog v-model="dashboardDialog" scrollable max-width="500px">
       <v-card color="grey lighten-4" data-test="dashboard-create-dialog">
         <v-card-title>
         <span class="headline">{{ $t('Create a new dashboard') }}</span>
