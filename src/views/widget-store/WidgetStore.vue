@@ -1,9 +1,9 @@
 <template>
-  <v-container fill-height fluid grid-list-lg pa-5>
+  <v-container fill-height fluid grid-list-lg pa-5 data-test="widget-store">
     <widget-store :dashboard="dashboard" :category="category"/>
     <portal to="toolbar-extension">
       <v-spacer></v-spacer>
-      <v-btn icon @click="close">
+      <v-btn icon @click="close" data-test="widget-store-close">
         <v-icon>close</v-icon>
       </v-btn>
     </portal>
