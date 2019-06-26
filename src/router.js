@@ -52,6 +52,15 @@ const router = new Router({
       meta: {
         auth: true,
         showToolbarExtension: true
+      },
+      beforeEnter: async (to, from, next) => {
+        await store.getters["session/ready"];
+
+        if (!store.state.dashboard.dashboards || store.state.dashboard.dashboards.length === 0) {
+          return next({ name: routeNames.DASHBOARD });
+        }
+
+        next();
       }
     },
     {
