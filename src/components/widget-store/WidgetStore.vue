@@ -17,7 +17,11 @@
     <v-layout row wrap>
       <transition-group name="fade" tag="div" class="layout row wrap">
         <v-flex xs12 md6 v-for="card in cards" :key="card.type">
-          <widget-store-card :card="card" :counter="countInstanceOfType(card.type)" @add="useWidget(card)"/>
+          <widget-store-card
+            :card="card"
+            :counter="countInstanceOfType(card.type)"
+            @add="useWidget(card)"
+            @filter="applyFilter"/>
         </v-flex>
       </transition-group>
     </v-layout>
@@ -68,6 +72,9 @@ export default {
     },
     changeTargetBoard(uuid) {
       this.$store.dispatch("dashboards/loadDashboard", uuid);
+    },
+    applyFilter(filter) {
+      this.$emit("filter", filter);
     }
   },
   components: {

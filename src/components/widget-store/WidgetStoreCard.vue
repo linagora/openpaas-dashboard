@@ -23,13 +23,12 @@
                 <span class="title grey--text">{{$t(card.description)}}</span>
               </div>
               <div id="categories">
-                <v-chip
+                <v-btn
                   v-for="category in orderCategories(card.categories)"
                   :key="category"
-                  small
-                  color="primary"
-                  text-color="white"
-                >{{ category }}</v-chip>
+                  @click="filterByCategory(category)"
+                  class="button"
+                  small round color="primary" dark depressed>{{ category }}</v-btn>
               </div>
             </v-card-text>
           </div>
@@ -74,6 +73,9 @@ export default {
     },
     orderCategories(categories) {
       return (categories || []).sort((a, b) => a.localeCompare(b));
+    },
+    filterByCategory(category) {
+      this.$emit("filter", { category });
     }
   }
 };
@@ -105,6 +107,12 @@ export default {
 
 #cardcontainer
   padding:15px
+
+#categories
+  .button
+    text-transform: unset
+    font-weight: unset
+    height: 24px
 
 span
   >>> span#badge

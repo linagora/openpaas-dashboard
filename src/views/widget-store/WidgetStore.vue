@@ -1,6 +1,9 @@
 <template>
   <v-container fill-height fluid grid-list-lg pa-5 data-test="widget-store">
-    <widget-store :dashboard="dashboard" :category="category"/>
+    <widget-store
+      :dashboard="dashboard"
+      :category="category"
+      @filter="applyFilter"/>
     <portal to="toolbar-extension">
       <v-spacer></v-spacer>
       <v-btn icon @click="close" data-test="widget-store-close">
@@ -33,6 +36,9 @@ export default {
   methods: {
     close() {
       this.$router.push({ name: routeNames.DASHBOARD, params: { id: this.dashboard.id } });
+    },
+    applyFilter(filter) {
+      this.$router.push({ name: routeNames.STORE, params: { category: filter.category } });
     }
   }
 };
