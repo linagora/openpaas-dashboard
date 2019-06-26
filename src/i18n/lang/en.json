@@ -26,8 +26,10 @@
   "Main": "Main",
   "Edit dashboard": "Edit dashboard",
   "Widgets store": "Widgets store",
+  "Use this widget": "Use this widget",
   "count": {
     "widget": {
+      "used": "Not used | Used one time | Used {count} times",
       "sidebar": "No widgets | One widget | {count} widgets"
     }
   }

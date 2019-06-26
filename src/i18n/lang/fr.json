@@ -26,8 +26,10 @@
   "Main": "Principal",
   "Edit dashboard": "Edition du tableau de bord",
   "Widgets store": "Magasin de widgets",
+  "Use this widget": "Utiliser ce widget",
   "count": {
     "widget": {
+      "used": "Non utilisé | Utilisé une fois | Utilisé {count} fois",
       "sidebar": "Pas de widgets | Un widget | {count} widgets"
     }
   }
