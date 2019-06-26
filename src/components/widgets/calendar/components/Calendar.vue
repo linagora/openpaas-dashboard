@@ -4,19 +4,19 @@
       <v-layout align-end justify-end>
         <v-tooltip top>
           <template v-slot:activator="{ on }">
-            <v-btn v-on="on" fab depressed small v-on:click="$refs.calendar.prev()">
+            <v-btn v-on="on" fab depressed small @click="$refs.calendar.prev()">
               <v-icon>arrow_back</v-icon>
             </v-btn>
           </template>
-          <span>Previous</span>
+          <span>{{ $t("Previous") }}</span>
         </v-tooltip>
         <v-tooltip top>
           <template v-slot:activator="{ on }">
-            <v-btn v-on="on" fab depressed small v-on:click="today()">
+            <v-btn v-on="on" fab depressed small @click="today()">
               <v-icon>today</v-icon>
             </v-btn>
           </template>
-          <span>Today</span>
+          <span>{{ $t("Today") }}</span>
         </v-tooltip>
         <v-tooltip top>
           <template v-slot:activator="{ on }">
@@ -24,7 +24,7 @@
               <v-icon>arrow_forward</v-icon>
             </v-btn>
           </template>
-          <span>Next</span>
+          <span>{{ $t("Next") }}</span>
         </v-tooltip>
       </v-layout>
     </v-flex>
@@ -45,7 +45,7 @@
                   <v-card-title primary-title>
                     <div>
                       <h3 class="headline mb-0" v-html="event.summary"></h3>
-                      <span>From {{event.startTime}} to {{event.endTime}}</span>
+                      <span>{{event.startTime}} - {{event.endTime}}</span>
                     </div>
                   </v-card-title>
                 </v-card>
@@ -66,7 +66,7 @@
                   <v-card-title primary-title>
                     <div>
                       <h3 class="headline mb-0" v-html="event.summary"></h3>
-                      <span>From {{event.startTime}} to {{event.endTime}}</span>
+                      <span>{{event.startTime}} - {{event.endTime}}</span>
                     </div>
                   </v-card-title>
                 </v-card>
@@ -124,7 +124,7 @@ export default {
       return map;
     },
     events() {
-      return this.$store.state.calendar.events.list.slice().reverse();
+      return this.$store.state.calendar.events.slice().reverse();
     },
     ...mapGetters("session", { sessionReady: "ready" })
   },
@@ -146,6 +146,7 @@ export default {
       this.fetchEvents({ start, end });
     },
     fetchEvents({ start, end }) {
+      this.$store.dispatch("resetEvents");
       this.$emit("loading", true);
       this.$store
         .dispatch("fetchEvents", {
@@ -156,6 +157,7 @@ export default {
     },
     today() {
       this.start = moment().format("YYYY-MM-DD");
+      this.fetchEvents({ start: moment(), end: moment().add(1, "d") });
     }
   }
 };

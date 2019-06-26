@@ -1,13 +1,13 @@
+import Vue from "vue";
 import CalendarClient from "./services/client";
 
 const initialState = () => ({
-  events: {
-    list: []
-  }
+  events: []
 });
 
 const types = {
   SET_EVENTS: "SET_EVENTS",
+  ADD_EVENTS: "ADD_EVENTS",
   RESET_EVENTS: "RESET_EVENTS"
 };
 
@@ -19,7 +19,19 @@ const actions = {
       rootState.user.user._id
     );
 
-    return client.getEvents(rootState.user.user._id, start, end).then(events => commit(types.SET_EVENTS, events));
+    return client
+      .getCalendars()
+      .then(calendars =>
+        Promise.all(
+          calendars.map(calendar =>
+            client.getEvents(calendar._links.self.href, start, end).then(events => commit(types.ADD_EVENTS, events))
+          )
+        )
+      );
+  },
+
+  resetEvents: ({ commit }) => {
+    commit(types.SET_EVENTS, []);
   },
 
   resetCalendarState: ({ commit }) => {
@@ -28,8 +40,14 @@ const actions = {
 };
 
 const mutations = {
+  [types.ADD_EVENTS](state, events) {
+    if (events && events.length) {
+      Vue.set(state, "events", [...state.events, ...events]);
+    }
+  },
+
   [types.SET_EVENTS](state, events) {
-    state.events.list = events;
+    Vue.set(state, "events", events);
   },
 
   [types.RESET_EVENTS](state) {

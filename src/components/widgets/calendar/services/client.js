@@ -18,23 +18,28 @@ export default class CalendarClient {
     });
   }
 
-  getEvents(calendarId, start, end) {
+  getCalendars() {
+    return this.client({
+      method: "GET",
+      url: `/dav/api/calendars/${this.userId}.json`
+    }).then(({ data }) => (data._embedded && data._embedded["dav:calendar"]) || []);
+  }
+
+  getEvents(path, start, end) {
     return this.client({
       method: "REPORT",
-      url: `/dav/api/calendars/${this.userId}/${calendarId}.json`,
+      url: `/dav/api${path}`,
       data: { match: { start, end } }
     }).then(({ data }) => {
       const events = (data._embedded && data._embedded["dav:item"]) || [];
 
-      return events.reduce(function(shells, icaldata) {
-        var vcalendar = new ICAL.Component(icaldata.data);
-        var vevents = vcalendar.getAllSubcomponents("vevent");
+      return events.reduce((shells, icaldata) => {
+        const vcalendar = new ICAL.Component(icaldata.data);
+        const vevents = vcalendar.getAllSubcomponents("vevent");
 
-        vevents.forEach(function(vevent) {
-          var shell = new Event(vevent, { path: icaldata._links.self.href, etag: icaldata.etag });
-
-          shells.push(shell);
-        });
+        vevents.forEach(vevent =>
+          shells.push(new Event(vevent, { path: icaldata._links.self.href, etag: icaldata.etag }))
+        );
 
         return shells;
       }, []);
