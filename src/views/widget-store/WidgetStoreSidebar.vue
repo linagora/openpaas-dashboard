@@ -25,7 +25,15 @@
         data-test="sidebar-dashboard-item"
       >
         <v-list-tile-content>
-          <v-list-tile-title class="selected">{{ category }}</v-list-tile-title>
+          <v-list-tile-title class="selected with-badge">
+            <span>{{ category }}</span>
+            <v-spacer/>
+            <v-chip
+              v-if="getCategorySize(category)"
+              :color="badgeColor"
+              small text-color="white"
+            >{{ getCategorySize(category) }}</v-chip>
+          </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
@@ -40,7 +48,8 @@ export default {
   name: "WidgetStoreSidebar",
   data: () => ({
     borderColor: theme.colors.blue.base,
-    titleColor: theme.colors.blue.base
+    titleColor: theme.colors.blue.base,
+    badgeColor: theme.colors.blue.base
   }),
   props: {
     category: {
@@ -49,7 +58,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      categories: "widgets/getCategories"
+      categories: "widgets/getCategories",
+      getCategorySize: "widgets/getCategorySize"
     })
   }
 };
@@ -72,4 +82,10 @@ export default {
     .selected
       color: $color
 
+  .with-badge
+    display: flex
+
+    .v-chip
+      margin-top: 0
+      margin-bottom: 0
 </style>
