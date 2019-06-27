@@ -46,8 +46,12 @@
               <v-icon>more_vert</v-icon>
             </v-btn>
             <v-list class="pa-0">
-              <dashboard-edit v-if="dashboard" :dashboard="dashboard"/>
-              <dashboard-delete v-if="dashboard && canDelete(dashboard)" :dashboard="dashboard"/>
+              <dashboard-edit :dashboard="dashboard"/>
+              <v-list-tile @click="openStore(dashboard)">
+                {{$t("Add a new widget")}}
+              </v-list-tile>
+              <v-divider/>
+              <dashboard-delete v-if="canDelete(dashboard)" :dashboard="dashboard"/>
             </v-list>
           </v-menu>
         </v-list-tile-action>
@@ -83,7 +87,10 @@ export default {
     canDelete(dashboard) {
       return dashboard.id !== this.currentUser._id;
     },
-    openStore() {
+    openStore(dashboard) {
+      if (dashboard) {
+        this.$store.dispatch("dashboards/loadDashboard", dashboard.id);
+      }
       this.$router.push({ name: routeNames.STORE });
     },
     countWidgets(dashboard) {
