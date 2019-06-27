@@ -26,7 +26,7 @@
       >
         <v-list-tile-content>
           <v-list-tile-title class="selected with-badge">
-            <span>{{ category }}</span>
+            <span>{{ getCategoryName(category) }}</span>
             <v-spacer/>
             <v-chip
               v-if="getCategorySize(category)"
@@ -43,9 +43,11 @@
 <script>
 import { mapGetters } from "vuex";
 import { theme } from "@/style";
+import CategoryMixin from "@/mixins/category";
 
 export default {
   name: "WidgetStoreSidebar",
+  mixins: [CategoryMixin],
   data: () => ({
     borderColor: theme.colors.blue.base,
     titleColor: theme.colors.blue.base,
