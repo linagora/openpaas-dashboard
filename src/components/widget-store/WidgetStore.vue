@@ -81,8 +81,8 @@ export default {
     countInstanceOfType(cardType) {
       return (this.getWidgetInstances(cardType, this.dashboard) || []).length;
     },
-    changeTargetBoard(uuid) {
-      this.$store.dispatch("dashboards/loadDashboard", uuid);
+    changeTargetBoard(dashboardId) {
+      this.$store.dispatch("dashboards/loadDashboard", dashboardId);
     },
     applyFilter(filter) {
       this.$emit("filter", filter);
