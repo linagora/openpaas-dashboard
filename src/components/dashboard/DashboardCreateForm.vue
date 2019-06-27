@@ -60,7 +60,11 @@ export default {
       this.newDashboardName = "";
     },
     async create() {
-      if (this.valid) {
+      if (!this.valid) {
+        return;
+      }
+
+      try {
         const newDashboard = await this.$store.dispatch("addDashboard", { name: this.newDashboardName, widgets: [] });
 
         this.$store.dispatch(
@@ -71,6 +75,9 @@ export default {
         this.dashboardDialog = false;
         this.newDashboardName = "";
         this.$router.push({ name: routeNames.DASHBOARD, params: { id: newDashboard.id } });
+      } catch (err) {
+        console.log("Error while creating dashboard", err);
+        this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Error while creating dashboard, please try again"));
       }
     }
   }

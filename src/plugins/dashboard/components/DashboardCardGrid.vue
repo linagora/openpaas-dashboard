@@ -111,7 +111,9 @@ export default {
         .filter(f => f.isActive())
         .map(f => f.getElement().id);
 
-      this.$store.dispatch("setCardsOrder", { cards, dashboard: this.dashboard });
+      this.$store
+        .dispatch("setCardsOrder", { cards, dashboard: this.dashboard })
+        .catch(err => console.log("Error while ordering cards", err));
     },
     removeCard(card) {
       const element = this.$refs[card.id];
@@ -127,7 +129,10 @@ export default {
           if (widget && widget.hooks && widget.hooks.onRemove) {
             widget.hooks.onRemove(this.$store);
           }
-          this.$store.dispatch("removeCard", { card, dashboard: this.dashboard });
+          this.$store.dispatch("removeCard", { card, dashboard: this.dashboard }).catch(err => {
+            console.log("Error while removing widget", err);
+            this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Error while removing widget"));
+          });
         }
       });
     },

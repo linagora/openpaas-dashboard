@@ -58,9 +58,14 @@ export default {
       setTimeout(() => (this.deleteDashboardDialog = true));
     },
     async remove(dashboard) {
-      await this.$store.dispatch("removeDashboard", dashboard);
-      this.deleteDashboardDialog = false;
-      this.$router.push({ name: routeNames.DASHBOARD });
+      try {
+        await this.$store.dispatch("removeDashboard", dashboard);
+        this.deleteDashboardDialog = false;
+        this.$router.push({ name: routeNames.DASHBOARD });
+      } catch (err) {
+        console.log("Error while deleting dashboard", err);
+        this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Error while removing dashboard"));
+      }
     }
   }
 };

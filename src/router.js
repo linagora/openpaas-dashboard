@@ -81,7 +81,12 @@ const router = new Router({
         await store.dispatch("widgets/getSettings");
 
         if (!store.state.dashboard.dashboards || store.state.dashboard.dashboards.length === 0) {
-          await store.dispatch("loadDashboards");
+          try {
+            await store.dispatch("loadDashboards");
+          } catch (err) {
+            // Do not break the flow, let next to be called correctly
+            console.log("Error while loading dashboards", err);
+          }
         }
 
         if (!to.params.id) {

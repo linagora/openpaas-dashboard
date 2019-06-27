@@ -54,7 +54,7 @@ const VueDashboard = {
           return;
         }
 
-        store.dispatch("addCard", {
+        return store.dispatch("addCard", {
           card: {
             id: uuidv4(),
             type: card.type,

@@ -73,11 +73,19 @@ export default {
       setTimeout(() => (this.editDashboardDialog = true));
     },
     async edit(dashboard) {
-      if (this.valid) {
+      if (!this.valid) {
+        return;
+      }
+
+      try {
         let newname = this.newDashboardName;
+
         await this.$store.dispatch("renameDashboard", { dashboard, newname });
         this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Dashboard has been edited"));
         this.editDashboardDialog = false;
+      } catch (err) {
+        console.log("Error while editing dashboard", err);
+        this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Error while editing dashboard"));
       }
     }
   },

@@ -24,15 +24,23 @@ const actions = {
   addCard({ commit }, { card, dashboard }) {
     commit(types.ADD_CARD, card);
     commit(types.ADD_CARD_TO_DASHBOARD, { card, dashboard });
+
+    return Promise.resolve();
   },
 
   removeCard({ commit }, { card, dashboard }) {
-    commit(types.REMOVE_CARD, card);
-    commit(types.REMOVE_CARD_FROM_DASHBOARD, { card, dashboard });
+    return new Promise(resolve => {
+      commit(types.REMOVE_CARD, card);
+      commit(types.REMOVE_CARD_FROM_DASHBOARD, { card, dashboard });
+      resolve();
+    });
   },
 
   setCardsOrder({ commit }, { cards, dashboard }) {
-    commit(types.ORDER_CARDS, { cards, dashboard });
+    return new Promise(resolve => {
+      commit(types.ORDER_CARDS, { cards, dashboard });
+      resolve();
+    });
   },
 
   addDashboard({ commit }, dashboard) {
@@ -46,15 +54,24 @@ const actions = {
   },
 
   removeDashboard({ commit }, dashboard) {
-    commit(types.REMOVE_DASHBOARD, dashboard);
+    return new Promise(resolve => {
+      commit(types.REMOVE_DASHBOARD, dashboard);
+      resolve();
+    });
   },
 
   renameDashboard({ commit }, { dashboard, newname }) {
-    commit(types.RENAME_DASHBOARD, { dashboard, newname });
+    return new Promise(resolve => {
+      commit(types.RENAME_DASHBOARD, { dashboard, newname });
+      resolve();
+    });
   },
 
   updateCardSettings({ commit }, { card, settings }) {
-    commit(types.UPDATE_CARD_SETTINGS, { card, settings });
+    return new Promise(resolve => {
+      commit(types.UPDATE_CARD_SETTINGS, { card, settings });
+      resolve();
+    });
   }
 };
 
