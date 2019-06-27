@@ -34,5 +34,6 @@
     }
   },
   "Go to home page": "Aller à la page d'accueil",
-  "We couldn't find this page": "Nous n'avons pas trouvé cette page"
+  "We couldn't find this page": "Nous n'avons pas trouvé cette page",
+  "This dashboard does not exist": "Ce tableau de bord n'existe pas"
 }
