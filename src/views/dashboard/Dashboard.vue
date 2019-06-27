@@ -1,8 +1,12 @@
 <template>
   <v-container fluid>
-    <div class="dashboard">
+    <div v-if="dashboard" class="dashboard">
       <dashboard-card-grid :cards="cards" :dashboard="dashboard" :key="dashboard.id"/>
     </div>
+    <span v-else class="not-found-dashboard display-1 font-weight-thin">
+      {{$t("This dashboard does not exist")}}
+      <router-link to="/">{{$t("Go to home page")}}</router-link>
+    </span>
   </v-container>
 </template>
 
@@ -69,4 +73,10 @@ card-width = 430px
     width: card-width * 4;
   }
 }
+.not-found-dashboard
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  justify-content: center;
 </style>
