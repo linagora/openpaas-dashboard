@@ -27,12 +27,6 @@
   "Edit dashboard": "Edition du tableau de bord",
   "Widgets store": "Magasin de widgets",
   "Use this widget": "Utiliser ce widget",
-  "count": {
-    "widget": {
-      "used": "Non utilisé | Utilisé une fois | Utilisé {count} fois",
-      "sidebar": "Pas de widgets | Un widget | {count} widgets"
-    }
-  },
   "Go to home page": "Aller à la page d'accueil",
   "We couldn't find this page": "Nous n'avons pas trouvé cette page",
   "This dashboard does not exist": "Ce tableau de bord n'existe pas",
@@ -41,5 +35,58 @@
   "Error while removing widget": "Error lors de la suppression du widget",
   "Error while creating dashboard, please try again": "Erreur lors de la création du tableau de bord, veuillez essayer à nouveau",
   "Error while removing dashboard": "Erreur lors de la suppression du tableau de bord",
-  "Error while editing dashboard": "Erreur lors de l'édition du tableau de bord"
+  "Error while editing dashboard": "Erreur lors de l'édition du tableau de bord",
+  "count": {
+    "widget": {
+      "used": "Non utilisé | Utilisé une fois | Utilisé {count} fois",
+      "sidebar": "Pas de widgets | Un widget | {count} widgets"
+    }
+  },
+  "category": {
+    "calendar": {
+      "name": "Calendrier"
+    },
+    "openpaas": {
+      "name": "OpenPaaS"
+    },
+    "clock": {
+      "name": "Horloge"
+    },
+    "contact": {
+      "name": "Contact"
+    },
+    "cryptocurrency": {
+      "name": "Cryptomonnaie"
+    },
+    "email": {
+      "name": "Email"
+    },
+    "github": {
+      "name": "Github"
+    },
+    "social": {
+      "name": "Social"
+    },
+    "developer": {
+      "name": "Developpeur"
+    },
+    "news": {
+      "name": "Nouvelles"
+    },
+    "google": {
+      "name": "Google"
+    },
+    "tools": {
+      "name": "Outils"
+    },
+    "rss": {
+      "name": "RSS"
+    },
+    "twitter": {
+      "name": "Twitter"
+    },
+    "weather": {
+      "name": "Météo"
+    }
+  }
 }

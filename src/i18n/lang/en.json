@@ -27,12 +27,6 @@
   "Edit dashboard": "Edit dashboard",
   "Widgets store": "Widgets store",
   "Use this widget": "Use this widget",
-  "count": {
-    "widget": {
-      "used": "Not used | Used one time | Used {count} times",
-      "sidebar": "No widgets | One widget | {count} widgets"
-    }
-  },
   "Go to home page": "Go to home page",
   "We couldn't find this page": "We couldn't find this page",
   "This dashboard does not exist": "This dashboard does not exist",
@@ -41,5 +35,58 @@
   "Error while removing widget": "Error while removing widget",
   "Error while creating dashboard, please try again": "Error while creating dashboard, please try again",
   "Error while removing dashboard": "Error while removing dashboard",
-  "Error while editing dashboard": "Error while editing dashboard"
+  "Error while editing dashboard": "Error while editing dashboard",
+  "count": {
+    "widget": {
+      "used": "Not used | Used one time | Used {count} times",
+      "sidebar": "No widgets | One widget | {count} widgets"
+    }
+  },
+  "category": {
+    "calendar": {
+      "name": "Calendar"
+    },
+    "openpaas": {
+      "name": "OpenPaaS"
+    },
+    "clock": {
+      "name": "Clock"
+    },
+    "contact": {
+      "name": "Contact"
+    },
+    "cryptocurrency": {
+      "name": "Cryptocurrency"
+    },
+    "email": {
+      "name": "Email"
+    },
+    "github": {
+      "name": "Github"
+    },
+    "social": {
+      "name": "Social"
+    },
+    "developer": {
+      "name": "Developer"
+    },
+    "news": {
+      "name": "News"
+    },
+    "google": {
+      "name": "Google"
+    },
+    "tools": {
+      "name": "Tools"
+    },
+    "rss": {
+      "name": "RSS"
+    },
+    "twitter": {
+      "name": "Twitter"
+    },
+    "weather": {
+      "name": "Weather"
+    }
+  }
 }

@@ -27,12 +27,6 @@
   "Edit dashboard": "Chỉnh sửa bảng điều khiển",
   "Widgets store": "Cửa hàng widget",
   "Use this widget": "Sử dụng tiện ích này",
-  "count": {
-    "widget": {
-      "used": "Không được sử dụng | Sử dụng một lần | Sử dụng {count} lần",
-      "sidebar": "Không có vật dụng | Một widget | {count} vật dụng"
-    }
-  },
   "Go to home page": "Về trang chủ",
   "We couldn't find this page": "Chúng tôi không thể tìm thấy trang này",
   "This dashboard does not exist": "Bảng điều khiển này không tồn tại",
@@ -41,5 +35,58 @@
   "Error while removing widget": "Lỗi trong khi gỡ bỏ widget",
   "Error while creating dashboard, please try again": "Lỗi trong khi tạo bảng điều khiển, vui lòng thử lại",
   "Error while removing dashboard": "Lỗi trong khi xóa bảng điều khiển",
-  "Error while editing dashboard": "Lỗi khi chỉnh sửa bảng điều khiển"
+  "Error while editing dashboard": "Lỗi khi chỉnh sửa bảng điều khiển",
+  "count": {
+    "widget": {
+      "used": "Không được sử dụng | Sử dụng một lần | Sử dụng {count} lần",
+      "sidebar": "Không có vật dụng | Một widget | {count} vật dụng"
+    }
+  },
+  "category": {
+    "calendar": {
+      "name": "Lịch"
+    },
+    "openpaas": {
+      "name": "OpenPaaS"
+    },
+    "clock": {
+      "name": "Đồng hồ"
+    },
+    "contact": {
+      "name": "Tiếp xúc"
+    },
+    "cryptocurrency": {
+      "name": "Tiền điện tử"
+    },
+    "email": {
+      "name": "E-mail"
+    },
+    "github": {
+      "name": "Github"
+    },
+    "social": {
+      "name": "Xã hội"
+    },
+    "developer": {
+      "name": "Nhà phát triển"
+    },
+    "news": {
+      "name": "Tin tức"
+    },
+    "google": {
+      "name": "Google"
+    },
+    "tools": {
+      "name": "Công cụ"
+    },
+    "rss": {
+      "name": "RSS"
+    },
+    "twitter": {
+      "name": "Twitter"
+    },
+    "weather": {
+      "name": "Thời tiết"
+    }
+  }
 }

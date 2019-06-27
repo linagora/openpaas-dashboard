@@ -29,7 +29,7 @@
                   @click="filterByCategory(category)"
                   :color="borderColor"
                   class="button"
-                  small outline round dark depressed>{{ category }}</v-btn>
+                  small outline round dark depressed>{{ getCategoryName(category) }}</v-btn>
               </div>
             </v-card-text>
           </div>
@@ -62,9 +62,11 @@
 
 <script>
 import { theme } from "@/style";
+import CategoryMixin from "@/mixins/category";
 
 export default {
   name: "WidgetStoreCard",
+  mixins: [CategoryMixin],
   props: {
     card: {
       type: Object
