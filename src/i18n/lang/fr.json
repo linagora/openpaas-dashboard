@@ -35,5 +35,11 @@
   },
   "Go to home page": "Aller à la page d'accueil",
   "We couldn't find this page": "Nous n'avons pas trouvé cette page",
-  "This dashboard does not exist": "Ce tableau de bord n'existe pas"
+  "This dashboard does not exist": "Ce tableau de bord n'existe pas",
+  "Widget has been added to dashboard {name}": "Le widget a été ajouté au tableau de bord {name}",
+  "Error while adding widget": "Erreur lors de l'ajout du widget",
+  "Error while removing widget": "Error lors de la suppression du widget",
+  "Error while creating dashboard, please try again": "Erreur lors de la création du tableau de bord, veuillez essayer à nouveau",
+  "Error while removing dashboard": "Erreur lors de la suppression du tableau de bord",
+  "Error while editing dashboard": "Erreur lors de l'édition du tableau de bord"
 }

@@ -65,7 +65,18 @@ export default {
   },
   methods: {
     useWidget(card) {
-      this.$dashboard.useWidget({ card, dashboard: this.dashboard, settings: this.getSettings(card.type) });
+      this.$dashboard
+        .useWidget({ card, dashboard: this.dashboard, settings: this.getSettings(card.type) })
+        .then(() =>
+          this.$store.dispatch(
+            "ui/displaySnackbarMessage",
+            this.$t("Widget has been added to dashboard {name}", { name: this.currentDashboard.name })
+          )
+        )
+        .catch(err => {
+          console.log("Error while adding widget", err);
+          this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Error while adding widget"));
+        });
     },
     countInstanceOfType(cardType) {
       return (this.getWidgetInstances(cardType, this.dashboard) || []).length;

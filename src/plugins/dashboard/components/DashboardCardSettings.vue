@@ -50,8 +50,12 @@ export default {
     close() {
       this.$emit("close");
     },
-    updateSettings(settings) {
-      this.$store.dispatch("updateCardSettings", { dashboard: this.dashboard, card: this.card, settings });
+    async updateSettings(settings) {
+      try {
+        await this.$store.dispatch("updateCardSettings", { dashboard: this.dashboard, card: this.card, settings });
+      } catch (err) {
+        console.log("Error while editing settings", err);
+      }
       this.close();
     }
   }

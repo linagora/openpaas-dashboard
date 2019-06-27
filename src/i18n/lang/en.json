@@ -35,5 +35,11 @@
   },
   "Go to home page": "Go to home page",
   "We couldn't find this page": "We couldn't find this page",
-  "This dashboard does not exist": "This dashboard does not exist"
+  "This dashboard does not exist": "This dashboard does not exist",
+  "Widget has been added to dashboard {name}": "Widget has been added to dashboard {name}",
+  "Error while adding widget": "Error while adding widget",
+  "Error while removing widget": "Error while removing widget",
+  "Error while creating dashboard, please try again": "Error while creating dashboard, please try again",
+  "Error while removing dashboard": "Error while removing dashboard",
+  "Error while editing dashboard": "Error while editing dashboard"
 }
