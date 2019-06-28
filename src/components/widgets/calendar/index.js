@@ -15,7 +15,7 @@ export default {
   components,
   hooks: {
     onRemove: store => {
-      store.dispatch("resetCalendarState");
+      store.dispatch("calendar/resetCalendarState");
     }
   }
 };

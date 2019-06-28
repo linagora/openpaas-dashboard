@@ -125,7 +125,7 @@ export default {
     },
     ...mapGetters({
       sessionReady: "session/ready",
-      events: "getCalendarEvents"
+      events: "calendar/getCalendarEvents"
     })
   },
   async mounted() {
@@ -146,10 +146,10 @@ export default {
       this.fetchEvents({ start, end });
     },
     fetchEvents({ start, end }) {
-      this.$store.dispatch("resetEvents");
+      this.$store.dispatch("calendar/resetEvents");
       this.$emit("loading", true);
       this.$store
-        .dispatch("fetchEvents", {
+        .dispatch("calendar/fetchEvents", {
           start: `${start.format("YYYYMMDD")}T000000`,
           end: `${end.format("YYYYMMDD")}T000000`
         })

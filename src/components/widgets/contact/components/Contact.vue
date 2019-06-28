@@ -57,7 +57,7 @@ export default {
       this.isLoading = true;
 
       this.$store
-        .dispatch("searchContacts", val)
+        .dispatch("contact/searchContacts", val)
         .then(contacts => {
           this.items = contacts || [];
         })

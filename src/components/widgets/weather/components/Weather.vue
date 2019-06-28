@@ -53,9 +53,10 @@ export default {
     fetchWeather() {
       this.$emit("loading", true);
 
-      Promise.all([this.$store.dispatch("fetchWeather"), this.$store.dispatch("fetchForecast")]).finally(() =>
-        this.$emit("loading", false)
-      );
+      Promise.all([
+        this.$store.dispatch("weather/fetchWeather"),
+        this.$store.dispatch("weather/fetchForecast")
+      ]).finally(() => this.$emit("loading", false));
 
       this.timeout = setTimeout(this.fetchWeather, this.delay);
     }

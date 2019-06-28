@@ -50,7 +50,7 @@ const mutations = {
 const getters = {};
 
 export default {
-  namespaced: false,
+  namespaced: true,
   state: initialState(),
   getters,
   actions,

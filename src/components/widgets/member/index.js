@@ -15,7 +15,7 @@ export default {
   components,
   hooks: {
     onRemove: store => {
-      store.dispatch("resetMemberState");
+      store.dispatch("member/resetMemberState");
     }
   }
 };

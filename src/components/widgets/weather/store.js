@@ -56,7 +56,7 @@ const mutations = {
 };
 
 export default {
-  namespaced: false,
+  namespaced: true,
   state: initialState(),
   actions,
   mutations
