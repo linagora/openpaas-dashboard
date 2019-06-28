@@ -9,7 +9,9 @@
     "lint:nofix": "npm run lint -- --no-fix",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:all": "npm run test:unit ; npm run test:e2e -- --headless"
+    "test:all": "npm run test:unit ; npm run test:e2e -- --headless",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "dependencies": {
     "@websanova/vue-auth": "^2.21.14-beta",
@@ -48,6 +50,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "vuepress": "^1.0.2"
   }
 }

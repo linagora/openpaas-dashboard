@@ -17,6 +17,9 @@ yarn-error.log*
 # generated lang files
 src/langs/*.json
 
+# generated docs
+docs/.vuepress/dist/
+
 # Editor directories and files
 .idea
 .vscode

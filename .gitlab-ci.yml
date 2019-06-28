@@ -4,6 +4,7 @@ stages:
   - lint
   - test
   - docker_build
+  - doc
   - deploy_dev
 
 lint:
@@ -76,3 +77,29 @@ deploy_dev:
     - BASE_URL=/dashboard/ npm run build
     - rm -fr /srv/vue-apps/${CI_PROJECT_NAME}/*
     - cp -fr /srv/${CI_PROJECT_NAME}/dist/* /srv/vue-apps/${CI_PROJECT_NAME}/
+
+check_doc:
+  stage: doc
+  only:
+    changes:
+      - docs/**/*
+  tags:
+    - docker
+  image: node:10
+  script:
+    - npm install
+    - npm run docs:build
+
+deploy_doc:
+  stage: doc
+  only:
+    refs:
+      - master
+    changes:
+      - docs/**/*
+  tags:
+    - docker
+  image: node:10
+  script:
+    - npm install
+    - sh ./scripts/deploy-doc.sh
