@@ -79,7 +79,7 @@ export default {
       currentUser: "user/getCurrentUser",
       dashboard: "dashboards/getCurrentDashboard",
       getDashboardName: "dashboards/getDashboardName",
-      dashboards: "getDashboards"
+      dashboards: "dashboard/getDashboards"
     }),
     style: () => theme.colors
   },

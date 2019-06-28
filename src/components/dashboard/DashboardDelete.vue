@@ -59,7 +59,7 @@ export default {
     },
     async remove(dashboard) {
       try {
-        await this.$store.dispatch("removeDashboard", dashboard);
+        await this.$store.dispatch("dashboard/removeDashboard", dashboard);
         this.deleteDashboardDialog = false;
         this.$router.push({ name: routeNames.DASHBOARD });
       } catch (err) {

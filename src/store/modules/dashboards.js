@@ -23,12 +23,9 @@ const mutations = {
 };
 
 const getters = {
-  getCurrentDashboard(state, getters, rootState, rootGetters) {
-    return rootGetters.getDashboardFromId(state.current);
-  },
-  getAllDashboards(state, getters, rootState, rootGetters) {
-    return rootGetters.getDashboards;
-  },
+  getCurrentDashboard: (state, getters, rootState, rootGetters) =>
+    rootGetters["dashboard/getDashboardFromId"](state.current),
+  getAllDashboards: (state, getters, rootState, rootGetters) => rootGetters["dashboard/getDashboards"],
   isMainDashboard: (state, getters, rootState, rootGetters) => dashboard =>
     rootGetters["user/getCurrentUser"]._id === dashboard.id,
   getDashboardName: (state, getters) => dashboard =>
