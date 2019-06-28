@@ -93,6 +93,8 @@ check_doc:
 deploy_doc:
   stage: doc
   only:
+    refs:
+      - master
     changes:
       - docs/**/*
   tags:
