@@ -123,10 +123,10 @@ export default {
 
       return map;
     },
-    events() {
-      return this.$store.state.calendar.events.slice().reverse();
-    },
-    ...mapGetters("session", { sessionReady: "ready" })
+    ...mapGetters({
+      sessionReady: "session/ready",
+      events: "getCalendarEvents"
+    })
   },
   async mounted() {
     const start = moment();
