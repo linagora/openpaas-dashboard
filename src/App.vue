@@ -1,6 +1,9 @@
 <template>
   <v-app id="app" data-test="app">
-    <div v-if="$auth.ready()" :style="{ backgroundColor: backgroundColor }" id="app-ready">
+    <div v-if="$auth.ready()"
+      :style="{ backgroundColor: backgroundColor, height: !$auth.check() ? '100vh': '' }"
+      id="app-ready"
+    >
       <v-navigation-drawer v-model="drawer" fixed clipped hide-overlay app v-if="$auth.check()">
         <router-view name="sidebar"/>
       </v-navigation-drawer>
@@ -76,9 +79,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  #app #app-ready
-    height: 100vh;
-
   #app-ready
     transition .4s
 
