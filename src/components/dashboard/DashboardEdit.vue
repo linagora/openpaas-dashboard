@@ -80,7 +80,7 @@ export default {
       try {
         let newname = this.newDashboardName;
 
-        await this.$store.dispatch("renameDashboard", { dashboard, newname });
+        await this.$store.dispatch("dashboard/renameDashboard", { dashboard, newname });
         this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Dashboard has been edited"));
         this.editDashboardDialog = false;
       } catch (err) {

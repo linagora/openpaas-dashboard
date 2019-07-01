@@ -15,7 +15,7 @@ export default {
   components,
   hooks: {
     onRemove: store => {
-      store.dispatch("resetEmailState");
+      store.dispatch("email/resetEmailState");
     }
   }
 };

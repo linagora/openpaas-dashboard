@@ -19,16 +19,17 @@ export default {
   computed: {
     ...mapGetters({
       dashboard: "dashboards/getCurrentDashboard",
-      currentUser: "user/getCurrentUser"
+      currentUser: "user/getCurrentUser",
+      getWidgetsForDashboard: "dashboard/getWidgetsForDashboard"
     }),
     cards() {
       if (!this.dashboard) {
         return [];
       }
 
-      const widgets = this.$store.getters.getWidgetsForDashboard(this.dashboard.id);
+      const widgets = this.getWidgetsForDashboard(this.dashboard.id) || [];
 
-      return this.$dashboard.getWidgets(widgets || []);
+      return this.$dashboard.getWidgets(widgets);
     }
   },
   beforeRouteEnter(to, from, next) {

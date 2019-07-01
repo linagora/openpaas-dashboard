@@ -65,7 +65,10 @@ export default {
       }
 
       try {
-        const newDashboard = await this.$store.dispatch("addDashboard", { name: this.newDashboardName, widgets: [] });
+        const newDashboard = await this.$store.dispatch("dashboard/addDashboard", {
+          name: this.newDashboardName,
+          widgets: []
+        });
 
         this.$store.dispatch(
           "ui/displaySnackbarMessage",

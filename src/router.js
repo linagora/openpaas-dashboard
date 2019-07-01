@@ -82,7 +82,7 @@ const router = new Router({
 
         if (!store.state.dashboard.dashboards || store.state.dashboard.dashboards.length === 0) {
           try {
-            await store.dispatch("loadDashboards");
+            await store.dispatch("dashboard/loadDashboards");
           } catch (err) {
             // Do not break the flow, let next to be called correctly
             console.log("Error while loading dashboards", err);

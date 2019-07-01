@@ -52,7 +52,11 @@ export default {
     },
     async updateSettings(settings) {
       try {
-        await this.$store.dispatch("updateCardSettings", { dashboard: this.dashboard, card: this.card, settings });
+        await this.$store.dispatch("dashboard/updateCardSettings", {
+          dashboard: this.dashboard,
+          card: this.card,
+          settings
+        });
       } catch (err) {
         console.log("Error while editing settings", err);
       }

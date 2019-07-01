@@ -15,7 +15,7 @@ export default {
   store,
   hooks: {
     onRemove: store => {
-      store.dispatch("resetWeatherState");
+      store.dispatch("weather/resetWeatherState");
     }
   }
 };

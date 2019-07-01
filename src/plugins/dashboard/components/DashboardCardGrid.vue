@@ -112,7 +112,7 @@ export default {
         .map(f => f.getElement().id);
 
       this.$store
-        .dispatch("setCardsOrder", { cards, dashboard: this.dashboard })
+        .dispatch("dashboard/setCardsOrder", { cards, dashboard: this.dashboard })
         .catch(err => console.log("Error while ordering cards", err));
     },
     removeCard(card) {
@@ -129,7 +129,7 @@ export default {
           if (widget && widget.hooks && widget.hooks.onRemove) {
             widget.hooks.onRemove(this.$store);
           }
-          this.$store.dispatch("removeCard", { card, dashboard: this.dashboard }).catch(err => {
+          this.$store.dispatch("dashboard/removeCard", { card, dashboard: this.dashboard }).catch(err => {
             console.log("Error while removing widget", err);
             this.$store.dispatch("ui/displaySnackbarMessage", this.$t("Error while removing widget"));
           });

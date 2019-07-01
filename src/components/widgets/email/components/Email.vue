@@ -33,7 +33,7 @@ export default {
   methods: {
     fetchLastEmails() {
       this.$emit("loading", true);
-      this.$store.dispatch("fetchLastEmails").finally(() => this.$emit("loading", false));
+      this.$store.dispatch("email/fetchLastEmails").finally(() => this.$emit("loading", false));
 
       this.timeout = setTimeout(this.fetchLastEmails, this.delay);
     }
