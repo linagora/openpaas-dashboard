@@ -15,7 +15,7 @@ export default {
   title: "Google News",
   type: "googlenews",
   icon: "public",
-  description: "Display latest new from Google",
+  description: "Display latest news from Google",
   categories: ["news", "google"],
   components,
   settings

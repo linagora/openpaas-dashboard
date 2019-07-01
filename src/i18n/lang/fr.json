@@ -1,4 +1,5 @@
 {
+  "locale": "fr-FR",
   "Close": "Fermer",
   "OpenPaaS Login": "Identifiant OpenPaaS",
   "Identifier": "Identifier",
@@ -36,6 +37,10 @@
   "Error while creating dashboard, please try again": "Erreur lors de la création du tableau de bord, veuillez essayer à nouveau",
   "Error while removing dashboard": "Erreur lors de la suppression du tableau de bord",
   "Error while editing dashboard": "Erreur lors de l'édition du tableau de bord",
+  "This widget needs to be configured": "Ce widget doit être configuré",
+  "Click to configure widget": "Cliquer pour configurer le widget",
+  "Categories": "Catégories",
+  "All": "Toutes",
   "count": {
     "widget": {
       "used": "Non utilisé | Utilisé une fois | Utilisé {count} fois",

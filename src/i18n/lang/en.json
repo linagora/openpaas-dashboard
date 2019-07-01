@@ -1,4 +1,5 @@
 {
+  "locale": "en-US",
   "Close": "Close",
   "OpenPaaS Login": "OpenPaaS Login",
   "Identifier": "Identifier",
@@ -36,6 +37,10 @@
   "Error while creating dashboard, please try again": "Error while creating dashboard, please try again",
   "Error while removing dashboard": "Error while removing dashboard",
   "Error while editing dashboard": "Error while editing dashboard",
+  "This widget needs to be configured": "This widget needs to be configured",
+  "Click to configure widget": "Click to configure widget",
+  "Categories": "Categories",
+  "All": "All",
   "count": {
     "widget": {
       "used": "Not used | Used one time | Used {count} times",
