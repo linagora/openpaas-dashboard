@@ -3,8 +3,6 @@ import Router from "vue-router";
 import Login from "@/views/Login.vue";
 import Dashboard from "@/views/dashboard/Dashboard.vue";
 import DashboardSidebar from "@/views/dashboard/DashboardSidebar.vue";
-import WidgetStore from "@/views/widget-store/WidgetStore.vue";
-import WidgetStoreSidebar from "@/views/widget-store/WidgetStoreSidebar.vue";
 import NotFound from "@/views/NotFound.vue";
 import ApplicationSettings from "@/services/application-settings";
 import { loadLanguage, getLocale } from "@/i18n";
@@ -44,8 +42,8 @@ const router = new Router({
       path: "/store/:category?",
       name: routeNames.STORE,
       components: {
-        default: WidgetStore,
-        sidebar: WidgetStoreSidebar
+        default: () => import(/* webpackChunkName: "widget-store" */ "@/views/widget-store/WidgetStore.vue"),
+        sidebar: () => import(/* webpackChunkName: "widget-store" */ "@/views/widget-store/WidgetStoreSidebar.vue")
       },
       props: {
         default: true,
