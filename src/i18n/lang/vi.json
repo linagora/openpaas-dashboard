@@ -36,6 +36,10 @@
   "Error while creating dashboard, please try again": "Lỗi trong khi tạo bảng điều khiển, vui lòng thử lại",
   "Error while removing dashboard": "Lỗi trong khi xóa bảng điều khiển",
   "Error while editing dashboard": "Lỗi khi chỉnh sửa bảng điều khiển",
+  "This widget needs to be configured": "Tiện ích này cần được cấu hình",
+  "Click to configure widget": "Nhấn vào đây để cấu hình widget",
+  "Categories": "Thể loại",
+  "All": "Tất cả các",
   "count": {
     "widget": {
       "used": "Không được sử dụng | Sử dụng một lần | Sử dụng {count} lần",
