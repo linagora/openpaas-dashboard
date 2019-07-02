@@ -21,46 +21,49 @@
           </v-menu>
         </v-list-tile-action>
       </v-list-tile>
-      <v-list-tile
-        avatar
-        v-for="dashboard in dashboards"
-        :to="`/boards/${dashboard.id}`"
-        :key="dashboard.id"
-        active-class="grey lighten-5 active"
-        data-test="sidebar-dashboard-item"
-      >
-        <v-list-tile-avatar>
-          <v-tooltip top>
-            <template v-slot:activator="{ on }">
-              <v-icon class="selected" v-on="on">dashboard</v-icon>
-            </template>
-            <span>{{ $tc("count.widget.sidebar", countWidgets(dashboard)) }}</span>
-          </v-tooltip>
-        </v-list-tile-avatar>
-        <v-list-tile-content>
-          <v-list-tile-title class="selected" v-text="getDashboardName(dashboard)"></v-list-tile-title>
-        </v-list-tile-content>
-        <v-list-tile-action>
-          <v-menu bottom left offset-y close-on-click min-width="150px">
-            <v-btn data-test="dashboard-operations" slot="activator" flat icon ripple @click.native.prevent>
-              <v-icon>more_vert</v-icon>
-            </v-btn>
-            <v-list class="pa-0">
-              <dashboard-edit :dashboard="dashboard"/>
-              <v-list-tile @click="openStore(dashboard)">
-                {{$t("Add a new widget")}}
-              </v-list-tile>
-              <v-divider/>
-              <dashboard-delete v-if="canDelete(dashboard)" :dashboard="dashboard"/>
-            </v-list>
-          </v-menu>
-        </v-list-tile-action>
-      </v-list-tile>
+      <draggable v-model="dashboards" @start="drag=true" @end="drag=false" handle=".drag-handle">
+        <v-list-tile
+          avatar
+          v-for="dashboard in dashboards"
+          :to="`/boards/${dashboard.id}`"
+          :key="dashboard.id"
+          active-class="grey lighten-5 active"
+          data-test="sidebar-dashboard-item"
+        >
+          <v-list-tile-avatar>
+            <v-tooltip top>
+              <template v-slot:activator="{ on }">
+                <v-icon class="selected drag-handle" v-on="on">dashboard</v-icon>
+              </template>
+              <span>{{ $tc("count.widget.sidebar", countWidgets(dashboard)) }}</span>
+            </v-tooltip>
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+            <v-list-tile-title class="selected" v-text="getDashboardName(dashboard)"></v-list-tile-title>
+          </v-list-tile-content>
+          <v-list-tile-action>
+            <v-menu bottom left offset-y close-on-click min-width="150px">
+              <v-btn data-test="dashboard-operations" slot="activator" flat icon ripple @click.native.prevent>
+                <v-icon>more_vert</v-icon>
+              </v-btn>
+              <v-list class="pa-0">
+                <dashboard-edit :dashboard="dashboard"/>
+                <v-list-tile @click="openStore(dashboard)">
+                  {{$t("Add a new widget")}}
+                </v-list-tile>
+                <v-divider/>
+                <dashboard-delete v-if="canDelete(dashboard)" :dashboard="dashboard"/>
+              </v-list>
+            </v-menu>
+          </v-list-tile-action>
+        </v-list-tile>
+      </draggable>
     </v-list>
   </div>
 </template>
 
 <script>
+import draggable from "vuedraggable";
 import { mapGetters } from "vuex";
 import { theme } from "@/style";
 import { routeNames } from "@/router";
@@ -78,9 +81,16 @@ export default {
     ...mapGetters({
       currentUser: "user/getCurrentUser",
       dashboard: "dashboards/getCurrentDashboard",
-      getDashboardName: "dashboards/getDashboardName",
-      dashboards: "dashboard/getDashboards"
+      getDashboardName: "dashboards/getDashboardName"
     }),
+    dashboards: {
+      get() {
+        return this.$store.getters["dashboard/getDashboards"];
+      },
+      set(dashboards) {
+        this.$store.dispatch("dashboard/setDashboardsOrder", dashboards);
+      }
+    },
     style: () => theme.colors
   },
   methods: {
@@ -100,7 +110,8 @@ export default {
   components: {
     DashboardCreateForm,
     DashboardDelete,
-    DashboardEdit
+    DashboardEdit,
+    draggable
   }
 };
 </script>
@@ -121,5 +132,8 @@ export default {
   .active
     .selected
       color: $color
+
+  .drag-handle
+    cursor: grab
 
 </style>
