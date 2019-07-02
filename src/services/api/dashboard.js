@@ -33,6 +33,10 @@ class Dashboard {
     return this.client.patch(`${PATH}/boards/${dashboardId}/widgets/order`, order).then(response => response.data);
   }
 
+  reorderDashboards(order) {
+    return this.client.patch(`${PATH}/boards/order`, order).then(response => response.data);
+  }
+
   createWidget(dashboardId, widget) {
     return this.client.put(`${PATH}/boards/${dashboardId}/widgets`, widget).then(response => response.data);
   }

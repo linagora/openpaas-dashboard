@@ -9,6 +9,7 @@ const types = {
   ADD_CARD: "ADD_CARD",
   REMOVE_CARD: "REMOVE_CARD",
   ORDER_CARDS: "ORDER_CARDS",
+  ORDER_DASHBOARDS: "ORDER_DASHBOARDS",
   LIST_DASHBOARDS: "LIST_DASHBOARDS",
   ADD_DASHBOARD: "ADD_DASHBOARD",
   REMOVE_DASHBOARD: "REMOVE_DASHBOARD",
@@ -89,6 +90,12 @@ const actions = {
     });
   },
 
+  setDashboardsOrder({ commit }, dashboards) {
+    // be optimist to not have the dashboards tilt in the sidebar until the client call resolve
+    commit(types.ORDER_DASHBOARDS, dashboards);
+    return Vue.$openpaas.api.dashboard.reorderDashboards(dashboards.map(dashboard => dashboard.id));
+  },
+
   updateCardSettings({ commit }, { dashboard, card, settings }) {
     return Vue.$openpaas.api.dashboard.updateWidgetSettings(dashboard.id, card.id, settings).then(() => {
       commit(types.UPDATE_CARD_SETTINGS, { card, settings });
@@ -114,6 +121,10 @@ const mutations = {
 
     state.dashboards[index].widgets.length = 0;
     state.dashboards[index].widgets = cards;
+  },
+
+  [types.ORDER_DASHBOARDS](state, dashboards) {
+    state.dashboards = dashboards;
   },
 
   [types.UPDATE_CARD_SETTINGS](state, { card, settings }) {
