@@ -21,7 +21,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { routeNames } from "@/router";
 
 export default {
   name: "user-menu",
@@ -29,8 +28,8 @@ export default {
     logout() {
       return this.$store
         .dispatch("session/logout")
-        .then(() => this.$router.push({ name: routeNames.LOGIN }))
-        .catch(err => console.log("Error while logout", err));
+        .catch(err => console.log("Error while logout", err))
+        .finally(() => this.$router.go());
     }
   },
   computed: {
