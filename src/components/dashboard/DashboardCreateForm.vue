@@ -11,11 +11,14 @@
         <v-card-text>
           <v-form v-model="valid" @submit.prevent="create" data-test="dashboard-create-form">
             <v-text-field
+              v-if="dashboardDialog"
               name="name"
               v-model="newDashboardName"
               :rules="dashboardNameRules"
               :label="$t('Name')"
               required
+              ref="name"
+              autofocus
             >
             </v-text-field>
             <v-card-actions>
@@ -53,7 +56,10 @@ export default {
   }),
   methods: {
     openDialog() {
-      setTimeout(() => (this.dashboardDialog = true));
+      setTimeout(() => {
+        this.dashboardDialog = true;
+        this.$refs["name"] && this.$refs["name"].focus();
+      });
     },
     cancel() {
       this.dashboardDialog = false;
