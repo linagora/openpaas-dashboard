@@ -41,6 +41,7 @@ test_e2e:
   script:
     - npm install
     - npm run test:e2e -- --headless
+
 docker_build:
   stage: docker_build
   tags:
@@ -50,9 +51,18 @@ docker_build:
       alias: docker-dind
   variables:
     DOCKER_HOST: "tcp://docker-dind"
+    DOCKER_IMAGE: "linagora/openpaas-dashboard"
   image: docker-registry.linagora.com:5000/linshare-snapshots/linshare-dind:latest
   script:
-    - docker build .
+    - docker build -t ${DOCKER_IMAGE} .
+    - docker login -u ${HUB_DOCKER_USER} -p ${HUB_DOCKER_TOKEN} ${DOCKER_REGISTRY}
+    - docker push ${DOCKER_IMAGE}
+    - docker logout
+  only:
+    - master@linagora/lgs/openpaas/openpaas-dashboard
+  except:
+    variables:
+      - $SKIP_BUILD_DOCKER
 
 deploy_dev:
   stage: deploy_dev
