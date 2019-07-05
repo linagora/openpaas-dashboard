@@ -18,6 +18,9 @@
         <span class="pt-2 text-xs-center grey--text">
           {{ $t('There are no widgets') }}
         </span>
+        <span class="pt-2 text-xs-center grey--text">
+          <router-link to="/store">{{$t("Add a widget")}}</router-link>
+        </span>
       </div>
     </transition>
   </v-container>
