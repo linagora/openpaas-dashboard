@@ -55,7 +55,7 @@ docker_build:
   image: docker-registry.linagora.com:5000/linshare-snapshots/linshare-dind:latest
   script:
     - docker build -t ${DOCKER_IMAGE} .
-    - docker login -u ${HUB_DOCKER_USER} -p ${HUB_DOCKER_TOKEN} ${DOCKER_REGISTRY}
+    - docker login -u ${HUB_DOCKER_USER} -p ${HUB_DOCKER_TOKEN}
     - docker push ${DOCKER_IMAGE}
     - docker logout
   only:
