@@ -15,8 +15,16 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <transition-group name="fade" tag="div" class="layout row wrap">
-        <v-flex xs12 md6 v-for="card in cards" :key="card.type">
+      <v-flex v-if="!filteredCards || !filteredCards.length" xs12 md6 offset-md3>
+        <div  id="no-widgets">
+          <v-icon color="primary" size="80px" dark>widgets</v-icon>
+          <span class="pt-2 text-xs-center grey--text">
+            {{ $t('There are no widgets') }}
+          </span>
+        </div>
+      </v-flex>
+      <transition-group v-else name="fade" tag="div" class="layout row wrap">
+        <v-flex xs12 md6 v-for="card in filteredCards" :key="card.type">
           <widget-store-card
             :card="card"
             :counter="countInstanceOfType(card.type)"
@@ -31,6 +39,7 @@
 <script>
 import WidgetStoreCard from "./WidgetStoreCard.vue";
 import { mapGetters } from "vuex";
+import { routeNames } from "@/router";
 
 export default {
   name: "WidgetStore",
@@ -61,6 +70,12 @@ export default {
       }
 
       return this.storeWidgets.filter(widget => (widget.categories || []).includes(this.category));
+    },
+    filteredCards() {
+      if (!this.$route.query.search) {
+        return this.cards;
+      }
+      return this.cards.filter(card => this.search(this.$route.query.search, card));
     }
   },
   methods: {
@@ -83,9 +98,14 @@ export default {
     },
     changeTargetBoard(dashboardId) {
       this.$store.dispatch("dashboards/loadDashboard", dashboardId);
+      const payload = { search: this.$route.query.search };
+      this.$router.push({ name: routeNames.STORE, query: payload });
     },
     applyFilter(filter) {
       this.$emit("filter", filter);
+    },
+    search(query, card) {
+      return `${this.$t(card.title)} ${this.$t(card.description)}`.toLowerCase().includes(query.toLowerCase());
     }
   },
   components: {
@@ -110,4 +130,11 @@ export default {
 
 .fade-enter, .fade-leave-to
   opacity: 0
+
+#no-widgets
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  justify-content: center;
 </style>
