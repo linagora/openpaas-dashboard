@@ -17,14 +17,20 @@ function getDisabledWidgets() {
   ];
 }
 
-const ApplicationSettings = Object.freeze({
+const settings = {
   ...{
     BASE_URL: "/",
     VUE_APP_OPENPAAS_URL: "http://localhost:8080"
   },
   ...process.env,
   ...window.openpaas
-});
+};
+
+if (!settings.VUE_APP_SEARCH_URL) {
+  settings.VUE_APP_SEARCH_URL = new URL("/#/search/?q=", settings.VUE_APP_OPENPAAS_URL).toString();
+}
+
+const ApplicationSettings = Object.freeze(settings);
 
 export default ApplicationSettings;
 export { ApplicationSettings, getDisabledWidgets };

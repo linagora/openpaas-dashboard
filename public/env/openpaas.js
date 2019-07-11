@@ -4,4 +4,6 @@ window.openpaas = {
   //VUE_APP_OPENPAAS_URL: "https://dev.open-paas.org",
   // Define a CSV list of disabled widgets from their "type", or as Array of String
   //VUE_APP_DISABLED_WIDGETS: "clock"
+  // Define the application search URL
+  //VUE_APP_SEARCH_URL: "http://localhost:8080/#/search/?q="
 };
