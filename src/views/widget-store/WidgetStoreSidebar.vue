@@ -1,5 +1,16 @@
 <template>
   <div id="sidebar-content" data-test="sidebar">
+    <v-form @submit.prevent="redirectSearch" class="mb-2">
+      <v-text-field
+        v-model="search"
+        flat
+        hide-details
+        clearable
+        @click:clear="onClearClicked"
+        prepend-inner-icon="search"
+        :label="$t('Search widget')"
+      ></v-text-field>
+    </v-form>
     <v-list class="mt-1">
       <v-list-tile color="blue" class="tile-title" :style="{ borderLeftColor: borderColor }">
         <v-list-tile-content>
@@ -20,7 +31,7 @@
       <v-list-tile
         v-for="category in categories"
         :key="category"
-        :to="`/store/${category}`"
+        @click="searchCategory(category)"
         active-class="grey lighten-5 active"
         data-test="sidebar-dashboard-item"
       >
@@ -44,6 +55,7 @@
 import { mapGetters } from "vuex";
 import { theme } from "@/style";
 import CategoryMixin from "@/mixins/category";
+import { routeNames } from "@/router";
 
 export default {
   name: "WidgetStoreSidebar",
@@ -51,7 +63,8 @@ export default {
   data: () => ({
     borderColor: theme.colors.blue.base,
     titleColor: theme.colors.blue.base,
-    badgeColor: theme.colors.blue.base
+    badgeColor: theme.colors.blue.base,
+    search: ""
   }),
   props: {
     category: {
@@ -63,6 +76,24 @@ export default {
       categories: "widgets/getCategories",
       getCategorySize: "widgets/getCategorySize"
     })
+  },
+  methods: {
+    redirectSearch() {
+      this.$router.push({ name: routeNames.STORE, query: { search: this.search } });
+    },
+    onClearClicked() {
+      this.$router.push({ name: routeNames.STORE, params: { category: this.category } });
+    },
+    searchCategory(category) {
+      this.search = "";
+      this.$router.push({ name: routeNames.STORE, params: { category: category } });
+    }
+  },
+  beforeRouteUpdate(to, from, next) {
+    if (!to.query.search) {
+      this.search = "";
+    }
+    next();
   }
 };
 </script>
