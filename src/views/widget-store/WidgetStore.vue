@@ -5,9 +5,9 @@
       :category="category"
       @filter="applyFilter"/>
     <portal to="toolbar-extension">
-      <v-spacer></v-spacer>
-      <v-btn icon @click="close" data-test="widget-store-close">
-        <v-icon>close</v-icon>
+      <v-btn flat @click="close" data-test="widget-store-close">
+        <v-icon>arrow_back</v-icon>
+        {{ $t("Back") }}
       </v-btn>
     </portal>
   </v-container>
