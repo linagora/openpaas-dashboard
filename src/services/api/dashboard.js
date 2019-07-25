@@ -51,6 +51,12 @@ class Dashboard {
       .then(response => response.data);
   }
 
+  updateWidgetColumns(dashboardId, widgetId, columns) {
+    return this.client
+      .patch(`${PATH}/boards/${dashboardId}/widgets/${widgetId}/settings/columns`, { value: columns })
+      .then(response => response.data);
+  }
+
   getSettings() {
     return this.client.get(`${PATH}/settings`).then(response => response.data);
   }

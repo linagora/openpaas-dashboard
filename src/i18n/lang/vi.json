@@ -41,6 +41,7 @@
   "Click to configure widget": "Nhấn vào đây để cấu hình widget",
   "Categories": "Thể loại",
   "All": "Tất cả các",
+  "Width": "Chiều rộng",
   "count": {
     "widget": {
       "used": "Không được sử dụng | Sử dụng một lần | Sử dụng {count} lần",

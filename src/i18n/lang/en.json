@@ -41,6 +41,7 @@
   "Click to configure widget": "Click to configure widget",
   "Categories": "Categories",
   "All": "All",
+  "Width": "Width",
   "count": {
     "widget": {
       "used": "Not used | Used one time | Used {count} times",
