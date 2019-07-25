@@ -19,6 +19,17 @@
             <v-list-tile v-if="hasSettings" @click.stop="openSettings()">
               <v-list-tile-title>{{$t("Settings")}}</v-list-tile-title>
             </v-list-tile>
+            <v-list-tile>
+              <v-list-tile-title class="pr-5">{{$t("Width")}}</v-list-tile-title>
+              <v-list-tile-action class="width-buttons">
+                <v-btn icon flat :disabled="!canDecrease" @click="decreaseSize">
+                  <v-icon>remove</v-icon>
+                </v-btn>
+                <v-btn icon flat :disabled="!canIncrease" @click="increaseSize">
+                  <v-icon>add</v-icon>
+                </v-btn>
+              </v-list-tile-action>
+            </v-list-tile>
             <v-list-tile @click="remove()">
               <v-list-tile-title>{{$t("Remove")}}</v-list-tile-title>
             </v-list-tile>
@@ -69,6 +80,9 @@
 <script>
 import DashboardCardSettings from "./DashboardCardSettings.vue";
 
+const MAX_COLUMNS = 3;
+const COLUMN_WIDTH = 400;
+
 export default {
   name: "DashboardCard",
   props: {
@@ -88,7 +102,8 @@ export default {
   data: () => ({
     loading: false,
     displaySettings: false,
-    updatedTitle: null
+    updatedTitle: null,
+    columns: 1
   }),
   methods: {
     onLoading(value) {
@@ -102,13 +117,32 @@ export default {
     },
     openSettings() {
       this.displaySettings = true;
+    },
+    increaseSize() {
+      this.columns++;
+      this.setNewSize();
+    },
+    decreaseSize() {
+      this.columns--;
+      this.setNewSize();
+    },
+    setNewSize() {
+      this.$store.dispatch("dashboard/updateCardColumns", {
+        dashboard: this.dashboard,
+        card: this.card,
+        columns: this.columns
+      });
     }
   },
   computed: {
     width() {
-      const columns = this.card.components.main.columns || 1;
-
-      return 400 * columns + 30 * (columns - 1);
+      return COLUMN_WIDTH * this.columns + 30 * (this.columns - 1);
+    },
+    canDecrease() {
+      return this.columns > 1;
+    },
+    canIncrease() {
+      return this.columns === 1 || this.columns < MAX_COLUMNS;
     },
     hasSettings() {
       return !!this.card.components.settings;
@@ -125,6 +159,9 @@ export default {
 
       return widget.settings.validate(this.card.settings);
     }
+  },
+  mounted() {
+    this.columns = (this.card.settings && this.card.settings.columns) || this.card.components.main.columns || 1;
   },
   components: {
     DashboardCardSettings
@@ -163,6 +200,11 @@ export default {
       overflow-y: auto;
     }
   }
+}
+
+.width-buttons {
+  flex-direction: row;
+  align-items: center;
 }
 
 .muuri-item-dragging {

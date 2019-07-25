@@ -16,7 +16,8 @@ const types = {
   RENAME_DASHBOARD: "RENAME_DASHBOARD",
   ADD_CARD_TO_DASHBOARD: "ADD_CARD_TO_DASHBOARD",
   REMOVE_CARD_FROM_DASHBOARD: "REMOVE_CARD_FROM_DASHBOARD",
-  UPDATE_CARD_SETTINGS: "UPDATE_CARD_SETTINGS"
+  UPDATE_CARD_SETTINGS: "UPDATE_CARD_SETTINGS",
+  UPDATE_CARD_COLUMNS: "UPDATE_CARD_COLUMNS"
 };
 
 const actions = {
@@ -100,6 +101,12 @@ const actions = {
     return Vue.$openpaas.api.dashboard.updateWidgetSettings(dashboard.id, card.id, settings).then(() => {
       commit(types.UPDATE_CARD_SETTINGS, { card, settings });
     });
+  },
+
+  updateCardColumns({ commit }, { dashboard, card, columns }) {
+    return Vue.$openpaas.api.dashboard.updateWidgetColumns(dashboard.id, card.id, columns).then(() => {
+      commit(types.UPDATE_CARD_COLUMNS, { card, columns });
+    });
   }
 };
 
@@ -133,6 +140,14 @@ const mutations = {
     }
 
     Vue.set(state.cards[card.id], "settings", settings);
+  },
+
+  [types.UPDATE_CARD_COLUMNS](state, { card, columns }) {
+    if (!state.cards[card.id]) {
+      return;
+    }
+
+    Vue.set(state.cards[card.id].settings, "columns", columns);
   },
 
   [types.ADD_DASHBOARD](state, dashboard) {
