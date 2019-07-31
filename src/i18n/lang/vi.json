@@ -42,6 +42,8 @@
   "Categories": "Thể loại",
   "All": "Tất cả các",
   "Width": "Chiều rộng",
+  "You are not connected to OpenPaaS": "Bạn chưa kết nối với OpenPaaS",
+  "Connect": "Kết nối",
   "count": {
     "widget": {
       "used": "Không được sử dụng | Sử dụng một lần | Sử dụng {count} lần",

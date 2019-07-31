@@ -11,7 +11,7 @@ class Api {
 
     this.client.defaults.baseURL = config.baseURL;
     this.client.interceptors.request.use(config => {
-      config.headers.Authorisation = `Bearer ${store.state.session.jwtToken}`;
+      config.headers.Authorization = `Bearer ${store.state.session.jwtToken}`;
 
       return config;
     });

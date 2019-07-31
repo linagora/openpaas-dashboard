@@ -42,6 +42,8 @@
   "Categories": "Categories",
   "All": "All",
   "Width": "Width",
+  "You are not connected to OpenPaaS": "You are not connected to OpenPaaS",
+  "Connect": "Connect",
   "count": {
     "widget": {
       "used": "Not used | Used one time | Used {count} times",

@@ -15,7 +15,7 @@ import { i18n } from "@/i18n";
 
 // This prevents polluting the global Axios and Vue instances
 // See for instance : https://github.com/vuetifyjs/vuetify/issues/4068#issuecomment-446988490
-function applicationInit(VueInstance, { auth = servicesAuth, theme = appTheme.colors } = {}) {
+async function applicationInit(VueInstance, { auth = servicesAuth, theme = appTheme.colors } = {}) {
   const api = new Api({
     baseURL: store.state.applicationConfiguration.baseUrl
   });
@@ -28,8 +28,6 @@ function applicationInit(VueInstance, { auth = servicesAuth, theme = appTheme.co
 
   VueInstance.router = router;
 
-  VueInstance.use(require("@websanova/vue-auth"), auth);
-
   VueInstance.use(Vuetify, {
     theme,
     options: {
@@ -40,6 +38,8 @@ function applicationInit(VueInstance, { auth = servicesAuth, theme = appTheme.co
   VueInstance.use(VueMoment);
 
   Dashboard.init(VueInstance);
+
+  await auth.init(VueInstance);
 
   VueInstance.config.productionTip = false;
 
