@@ -20,7 +20,8 @@ function getDisabledWidgets() {
 const settings = {
   ...{
     BASE_URL: "/",
-    VUE_APP_OPENPAAS_URL: "http://localhost:8080"
+    VUE_APP_OPENPAAS_URL: "http://localhost:8080",
+    VUE_APP_AUTH: "basic"
   },
   ...process.env,
   ...window.openpaas
