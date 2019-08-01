@@ -1,12 +1,13 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Login from "@/views/Login.vue";
 import Dashboard from "@/views/dashboard/Dashboard.vue";
 import DashboardSidebar from "@/views/dashboard/DashboardSidebar.vue";
 import NotFound from "@/views/NotFound.vue";
 import ApplicationSettings from "@/services/application-settings";
 import { loadLanguage, getLocale } from "@/i18n";
 import store from "@/store";
+
+const LoginView = (auth = "basic") => import(`@/views/login/${auth}/Login.vue`);
 
 Vue.use(Router);
 
@@ -27,15 +28,22 @@ const router = new Router({
       name: routeNames.HOME,
       redirect: { name: routeNames.DASHBOARD },
       meta: {
-        auth: false
+        // FIXME
+        auth: false,
+        isPublic: true
       }
     },
     {
       path: "/login",
       name: routeNames.LOGIN,
-      component: Login,
+      component: () => LoginView(ApplicationSettings.VUE_APP_AUTH),
       meta: {
-        auth: false
+        // FIXME
+        auth: false,
+        isPublic: true
+      },
+      beforeEnter(to, from, next) {
+        Vue.auth.check && Vue.auth.check() ? next("/") : next();
       }
     },
     {
@@ -50,7 +58,9 @@ const router = new Router({
         sidebar: true
       },
       meta: {
+        // TODO
         auth: true,
+        isPublic: false,
         showToolbarExtension: true
       },
       beforeEnter: async (to, from, next) => {
@@ -72,7 +82,9 @@ const router = new Router({
       },
       props: true,
       meta: {
-        auth: true
+        // TODO
+        auth: true,
+        isPublic: false
       },
       beforeEnter: async (to, from, next) => {
         await store.getters["session/ready"];

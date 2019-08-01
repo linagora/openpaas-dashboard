@@ -1,3 +1,5 @@
+import Vue from "vue";
+
 const state = {
   jwtToken: localStorage.getItem("default_auth_token"),
   sessionResolved: null,
@@ -22,7 +24,7 @@ const actions = {
   },
 
   logout({ dispatch }) {
-    require("vue").default.auth.logout();
+    Vue.auth.logout();
     // TODO: dispatch to reset all the modules
     return dispatch("resetSession");
   },

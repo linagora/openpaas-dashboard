@@ -26,10 +26,7 @@ export default {
   name: "user-menu",
   methods: {
     logout() {
-      return this.$store
-        .dispatch("session/logout")
-        .catch(err => console.log("Error while logout", err))
-        .finally(() => this.$router.go());
+      return this.$store.dispatch("session/logout").catch(err => console.log("Error while logout", err));
     }
   },
   computed: {

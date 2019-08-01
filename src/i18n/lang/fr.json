@@ -42,6 +42,8 @@
   "Categories": "Catégories",
   "All": "Toutes",
   "Width": "Largeur",
+  "You are not connected to OpenPaaS": "Vous n'êtes pas connecté à OpenPaaS",
+  "Connect": "Se connecter",
   "count": {
     "widget": {
       "used": "Non utilisé | Utilisé une fois | Utilisé {count} fois",
