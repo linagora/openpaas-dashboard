@@ -9,7 +9,7 @@ import UserMenu from "@/components/ui/UserMenu";
 const mockLocalVue = createLocalVue();
 jest.doMock("vue", () => ({ default: mockLocalVue }));
 
-describe("The UserMenu component", () => {
+describe.skip("The UserMenu component", () => {
   test("logout", async function() {
     jest.spyOn(mockLocalVue.auth, "logout").mockImplementation(jest.noop);
 
