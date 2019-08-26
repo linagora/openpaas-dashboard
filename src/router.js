@@ -28,9 +28,7 @@ const router = new Router({
       name: routeNames.HOME,
       redirect: { name: routeNames.DASHBOARD },
       meta: {
-        // FIXME
-        auth: false,
-        isPublic: true
+        auth: false
       }
     },
     {
@@ -38,9 +36,7 @@ const router = new Router({
       name: routeNames.LOGIN,
       component: () => LoginView(ApplicationSettings.VUE_APP_AUTH),
       meta: {
-        // FIXME
-        auth: false,
-        isPublic: true
+        auth: false
       },
       beforeEnter(to, from, next) {
         Vue.auth.check && Vue.auth.check() ? next("/") : next();
@@ -58,9 +54,7 @@ const router = new Router({
         sidebar: true
       },
       meta: {
-        // TODO
         auth: true,
-        isPublic: false,
         showToolbarExtension: true
       },
       beforeEnter: async (to, from, next) => {
@@ -82,9 +76,7 @@ const router = new Router({
       },
       props: true,
       meta: {
-        // TODO
-        auth: true,
-        isPublic: false
+        auth: true
       },
       beforeEnter: async (to, from, next) => {
         await store.getters["session/ready"];

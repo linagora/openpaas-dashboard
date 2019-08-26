@@ -23,6 +23,7 @@
     "material-design-icons": "^3.0.1",
     "moment": "^2.24.0",
     "muuri": "^0.7.1",
+    "oidc-client": "^1.9.0",
     "portal-vue": "^2.1.5",
     "rss-parser": "^3.7.0",
     "typeface-roboto": "0.0.54",
@@ -35,7 +36,7 @@
     "vuedraggable": "^2.23.0",
     "vuetify": "^1.5.14",
     "vuex": "^3.1.1",
-    "vuex-oidc": "^2.0.2"
+    "vuex-oidc": "^3.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
