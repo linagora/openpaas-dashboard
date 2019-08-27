@@ -18,7 +18,7 @@ function configure() {
       component: OidcCallback,
       meta: {
         isOidcCallback: true,
-        isPublic: true
+        auth: false
       }
     },
     {
@@ -26,7 +26,7 @@ function configure() {
       name: routeNames.CALLBACK_ERROR,
       component: OidcCallbackError,
       meta: {
-        isPublic: true
+        auth: false
       }
     }
   ]);

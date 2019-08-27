@@ -47,7 +47,6 @@ function configure() {
   return store;
 }
 
-// FIXME: Waiting this merge https://github.com/perarnborg/vuex-oidc/pull/45
 function isPublicRoute(route) {
   return route.meta && !route.meta.auth;
 }
