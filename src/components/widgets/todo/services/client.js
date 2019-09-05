@@ -1,4 +1,5 @@
 import axios from "axios";
+const PATH = "/linagora.esn.todo/api/todos";
 
 export default class CalendarClient {
   constructor(baseUrl, jwtToken, userId) {
@@ -17,9 +18,14 @@ export default class CalendarClient {
   }
 
   getTodos() {
-    return this.client({
-      method: "GET",
-      url: `/linagora.esn.todo/api/todos`
-    }).then(({ data }) => data || []);
+    return this.client.get(PATH).then(({ data }) => data || []);
+  }
+
+  createTodo(todo) {
+    return this.client.put(PATH, todo).then(({ data }) => data || []);
+  }
+
+  updateTodo({ _id, status }) {
+    return this.client.patch(`${PATH}/${_id}/`, { status }).then(({ data }) => data || []);
   }
 }

@@ -5,7 +5,7 @@
     </v-list-tile-action>
     <v-list-tile-content>
       <v-list-tile-title class="title" :class="{ 'done' : todo.done }">{{ todo.title }}</v-list-tile-title>
-      <v-list-tile-sub-title>{{ todo.created_at | moment("from") }}</v-list-tile-sub-title>
+      <v-list-tile-sub-title>{{ todo.created_at | moment("from") }}</v-list-tile-sub-title>
     </v-list-tile-content>
   </v-list-tile>
 </template>
@@ -31,7 +31,7 @@ export default {
       }
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

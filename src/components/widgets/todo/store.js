@@ -1,4 +1,3 @@
-import uuid from "uuid";
 import Vue from "vue";
 import TodoClient from "./services/client";
 
@@ -14,7 +13,6 @@ const types = {
 
 const actions = {
   fetchTodos: ({ commit, rootState }) => {
-    /*
     const client = new TodoClient(
       rootState.applicationConfiguration.baseUrl,
       rootState.session.jwtToken,
@@ -23,31 +21,46 @@ const actions = {
 
     return client
       .getTodos()
+      .then(todos => todos || [])
+      .then(todos =>
+        todos.map(todo => {
+          todo.done = todo.status === "done";
+          return todo;
+        })
+      )
       .then(todos => commit(types.SET_TODOS, todos))
       .catch(err => console.error(err));
-    */
-    const todos = [
-      {
-        _id: uuid.v4(),
-        title: "Buy 🍺",
-        created_at: Date.now(),
-        done: true
-      }
-    ];
-    commit(types.SET_TODOS, todos);
   },
 
-  createTodo: ({ commit }, { title }) => {
-    commit(types.ADD_TODO, { _id: uuid.v4(), title, created_at: Date.now(), done: false });
+  createTodo: ({ commit, rootState }, { title }) => {
+    const client = new TodoClient(
+      rootState.applicationConfiguration.baseUrl,
+      rootState.session.jwtToken,
+      rootState.user.user._id
+    );
 
-    //return client
-    //  .createTodo(todo)
-    //  .then(result => commit(types.ADD_TODO, result))
-    //  .catch(err => console.error(err));
+    return client
+      .createTodo({ title })
+      .then(result => {
+        result.done = result.status === "done";
+        commit(types.ADD_TODO, result);
+      })
+      .catch(err => console.error(err));
   },
 
-  updateDone: ({ commit }, { _id, done }) => {
-    commit(types.UPDATE_DONE, { _id, done });
+  updateDone: ({ commit, rootState }, { _id, done }) => {
+    const client = new TodoClient(
+      rootState.applicationConfiguration.baseUrl,
+      rootState.session.jwtToken,
+      rootState.user.user._id
+    );
+
+    const status = done ? "done" : "open";
+
+    return client
+      .updateTodo({ _id, status })
+      .then(() => commit(types.UPDATE_DONE, { _id, done }))
+      .catch(err => console.error(err));
   }
 };
 
