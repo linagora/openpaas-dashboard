@@ -21,33 +21,25 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Todo",
   data: () => ({
-    todo: "",
-    todos: [
-      {
-        _id: 1,
-        title: "Buy 🍺",
-        created_at: Date.now(),
-        done: true
-      },
-      {
-        _id: 2,
-        title: "Adopt a 🦊",
-        created_at: Date.now(),
-        done: false
-      }
-    ]
+    todo: ""
   }),
+  computed: {
+    ...mapGetters({
+      todos: "linagora.esn.todo/getTodos"
+    })
+  },
   methods: {
     addTodo() {
-      this.todos.push({ id: this.todo, title: this.todo, created_at: Date.now(), done: false });
+      this.$store.dispatch("linagora.esn.todo/createTodo", { title: this.todo });
       this.todo = "";
     }
   },
   mounted() {
-    //this.$store.dispatch("com.linagora.todo/fetchTodos");
+    this.$store.dispatch("linagora.esn.todo/fetchTodos");
   }
 };
 </script>

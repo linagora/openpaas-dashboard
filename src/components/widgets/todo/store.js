@@ -1,3 +1,4 @@
+import uuid from "uuid";
 import Vue from "vue";
 import TodoClient from "./services/client";
 
@@ -12,6 +13,7 @@ const types = {
 
 const actions = {
   fetchTodos: ({ commit, rootState }) => {
+    /*
     const client = new TodoClient(
       rootState.applicationConfiguration.baseUrl,
       rootState.session.jwtToken,
@@ -22,19 +24,25 @@ const actions = {
       .getTodos()
       .then(todos => commit(types.SET_TODOS, todos))
       .catch(err => console.error(err));
+    */
+    const todos = [
+      {
+        _id: uuid.v4(),
+        title: "Buy 🍺",
+        created_at: Date.now(),
+        done: false
+      }
+    ];
+    commit(types.SET_TODOS, todos);
   },
 
-  createTodo: ({ commit, rootState }, todo) => {
-    const client = new TodoClient(
-      rootState.applicationConfiguration.baseUrl,
-      rootState.session.jwtToken,
-      rootState.user.user._id
-    );
+  createTodo: ({ commit }, { title }) => {
+    commit(types.ADD_TODO, { _id: uuid.v4(), title, created_at: Date.now() });
 
-    return client
-      .createTodo(todo)
-      .then(result => commit(types.ADD_TODO, result))
-      .catch(err => console.error(err));
+    //return client
+    //  .createTodo(todo)
+    //  .then(result => commit(types.ADD_TODO, result))
+    //  .catch(err => console.error(err));
   }
 };
 

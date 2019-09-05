@@ -9,7 +9,7 @@ const settings = {};
 
 export default {
   title: "Todo",
-  type: "com.linagora.todo",
+  type: "linagora.esn.todo",
   icon: "check_box",
   description: "A simple Todo app",
   categories: ["todo", "openpaas"],
