@@ -6,22 +6,14 @@
       v-on:keyup.enter="addTodo"
     ></v-text-field>
     <v-list subheader two-line>
-      <v-list-tile v-for="todo in todos" :key="todo._id" :class="{ 'done': todo.done }">
-        <v-list-tile-action>
-          <v-checkbox v-model="todo.done"></v-checkbox>
-        </v-list-tile-action>
-
-        <v-list-tile-content>
-          <v-list-tile-title>{{ todo.title }}</v-list-tile-title>
-          <v-list-tile-sub-title>{{ todo.created_at | moment("from") }}</v-list-tile-sub-title>
-        </v-list-tile-content>
-      </v-list-tile>
+      <entry :todo="todo" v-for="todo in todos" :key="todo._id" @done="updateDone"/>
     </v-list>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import Entry from "./Entry.vue";
 export default {
   name: "Todo",
   data: () => ({
@@ -36,10 +28,16 @@ export default {
     addTodo() {
       this.$store.dispatch("linagora.esn.todo/createTodo", { title: this.todo });
       this.todo = "";
+    },
+    updateDone(value) {
+      this.$store.dispatch("linagora.esn.todo/updateDone", value);
     }
   },
   mounted() {
     this.$store.dispatch("linagora.esn.todo/fetchTodos");
+  },
+  components: {
+    Entry
   }
 };
 </script>

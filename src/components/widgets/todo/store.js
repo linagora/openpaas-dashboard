@@ -8,7 +8,8 @@ const initialState = () => ({
 
 const types = {
   SET_TODOS: "SET_TODOS",
-  ADD_TODO: "ADD_TODO"
+  ADD_TODO: "ADD_TODO",
+  UPDATE_DONE: "UPDATE_DONE"
 };
 
 const actions = {
@@ -30,19 +31,23 @@ const actions = {
         _id: uuid.v4(),
         title: "Buy 🍺",
         created_at: Date.now(),
-        done: false
+        done: true
       }
     ];
     commit(types.SET_TODOS, todos);
   },
 
   createTodo: ({ commit }, { title }) => {
-    commit(types.ADD_TODO, { _id: uuid.v4(), title, created_at: Date.now() });
+    commit(types.ADD_TODO, { _id: uuid.v4(), title, created_at: Date.now(), done: false });
 
     //return client
     //  .createTodo(todo)
     //  .then(result => commit(types.ADD_TODO, result))
     //  .catch(err => console.error(err));
+  },
+
+  updateDone: ({ commit }, { _id, done }) => {
+    commit(types.UPDATE_DONE, { _id, done });
   }
 };
 
@@ -53,6 +58,11 @@ const mutations = {
 
   [types.ADD_TODO](state, todo) {
     Vue.set(state.todos, todo._id, todo);
+  },
+
+  [types.UPDATE_DONE](state, { _id, done }) {
+    state.todos[_id].done = done;
+    Vue.set(state.todos, _id, state.todos[_id]);
   }
 };
 
