@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "TodoEntry",
+  name: "Todo",
   props: {
     todo: Object
   },

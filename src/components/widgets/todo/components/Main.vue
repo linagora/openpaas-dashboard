@@ -5,24 +5,28 @@
       v-model="todo"
       v-on:keyup.enter="addTodo"
     ></v-text-field>
-    <v-list subheader two-line>
-      <entry :todo="todo" v-for="todo in todos" :key="todo._id" @done="updateDone"/>
+    <v-list two-line dense>
+      <todo :todo="todo" v-for="todo in orderedTodos" :key="todo._id" @done="updateDone"/>
     </v-list>
   </div>
 </template>
 
 <script>
+import { orderBy } from "lodash";
 import { mapGetters } from "vuex";
-import Entry from "./Entry.vue";
+import Todo from "./Todo.vue";
 export default {
-  name: "Todo",
+  name: "MainTodo",
   data: () => ({
     todo: ""
   }),
   computed: {
     ...mapGetters({
       todos: "linagora.esn.todo/getTodos"
-    })
+    }),
+    orderedTodos() {
+      return orderBy(this.todos, "created_at", "desc");
+    }
   },
   methods: {
     addTodo() {
@@ -37,7 +41,7 @@ export default {
     this.$store.dispatch("linagora.esn.todo/fetchTodos");
   },
   components: {
-    Entry
+    Todo
   }
 };
 </script>
