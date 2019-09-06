@@ -8,7 +8,8 @@ const initialState = () => ({
 const types = {
   SET_TODOS: "SET_TODOS",
   ADD_TODO: "ADD_TODO",
-  UPDATE_DONE: "UPDATE_DONE"
+  UPDATE_DONE: "UPDATE_DONE",
+  REMOVE_TODO: "REMOVE_TODO"
 };
 
 const actions = {
@@ -48,6 +49,19 @@ const actions = {
       .catch(err => console.error(err));
   },
 
+  removeTodo: ({ commit, rootState }, _id) => {
+    const client = new TodoClient(
+      rootState.applicationConfiguration.baseUrl,
+      rootState.session.jwtToken,
+      rootState.user.user._id
+    );
+
+    return client
+      .removeTodo(_id)
+      .then(() => commit(types.REMOVE_TODO, _id))
+      .catch(err => console.error(err));
+  },
+
   updateDone: ({ commit, rootState }, { _id, done }) => {
     const client = new TodoClient(
       rootState.applicationConfiguration.baseUrl,
@@ -76,6 +90,10 @@ const mutations = {
   [types.UPDATE_DONE](state, { _id, done }) {
     state.todos[_id].done = done;
     Vue.set(state.todos, _id, state.todos[_id]);
+  },
+
+  [types.REMOVE_TODO](state, _id) {
+    Vue.delete(state.todos, _id);
   }
 };
 

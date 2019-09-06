@@ -28,4 +28,8 @@ export default class CalendarClient {
   updateTodo({ _id, status }) {
     return this.client.patch(`${PATH}/${_id}/`, { status }).then(({ data }) => data || []);
   }
+
+  removeTodo(_id) {
+    return this.client.delete(`${PATH}/${_id}`).then(({ data }) => data || {});
+  }
 }

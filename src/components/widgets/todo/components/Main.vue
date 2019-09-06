@@ -6,7 +6,13 @@
       v-on:keyup.enter="addTodo"
     ></v-text-field>
     <v-list two-line dense>
-      <todo :todo="todo" v-for="todo in orderedTodos" :key="todo._id" @done="updateDone"/>
+      <todo
+        v-for="todo in orderedTodos"
+        :todo="todo"
+        :key="todo._id"
+        @done="updateDone"
+        @remove="removeTodo"
+      />
     </v-list>
   </div>
 </template>
@@ -35,6 +41,9 @@ export default {
     },
     updateDone(value) {
       this.$store.dispatch("linagora.esn.todo/updateDone", value);
+    },
+    removeTodo(_id) {
+      this.$store.dispatch("linagora.esn.todo/removeTodo", _id);
     }
   },
   mounted() {
