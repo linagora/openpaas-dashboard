@@ -16,6 +16,10 @@ export default {
       type: String,
       required: true
     },
+    proxy: {
+      type: Boolean,
+      default: false
+    },
     items: {
       type: Array
     }
@@ -27,12 +31,15 @@ export default {
     apiItems() {
       return this.localItems || this.items;
     },
+    endpoint() {
+      return this.proxy ? `${this.proxyUrl}?proxy=${this.url}` : this.url;
+    },
     ...mapGetters({ proxyUrl: "applicationConfiguration/getProxyServiceUrl" })
   },
   mounted() {
     this.$emit("loading", true);
     this.$http
-      .get(`${this.proxyUrl}?proxy=${this.url}`)
+      .get(this.endpoint)
       .then(response => {
         // if there is a listener to transform data, emit response, else consider that the response.data is an array
         if (this.$listeners["response"]) {
