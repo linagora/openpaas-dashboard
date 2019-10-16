@@ -54,6 +54,9 @@ export default {
     itemsSize() {
       return this.settings.limit || this.limit;
     },
+    endpoint() {
+      return this.settings.proxy ? `${this.proxyUrl}?proxy=${this.settings.url}` : this.settings.url;
+    },
     ...mapGetters({ proxyUrl: "applicationConfiguration/getProxyServiceUrl" })
   },
   methods: {
@@ -66,7 +69,7 @@ export default {
       console.log("Fetching feed", this.settings.url);
       this.$emit("loading", true);
 
-      fetch(`${this.proxyUrl}?proxy=${this.settings.url}`)
+      fetch(this.endpoint)
         .then(feed => {
           // TODO: order items by date
           // TODO: limit nb of items
