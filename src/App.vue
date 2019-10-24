@@ -15,6 +15,7 @@
         <div id="search">
           <search-header/>
         </div>
+        <applications-menu v-if="connectedUser && applications.length" :applications="applications"/>
         <user-menu v-if="connectedUser"/>
         <template v-slot:extension v-if="showToolbarExtension">
           <portal-target name="toolbar-extension"></portal-target>
@@ -39,6 +40,7 @@
 import { mapGetters, mapState } from "vuex";
 import { theme } from "@/style";
 import UserMenu from "@/components/ui/UserMenu.vue";
+import ApplicationsMenu from "@/components/ui/ApplicationsMenu.vue";
 import Snackbar from "@/components/ui/Snackbar.vue";
 import SearchHeader from "@/components/ui/SearchHeader.vue";
 
@@ -57,7 +59,8 @@ export default {
     }),
     ...mapGetters({
       getUserAvatarUrl: "user/getAvatarUrl",
-      getDisplayName: "user/getDisplayName"
+      getDisplayName: "user/getDisplayName",
+      applications: "applicationConfiguration/getApplications"
     }),
     showToolbarExtension() {
       // dirty hack to avoid to empty a portal-target with empty element
@@ -67,6 +70,7 @@ export default {
   },
   components: {
     UserMenu,
+    ApplicationsMenu,
     Snackbar,
     SearchHeader
   },

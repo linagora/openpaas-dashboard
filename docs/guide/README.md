@@ -276,6 +276,7 @@ As defined by `vue-cli`, you can set environment variables from `.env` files. In
 - `VUE_APP_OPENPAAS_URL`: The OpenPaaS URL to use when having to talk to OpenPaaS, especially used for REST APIs
 - `VUE_APP_DISABLED_WIDGETS`: The list of widgets to disable as CSV (`"clock,email"`) or as Array (`["clock", "email"]`)
 - `VUE_APP_SEARCH_URL`: The URL to use for search. The form content is appended to this URL. Defaults to `${VUE_APP_OPENPAAS_URL}/#/search/?q=`
+- `VUE_APP_APPLICATION_MENU`: A list of applications to display in the application menu
 
 ### Backend
 
