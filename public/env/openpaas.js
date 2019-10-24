@@ -9,6 +9,13 @@ window.openpaas = {
   // Define the application search URL
   //VUE_APP_SEARCH_URL: "http://localhost:8080/#/search/?q=",
   //
+  // Define the applications in the application menu
+  //VUE_APP_APPLICATION_MENU: [
+  //  { url: "http://localhost:8080/#/chat", name: "Chat", icon: "chat" },
+  //  { url: "http://localhost:8080/#/communities", name: "Communities", icon: "group_work" },
+  //  { url: "http://localhost:8080/#/videoconf", name: "VideoConf", icon: "video_call" }
+  //],
+  //
   // Define the authentication method to use: "oidc" or "basic" (defaults to "basic" when not defined)
   //VUE_APP_AUTH: "oidc",
   //

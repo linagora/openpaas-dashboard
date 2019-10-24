@@ -2,7 +2,8 @@ import ApplicationSettings from "@/services/application-settings";
 
 const state = {
   baseUrl: ApplicationSettings.VUE_APP_OPENPAAS_URL,
-  searchUrl: ApplicationSettings.VUE_APP_SEARCH_URL
+  searchUrl: ApplicationSettings.VUE_APP_SEARCH_URL,
+  applicationMenuItems: ApplicationSettings.VUE_APP_APPLICATION_MENU
 };
 
 const getters = {
@@ -14,6 +15,9 @@ const getters = {
   },
   getSearchUrl(state) {
     return state.searchUrl;
+  },
+  getApplications(state) {
+    return state.applicationMenuItems || [];
   }
 };
 
