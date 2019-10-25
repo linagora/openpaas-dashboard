@@ -7,7 +7,8 @@ const components = {
 const settings = {
   data: {
     url: "https://news.google.com/rss?hl=en",
-    limit: 8
+    limit: 8,
+    proxy: true
   }
 };
 

@@ -6,7 +6,8 @@ const components = {
 
 const settings = {
   data: {
-    url: "https://api.coinlore.com/api/tickers/?limit=5"
+    url: "https://api.coinlore.com/api/tickers/?limit=5",
+    proxy: true
   }
 };
 

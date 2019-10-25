@@ -4,6 +4,7 @@
     @error="onError"
     @loading="onLoading"
     :url="settings.url"
+    :proxy="settings.proxy"
     :items="items"
   >
     <template slot-scope="{ item }">
