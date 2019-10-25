@@ -1,7 +1,7 @@
 <template>
   <div id="feed">
     <v-layout row wrap v-if="lastItems && lastItems.length">
-      <v-flex shrink>
+      <v-flex>
         <v-list three-line>
           <template v-for="(item, index) in lastItems">
             <feed-item :item="item" :key="item.id"/>
