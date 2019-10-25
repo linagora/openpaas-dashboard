@@ -7,7 +7,8 @@ const components = {
 const settings = {
   data: {
     url: "https://news.ycombinator.com/rss",
-    limit: 8
+    limit: 8,
+    proxy: true
   }
 };
 
