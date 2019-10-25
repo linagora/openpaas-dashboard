@@ -55,12 +55,14 @@ const getters = {
   },
   getCategories: (state, getters) => [
     ...new Set(
-      getters.getStoreWidgets.map(card => card.categories).reduce((categories, element) => [...categories, ...element])
+      getters.getStoreWidgets
+        .map(card => card.categories || [])
+        .reduce((categories, element) => [...categories, ...element])
     )
   ],
   getCategorySize: (state, getters) => category =>
     getters.getStoreWidgets
-      .map(card => card.categories)
+      .map(card => card.categories || [])
       .reduce((categories, element) => [...categories, ...element])
       .filter(element => element === category).length
 };
