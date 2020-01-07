@@ -61,8 +61,19 @@
           :id="card.id"
           :settings="card.settings"
           @loading="onLoading"
+          @error="onError"
           @updateTitle="onTitleUpdate"
         />
+        <v-container
+          v-if="error"
+          pt-0 align-center justify-center align-content-center d-flex :style="{flexDirection: 'column'}"
+        >
+          <v-flex pb-2>
+            <span class="title font-weight-light red--text text--darken-1">
+              {{$t(error)}}
+            </span>
+          </v-flex>
+        </v-container>
       </v-card-text>
     </v-card>
     <v-dialog v-if="hasSettings" v-model="displaySettings" max-width="800px">
@@ -101,6 +112,7 @@ export default {
   },
   data: () => ({
     loading: false,
+    error: null,
     displaySettings: false,
     updatedTitle: null,
     columns: 1
@@ -108,6 +120,12 @@ export default {
   methods: {
     onLoading(value) {
       this.loading = value;
+      if (this.loading) {
+        this.error = null;
+      }
+    },
+    onError(msg) {
+      this.error = msg;
     },
     onTitleUpdate(value) {
       this.updatedTitle = value;
