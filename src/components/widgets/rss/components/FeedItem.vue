@@ -4,9 +4,7 @@
       <v-list-tile-title>
         {{ item.title || $t("No title") }}
       </v-list-tile-title>
-      <v-list-tile-sub-title>
-        {{ item.contentSnippet }}
-      </v-list-tile-sub-title>
+      <v-list-tile-sub-title v-html="item.contentSnippet" />
     </v-list-tile-content>
     <v-list-tile-action>
       <v-list-tile-action-text>{{ item.pubDate | moment("from") }}</v-list-tile-action-text>
