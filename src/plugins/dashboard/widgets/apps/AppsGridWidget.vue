@@ -4,7 +4,7 @@
       <v-flex
         v-for="application in applications"
         :key="application.name"
-        xs3
+        :[iconFlex]="true"
       >
         <v-tooltip top>
           <template v-slot:activator="{ on }">
@@ -34,6 +34,10 @@ export default {
     iconSize: {
       type: String,
       default: "80px"
+    },
+    iconFlex: {
+      type: String,
+      default: "xs3"
     }
   },
   methods: {
