@@ -8,7 +8,7 @@
       >
         <v-tooltip top>
           <template v-slot:activator="{ on }">
-            <v-card flat tile :href="application.url" target="_blank" v-on="on">
+            <v-card flat tile v-on="on" @click="openApplication(application)">
               <apps-grid-icon :url="application.icon" :default-url="defaultIconUrl" :height="iconSize"/>
             </v-card>
           </template>
@@ -34,6 +34,15 @@ export default {
     iconSize: {
       type: String,
       default: "80px"
+    }
+  },
+  methods: {
+    openApplication(application) {
+      if (this.$listeners["on-application-click"]) {
+        this.$emit("on-application-click", application);
+      } else {
+        window.open(application.url, "_blank");
+      }
     }
   },
   components: {
