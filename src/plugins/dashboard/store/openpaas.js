@@ -64,11 +64,17 @@ const actions = {
           widgets: dashboard.widgets.instances.map(instance => instance.id)
         };
 
-        const widgets = dashboard.widgets.instances.map(widget => ({
-          id: widget.id,
-          type: widget.type,
-          settings: widget.settings
-        }));
+        const widgets = dashboard.widgets.instances.map(widget => {
+          const widgetDefinition = Vue.$dashboard.getWidget(widget.type);
+          const widgetSettings =
+            (widgetDefinition && widgetDefinition.settings && widgetDefinition.settings.data) || {};
+
+          return {
+            id: widget.id,
+            type: widget.type,
+            settings: { ...widget.settings, ...widgetSettings }
+          };
+        });
 
         widgets.forEach(widget => {
           commit(types.ADD_CARD, widget);
