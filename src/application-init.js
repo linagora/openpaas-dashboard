@@ -12,6 +12,7 @@ import Dashboard from "@/dashboard";
 import VueOpenPaaS from "@/plugins/openpaas";
 import store from "@/store";
 import { i18n } from "@/i18n";
+import dashboardTour from "@/components/tour";
 
 // This prevents polluting the global Axios and Vue instances
 // See for instance : https://github.com/vuetifyjs/vuetify/issues/4068#issuecomment-446988490
@@ -36,6 +37,8 @@ async function applicationInit(VueInstance, { auth = servicesAuth, theme = appTh
   });
 
   VueInstance.use(VueMoment);
+
+  dashboardTour.init(VueInstance);
 
   Dashboard.init(VueInstance);
 

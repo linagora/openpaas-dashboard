@@ -9,6 +9,7 @@ import ui from "./modules/ui";
 import user from "./modules/user";
 import dashboards from "./modules/dashboards";
 import widgets from "./modules/widgets";
+import tour from "@/components/tour/store";
 
 Vue.use(Vuex);
 
@@ -19,7 +20,8 @@ export default new Vuex.Store({
     ui,
     user,
     dashboards,
-    widgets
+    widgets,
+    tour
   },
   plugins,
   state,

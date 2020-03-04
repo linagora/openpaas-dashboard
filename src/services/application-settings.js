@@ -22,7 +22,8 @@ const settings = {
     BASE_URL: "/",
     VUE_APP_OPENPAAS_URL: "http://localhost:8080",
     VUE_APP_AUTH: "basic",
-    VUE_APP_APPLICATION_MENU: []
+    VUE_APP_APPLICATION_MENU: [],
+    VUE_APP_TOUR: true
   },
   ...process.env,
   ...window.openpaas

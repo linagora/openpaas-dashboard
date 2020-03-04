@@ -28,6 +28,7 @@
           </v-layout>
         </v-container>
       </v-content>
+      <dashboard-tour v-if="$auth.check() && guidedTour" />
     </div>
     <div v-else id="progress">
       <v-progress-circular indeterminate :size="50" color="primary"></v-progress-circular>
@@ -43,8 +44,10 @@ import UserMenu from "@/components/ui/UserMenu.vue";
 import ApplicationsMenu from "@/components/ui/ApplicationsMenu.vue";
 import Snackbar from "@/components/ui/Snackbar.vue";
 import SearchHeader from "@/components/ui/SearchHeader.vue";
+import DashboardTour from "@/components/tour/components/Tour.vue";
 
 export default {
+  name: "dashboard",
   data: () => ({
     drawer: null
   }),
@@ -60,7 +63,8 @@ export default {
     ...mapGetters({
       getUserAvatarUrl: "user/getAvatarUrl",
       getDisplayName: "user/getDisplayName",
-      applications: "applicationConfiguration/getApplications"
+      applications: "applicationConfiguration/getApplications",
+      guidedTour: "applicationConfiguration/getTour"
     }),
     showToolbarExtension() {
       // dirty hack to avoid to empty a portal-target with empty element
@@ -72,7 +76,8 @@ export default {
     UserMenu,
     ApplicationsMenu,
     Snackbar,
-    SearchHeader
+    SearchHeader,
+    DashboardTour
   },
   created() {
     this.$auth.ready(() => {

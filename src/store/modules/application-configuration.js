@@ -3,7 +3,8 @@ import ApplicationSettings from "@/services/application-settings";
 const state = {
   baseUrl: ApplicationSettings.VUE_APP_OPENPAAS_URL,
   searchUrl: ApplicationSettings.VUE_APP_SEARCH_URL,
-  applicationMenuItems: ApplicationSettings.VUE_APP_APPLICATION_MENU
+  applicationMenuItems: ApplicationSettings.VUE_APP_APPLICATION_MENU,
+  guidedTour: ApplicationSettings.VUE_APP_TOUR
 };
 
 const getters = {
@@ -18,6 +19,9 @@ const getters = {
   },
   getApplications(state) {
     return state.applicationMenuItems || [];
+  },
+  getTour(state) {
+    return state.guidedTour;
   }
 };
 
