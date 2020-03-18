@@ -12,13 +12,13 @@
       :callbacks="secondTourCallbacks"
       :options="secondOptions"
     ></v-tour>
-    <v-tour name="thirdDashboardTour" :steps="thirdSteps"></v-tour>
+    <v-tour name="thirdDashboardTour" :steps="thirdSteps" :options="thirdOptions"></v-tour>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
 import { routeNames } from "@/router";
-import { FIRST_STEPS, SECOND_STEPS, THIRD_STEPS, FIRST_OPTIONS, SECOND_OPTIONS } from "../constants";
+import { FIRST_STEPS, SECOND_STEPS, THIRD_STEPS, FIRST_OPTIONS, SECOND_OPTIONS, THIRD_OPTIONS } from "../constants";
 import { i18n } from "@/i18n";
 
 export default {
@@ -95,11 +95,27 @@ export default {
     },
 
     firstOptions() {
+      FIRST_OPTIONS.labels.buttonSkip = i18n.t(FIRST_OPTIONS.labels.buttonSkip);
+      FIRST_OPTIONS.labels.buttonPrevious = i18n.t(FIRST_OPTIONS.labels.buttonPrevious);
+      FIRST_OPTIONS.labels.buttonNext = i18n.t(FIRST_OPTIONS.labels.buttonNext);
+      FIRST_OPTIONS.labels.buttonStop = i18n.t(FIRST_OPTIONS.labels.buttonStop);
       return FIRST_OPTIONS;
     },
 
     secondOptions() {
+      SECOND_OPTIONS.labels.buttonSkip = i18n.t(SECOND_OPTIONS.labels.buttonSkip);
+      SECOND_OPTIONS.labels.buttonPrevious = i18n.t(SECOND_OPTIONS.labels.buttonPrevious);
+      SECOND_OPTIONS.labels.buttonNext = i18n.t(SECOND_OPTIONS.labels.buttonNext);
+      SECOND_OPTIONS.labels.buttonStop = i18n.t(SECOND_OPTIONS.labels.buttonStop);
       return SECOND_OPTIONS;
+    },
+
+    thirdOptions() {
+      THIRD_OPTIONS.labels.buttonSkip = i18n.t(THIRD_OPTIONS.labels.buttonSkip);
+      THIRD_OPTIONS.labels.buttonPrevious = i18n.t(THIRD_OPTIONS.labels.buttonPrevious);
+      THIRD_OPTIONS.labels.buttonNext = i18n.t(THIRD_OPTIONS.labels.buttonNext);
+      THIRD_OPTIONS.labels.buttonStop = i18n.t(THIRD_OPTIONS.labels.buttonStop);
+      return THIRD_OPTIONS;
     }
   },
   watch: {
@@ -118,6 +134,13 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
+#v-step-bd59eb18 {
+  top: -50px !important;
+  left: 320px !important;
+}
 
+#v-step-3d83d1aa {
+  left: 320px !important;
+}
 </style>

@@ -10,7 +10,8 @@ export const FIRST_STEPS = [
     target: "#manage-widgets",
     content: "You can add a new widget from the widget store",
     params: {
-      enableScrolling: false
+      enableScrolling: false,
+      placement: "left"
     }
   }
 ];
@@ -27,7 +28,8 @@ export const SECOND_STEPS = [
     target: "nav #go-back",
     content: "Click to go back to your dashboard",
     params: {
-      enableScrolling: false
+      enableScrolling: false,
+      placement: "left"
     }
   }
 ];
@@ -37,14 +39,16 @@ export const THIRD_STEPS = [
     target: "#dashboard-add-btn",
     content: "Click to create new dashboard",
     params: {
-      enableScrolling: false
+      enableScrolling: false,
+      placement: "left"
     }
   },
   {
     target: "#card-grid",
     content: "You can now create and customize as many dashboards as you want",
     params: {
-      enableScrolling: false
+      enableScrolling: false,
+      placement: "bottom"
     }
   }
 ];
@@ -68,5 +72,16 @@ export const SECOND_OPTIONS = {
     buttonPrevious: "Previous",
     buttonNext: "Next",
     buttonStop: "Next"
+  }
+};
+
+export const THIRD_OPTIONS = {
+  enableScrolling: false,
+  useKeyboardNavigation: false,
+  labels: {
+    buttonSkip: "Skip tour",
+    buttonPrevious: "Previous",
+    buttonNext: "Next",
+    buttonStop: "Finnish"
   }
 };
