@@ -120,10 +120,10 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (from.name === "Dashboard" && to.name === "Store") {
+      if (from.name === routeNames.HOME && to.name === routeNames.STORE) {
         this.$tours["firstDashboardTour"].stop();
       }
-      if (from.name === "Store" && to.name === "Dashboard") {
+      if (from.name === routeNames.STORE && to.name === routeNames.HOME) {
         this.$tours["secondDashboardTour"].stop();
       }
     }

@@ -82,6 +82,6 @@ export const THIRD_OPTIONS = {
     buttonSkip: "Skip tour",
     buttonPrevious: "Previous",
     buttonNext: "Next",
-    buttonStop: "Finnish"
+    buttonStop: "Finish"
   }
 };
