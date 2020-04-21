@@ -16,6 +16,16 @@ describe("The tour feature", () => {
     cy.get("[data-test=tour-dialog]").should("be.visible");
   });
 
+  it("should not display the tour when enabled in settings but already completed /", () => {
+    cy.visit("/", {
+      onBeforeLoad: window => {
+        window._e2esettings = { VUE_APP_TOUR: true };
+        window.localStorage.setItem("dashboard:tour:completed", true);
+      }
+    });
+    cy.get("[data-test=tour-dialog]").should("not.be.visible");
+  });
+
   it("should not display the tour when disabled in settings /", () => {
     cy.visit("/", {
       onBeforeLoad: window => {
