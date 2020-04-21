@@ -1,0 +1,39 @@
+{
+  "tour": {
+    "button": {
+      "yes": "Yes",
+      "no": "No",
+      "next": "Next",
+      "cancel": "Cancel",
+      "done": "Done"
+    },
+    "step": {
+      "1": {
+        "title": "Dashboard",
+        "text1": "You are currently on your main dashboard page.",
+        "text2": "On this page you can find all the widgets you already added. You can also reorganize them using drag and drop.",
+        "text3": "You can add new widgets from the 'widget store'. To access to the widget store, open the '+' menu in the sidebar and click on 'Add a new widget'.",
+        "button": "Show me the menu"
+      },
+      "2": {
+        "title": "Widget Store",
+        "text1": "You can add as many widgets as needed by clicking on the + button on each widget.",
+        "text2": "Once done, you can go back to your dashboard by clicking on the 'Back' button on the left."
+      },
+      "3": {
+        "title": "Dashboard creation",
+        "text1": "You can create as many dashboards as needed. To create a new dashboard, open the '+' menu in the sidebar and click on 'Create a new dashboard'.",
+        "button": "Show me the menu"
+      },
+      "4": {
+        "title": "Completed",
+        "text1": "The tour is now complete! You can now close this window and use the dashboard application."
+      }
+    },
+    "welcome": {
+      "title": "Welcome to the dashboard application",
+      "text1": "It seems that this is your first time here. In order to discover the application, you can follow a short guided tour.",
+      "text2": "Do you want to launch the tour?"
+    }
+  }
+}

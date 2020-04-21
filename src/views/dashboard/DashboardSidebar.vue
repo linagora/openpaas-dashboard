@@ -9,7 +9,7 @@
         </v-list-tile-content>
         <v-list-tile-action>
           <v-menu bottom left offset-y close-on-click>
-            <v-btn slot="activator" flat icon ripple data-test="dashboard-sidebar-actions" id="dashboard-add-btn">
+            <v-btn slot="activator" flat icon ripple data-test="dashboard-sidebar-actions" id="sidebar-menu-button">
               <v-icon>add_circle_outline</v-icon>
             </v-btn>
             <v-list class="pa-0">

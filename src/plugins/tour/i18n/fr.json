@@ -1,0 +1,39 @@
+{
+  "tour": {
+    "button": {
+      "yes": "Oui",
+      "no": "Non",
+      "next": "Suivant",
+      "cancel": "Annuler",
+      "done": "OK"
+    },
+    "step": {
+      "1": {
+        "title": "Tableau de bord",
+        "text1": "Vous êtes actuellement sur votre tableau de bord principal.",
+        "text2": "Sur cette page, vous trouverez tous les widgets que vous avez déjà ajouté. Vous pouvez aussi les réorganiser en les glissant avec votre souris.",
+        "text3": "Vous pouvez ajouter de nouveau widgets depuis le 'magasin de widgets'. Pour y accéder, ouvrez le menu '+' dans la barre latérale de gauche et cliquez sur 'Ajouter un nouveau widget'.",
+        "button": "Montrez moi le menu"
+      },
+      "2": {
+        "title": "Magasin de widgets",
+        "text1": "Vous pouvez ajouter autant de widgets que vous le souhaitez en cliquant sur le bouton '+' de chaque widget.",
+        "text2": "Une fois terminé, vous pouvez retourner à votre tableau de bord en cliquant sur le bouton 'Retour' sur la gauche."
+      },
+      "3": {
+        "title": "Création de tableau de bord",
+        "text1": "Vous pouvez créer autant de tableau de bord que vous le souhaitez. Pour créer un nouveau tableau de bord, ouvrez le menu '+' dans la barre latérale de gauche et cliquez sur 'Créer un nouveau tableau de bord'.",
+        "button": "Montrez moi le menu"
+      },
+      "4": {
+        "title": "Fin",
+        "text1": "Le tutoriel est maintenant achevé! Vous pouvez maintenant le fermer et utiliser votre application."
+      }
+    },
+    "welcome": {
+      "title": "Bienvenue dans l'application Tableau de bord",
+      "text1": "Il semble que ce soit la première fois que vous lancez l'application. Pour la découvrir, vous pouvez suivre un tutoriel rapide.",
+      "text2": "Voulez vous suivre le tutoriel?"
+    }
+  }
+}
