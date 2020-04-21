@@ -3,6 +3,8 @@
 window.openpaas = {
   //VUE_APP_OPENPAAS_URL: "https://dev.open-paas.org",
   //
+  // Enable/Disable the Application tutorial 'tour'
+  // VUE_APP_TOUR: true,
   // Define a CSV list of disabled widgets from their "type", or as Array of String
   //VUE_APP_DISABLED_WIDGETS: "clock"
   //

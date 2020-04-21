@@ -36,9 +36,14 @@ Cypress.Commands.add(
     password = "secret",
     jwtFixture = undefined,
     userFixture = undefined,
-    redirectPath = "/"
+    redirectPath = "/",
+    _e2esettings = {}
   } = {}) => {
-    cy.visit("/");
+    cy.visit("/", {
+      onBeforeLoad: window => {
+        window._e2esettings = _e2esettings || {};
+      }
+    });
     cy.server();
 
     userFixture = userFixture || `${user}User.json`;
@@ -106,6 +111,10 @@ Cypress.Commands.add(
       });
     });
 
-    cy.visit(redirectPath);
+    cy.visit(redirectPath, {
+      onBeforeLoad: window => {
+        window._e2esettings = _e2esettings || {};
+      }
+    });
   }
 );

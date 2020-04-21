@@ -22,10 +22,12 @@ const settings = {
     BASE_URL: "/",
     VUE_APP_OPENPAAS_URL: "http://localhost:8080",
     VUE_APP_AUTH: "basic",
-    VUE_APP_APPLICATION_MENU: []
+    VUE_APP_APPLICATION_MENU: [],
+    VUE_APP_TOUR: false
   },
   ...process.env,
-  ...window.openpaas
+  ...window.openpaas,
+  ...window._e2esettings
 };
 
 if (!settings.VUE_APP_SEARCH_URL) {

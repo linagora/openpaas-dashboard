@@ -10,6 +10,7 @@ import { theme as appTheme } from "@/style";
 import ApplicationSettings from "@/services/application-settings";
 import Dashboard from "@/dashboard";
 import VueOpenPaaS from "@/plugins/openpaas";
+import VueTour from "@/plugins/tour";
 import store from "@/store";
 import { i18n } from "@/i18n";
 
@@ -36,6 +37,8 @@ async function applicationInit(VueInstance, { auth = servicesAuth, theme = appTh
   });
 
   VueInstance.use(VueMoment);
+
+  VueInstance.use(VueTour, { store, settings: store.state.applicationConfiguration });
 
   Dashboard.init(VueInstance);
 

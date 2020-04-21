@@ -28,10 +28,12 @@ class GenerateI18nFilesPlugin {
       log("Generating i18n files");
       const appLangs = glob.sync("./src/i18n/lang/*.json");
       const widgetsLangs = glob.sync("./src/components/widgets/**/i18n/*.json");
+      const tourLangs = glob.sync("./src/plugins/tour/i18n/*.json");
       const messages = {};
 
       appLangs.forEach(load);
       widgetsLangs.forEach(load);
+      tourLangs.forEach(load);
 
       Object.keys(messages).forEach(key => {
         log(`Generating ./src/langs/${key}.json file...`);

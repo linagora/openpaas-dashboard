@@ -29,7 +29,8 @@
             :card="card"
             :counter="countInstanceOfType(card.type)"
             @add="useWidget(card)"
-            @filter="applyFilter"/>
+            @filter="applyFilter"
+            :class="card.type"/>
         </v-flex>
       </transition-group>
     </v-layout>

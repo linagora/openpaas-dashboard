@@ -28,6 +28,7 @@
           </v-layout>
         </v-container>
       </v-content>
+      <GuidedTour v-if="$auth.check()" :show="tour" @skip="tour = false;" @complete="tour = false"/>
     </div>
     <div v-else id="progress">
       <v-progress-circular indeterminate :size="50" color="primary"></v-progress-circular>
@@ -45,9 +46,18 @@ import Snackbar from "@/components/ui/Snackbar.vue";
 import SearchHeader from "@/components/ui/SearchHeader.vue";
 
 export default {
+  name: "dashboard",
   data: () => ({
-    drawer: null
+    drawer: null,
+    tour: false
   }),
+  methods: {
+    showTour() {
+      if (this.$tour.isEnabled() && !this.$tour.isCompleted()) {
+        this.tour = true;
+      }
+    }
+  },
   computed: {
     backgroundColor() {
       if (!this.$auth.check()) {
@@ -77,6 +87,11 @@ export default {
   created() {
     this.$auth.ready(() => {
       this.$store.dispatch("user/fetchUser");
+    });
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.showTour();
     });
   }
 };

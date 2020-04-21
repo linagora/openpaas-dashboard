@@ -45,6 +45,7 @@
                       color="primary"
                       :disabled="!card.available"
                       fab dark depressed
+                      id="add-card-btn"
                     >
                       <v-icon dark>add</v-icon>
                     </v-btn>

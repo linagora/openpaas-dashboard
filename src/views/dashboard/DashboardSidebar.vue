@@ -9,7 +9,7 @@
         </v-list-tile-content>
         <v-list-tile-action>
           <v-menu bottom left offset-y close-on-click>
-            <v-btn slot="activator" flat icon ripple data-test="dashboard-sidebar-actions">
+            <v-btn slot="activator" flat icon ripple data-test="dashboard-sidebar-actions" id="sidebar-menu-button">
               <v-icon>add_circle_outline</v-icon>
             </v-btn>
             <v-list class="pa-0">
@@ -43,7 +43,15 @@
           </v-list-tile-content>
           <v-list-tile-action>
             <v-menu bottom left offset-y close-on-click min-width="150px">
-              <v-btn data-test="dashboard-operations" slot="activator" flat icon ripple @click.native.prevent>
+              <v-btn
+                data-test="dashboard-operations"
+                slot="activator"
+                flat
+                icon
+                ripple
+                @click.native.prevent
+                id="manage-widgets"
+              >
                 <v-icon>more_vert</v-icon>
               </v-btn>
               <v-list class="pa-0">
