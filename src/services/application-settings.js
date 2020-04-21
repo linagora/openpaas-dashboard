@@ -26,7 +26,8 @@ const settings = {
     VUE_APP_TOUR: false
   },
   ...process.env,
-  ...window.openpaas
+  ...window.openpaas,
+  ...window._e2esettings
 };
 
 if (!settings.VUE_APP_SEARCH_URL) {

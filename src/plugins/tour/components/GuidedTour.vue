@@ -1,7 +1,7 @@
 <template>
   <div id="tour">
       <v-dialog persistent v-model="showDialog" max-width="800px" :hide-overlay="e1 !== 0" persistant>
-        <v-card v-if="e1 === 0">
+        <v-card v-if="e1 === 0" data-test="tour-dialog">
           <v-card-title class="headline" primary-title>{{ $t("tour.welcome.title") }}</v-card-title>
           <v-card-text class="subheading">
             <p>{{ $t("tour.welcome.text1") }}</p>
